@@ -1,0 +1,115 @@
+[
+  {
+    "id": "b3ca5233a09710897058ecf7",
+    "name": "b3ca5233a09710897058ecf7 name",
+    "description": "b3ca5233a09710897058ecf7 description",
+    "imageUrl": "/files/achievement/ER_DownTheRabbitHole_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "7214315840a7de8bfa5852c4",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "fe998ea05e2a3d90ef4d3abc",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "630b59c729d5a1ed46118c54",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "0db880236f3031c3395c8d14",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "5e0ecf56aea1642b9688e53f",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "dbfa75ff9a3e9c7c9cf1caa1",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "c2c5049f5f945c4e44bd5d11",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "341205c50dcfe7ba265cc80f",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "b87ff28c31866401fc8da0bb",
+          "index": 4,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "407c5dc01358c5b40d558083",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "62ae75a2c327b50e896d7918",
+          "index": 5,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "9f7a2777b4661e7e2830271a",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20005
+  }
+]

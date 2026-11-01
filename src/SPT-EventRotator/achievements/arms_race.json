@@ -1,0 +1,85 @@
+[
+  {
+    "id": "4650e2d1bf4f8f5439372395",
+    "name": "4650e2d1bf4f8f5439372395 name",
+    "description": "4650e2d1bf4f8f5439372395 description",
+    "imageUrl": "/files/achievement/ER_ArmsRace_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "02d9381785010c04e84a8020",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "668bcd253e2c5f65cc64d7da",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "a20ee3fe6b3e6d76d028448f",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "668bcd367eb38c3c4d58603c",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "e167c620729fb694c2fd00ce",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "668bcd7459a35c28386482d0",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "0440dd1a699ebbbf2045993e",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "668bcd6c3e2c5f65cc64d7dc",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20002
+  }
+]

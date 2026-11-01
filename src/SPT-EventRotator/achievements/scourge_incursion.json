@@ -1,0 +1,115 @@
+[
+  {
+    "id": "9916813aaa06477bebd3ec68",
+    "name": "9916813aaa06477bebd3ec68 name",
+    "description": "9916813aaa06477bebd3ec68 description",
+    "imageUrl": "/files/achievement/ER_ScourgeIncursion_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "e9b317136802150ea2012e42",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac3bc49f3f4480654003d7a",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "abff43c4bcba0003ba8f8ba4",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac3ca960cee4580a601b28c",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "aba31c80fe86e66c4506083c",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac3d88d14db1a2f3e0787bd",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "3b3ba8d63fd1864da4050b32",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac4c1d676842fabb501d5aa",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "91d382a59ea357d4050277ac",
+          "index": 4,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac4c42976842fabb501d5b8",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6c0bc2a669415cd4d608195b",
+          "index": 5,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6ac4c726a3ea5ab42a074d3a",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20002
+  }
+]

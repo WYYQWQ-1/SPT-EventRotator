@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>IdemProbe</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS0168</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="IdemProgram.cs" />
+  </ItemGroup>
+
+  <!-- SPT 的 ISptLogger 实现链依赖这个程序集。真实服务端由 SPT.Server 运行时提供；
+       探针环境必须自己带一份，否则被测代码里的 _log.Info(...) 会抛 FileNotFoundException。 -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+  </ItemGroup>
+
+  <!-- SPT 运行时目录全部 dll 拷到输出，供 Assembly.LoadFrom 解析依赖（只读拷贝，不动部署） -->
+  <ItemGroup>
+    <ProbeRuntimeFiles Include="D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\*.dll" />
+  </ItemGroup>
+
+  <Target Name="CopyProbeRuntime" AfterTargets="Build">
+    <Copy SourceFiles="@(ProbeRuntimeFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" ContinueOnError="true" />
+  </Target>
+
+</Project>

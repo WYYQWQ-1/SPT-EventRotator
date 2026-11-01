@@ -1,0 +1,835 @@
+﻿{
+ "eventId": "wild_wild_woods",
+ "quests": {
+  "70d3ea0b80ba66236c456096": {
+   "QuestName": "Wild Wild Woods",
+   "_id": "70d3ea0b80ba66236c456096",
+   "acceptPlayerMessage": "70d3ea0b80ba66236c456096 acceptPlayerMessage",
+   "canShowNotificationsInGame": true,
+   "changeQuestMessageText": "70d3ea0b80ba66236c456096 changeQuestMessageText",
+   "completePlayerMessage": "70d3ea0b80ba66236c456096 completePlayerMessage",
+   "conditions": {
+    "AvailableForStart": [
+     {
+      "conditionType": "Level",
+      "dynamicLocale": false,
+      "id": "fe1d1c497635a36ee4c51c9e",
+      "compareMethod": ">=",
+      "value": 1,
+      "globalQuestCounterId": "",
+      "index": 0,
+      "parentId": "",
+      "visibilityConditions": []
+     }
+    ],
+    "AvailableForFinish": [
+     {
+      "conditionType": "FindItem",
+      "countInRaid": false,
+      "dogtagLevel": 0,
+      "dynamicLocale": false,
+      "globalQuestCounterId": "",
+      "id": "17b9e46d73f359a8f1e1a649",
+      "index": 0,
+      "isEncoded": false,
+      "maxDurability": 100,
+      "minDurability": 0,
+      "onlyFoundInRaid": true,
+      "parentId": "",
+      "target": [
+       "5bc9bdb8d4351e003562b8a1"
+      ],
+      "value": 12,
+      "visibilityConditions": []
+     },
+     {
+      "conditionType": "HandoverItem",
+      "dogtagLevel": 0,
+      "dynamicLocale": false,
+      "globalQuestCounterId": "",
+      "id": "d29971f82b3cba918f4cccf7",
+      "index": 1,
+      "isEncoded": false,
+      "maxDurability": 100,
+      "minDurability": 0,
+      "onlyFoundInRaid": true,
+      "parentId": "",
+      "target": [
+       "5bc9bdb8d4351e003562b8a1"
+      ],
+      "value": 12,
+      "visibilityConditions": []
+     }
+    ],
+    "Fail": []
+   },
+   "declinePlayerMessage": "70d3ea0b80ba66236c456096 declinePlayerMessage",
+   "description": "70d3ea0b80ba66236c456096 description",
+   "failMessageText": "70d3ea0b80ba66236c456096 failMessageText",
+   "image": "/files/quest/icon/5d69470786f774238a38d844.png",
+   "instantComplete": false,
+   "isKey": false,
+   "location": "any",
+   "name": "70d3ea0b80ba66236c456096 name",
+   "note": "",
+   "restartable": false,
+   "rewards": {
+    "Started": [],
+    "Success": [
+     {
+      "id": "ad14d6dfdeadac508619f2be",
+      "index": 0,
+      "type": "Experience",
+      "value": 25000
+     },
+     {
+      "findInRaid": false,
+      "id": "e3527a26d615e901ffeaf024",
+      "index": 1,
+      "items": [
+       {
+        "_id": "0c6ffc8b47433c6e8f87a144",
+        "_tpl": "5449016a4bdc2d6f028b456f",
+        "upd": {
+         "StackObjectsCount": 410900
+        }
+       }
+      ],
+      "target": "0c6ffc8b47433c6e8f87a144",
+      "type": "Item",
+      "value": 410900
+     },
+     {
+      "findInRaid": true,
+      "id": "11881f4a671aa73141160a9b",
+      "index": 2,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "63fc44e2429a8a166c7f61e6",
+        "_id": "9ace12119f1597662b2b6593"
+       }
+      ],
+      "target": "9ace12119f1597662b2b6593",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "findInRaid": true,
+      "id": "9986425dc1939c21bcec752e",
+      "index": 5,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "6769b8e3c1a1466c850658a8",
+        "_id": "8ad28c00cf516cd6e1afebba"
+       }
+      ],
+      "target": "8ad28c00cf516cd6e1afebba",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "findInRaid": true,
+      "id": "0fa13d711c0853f55d30c53b",
+      "index": 6,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "657023ccbfc87b3a3409320a",
+        "_id": "00d110bc9420880a060113ed"
+       }
+      ],
+      "target": "00d110bc9420880a060113ed",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "findInRaid": true,
+      "id": "9ef90cce6880483a1df80919",
+      "index": 7,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5c0126f40db834002a125382",
+        "_id": "db0d0d3e0b481cb938649bb1"
+       }
+      ],
+      "target": "db0d0d3e0b481cb938649bb1",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "findInRaid": true,
+      "id": "be71e39527fd84d7f99983d5",
+      "index": 8,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5780cf7f2459777de4559322",
+        "_id": "003ac6bb6ddd78f862b40204"
+       }
+      ],
+      "target": "003ac6bb6ddd78f862b40204",
+      "type": "Item",
+      "value": 1
+     }
+    ],
+    "Fail": []
+   },
+   "secretQuest": false,
+   "side": "Pmc",
+   "startedMessageText": "70d3ea0b80ba66236c456096 startedMessageText",
+   "successMessageText": "70d3ea0b80ba66236c456096 successMessageText",
+   "traderId": "5c0647fdd443bc2504c2d371",
+   "type": "PickUp"
+  },
+  "2534f95dcc0bc69f847681fd": {
+   "QuestName": "Eliminate Scavs",
+   "_id": "2534f95dcc0bc69f847681fd",
+   "acceptPlayerMessage": "2534f95dcc0bc69f847681fd acceptPlayerMessage",
+   "canShowNotificationsInGame": true,
+   "changeQuestMessageText": "2534f95dcc0bc69f847681fd changeQuestMessageText",
+   "completePlayerMessage": "2534f95dcc0bc69f847681fd completePlayerMessage",
+   "conditions": {
+    "AvailableForStart": [
+     {
+      "conditionType": "Level",
+      "dynamicLocale": false,
+      "id": "3f3e53e5d4e3f7fe14202071",
+      "compareMethod": ">=",
+      "value": 1,
+      "globalQuestCounterId": "",
+      "index": 0,
+      "parentId": "",
+      "visibilityConditions": []
+     }
+    ],
+    "AvailableForFinish": [
+     {
+      "completeInSeconds": 0,
+      "conditionType": "CounterCreator",
+      "counter": {
+       "conditions": [
+        {
+         "bodyPart": [],
+         "compareMethod": ">=",
+         "conditionType": "Kills",
+         "daytime": {
+          "from": 0,
+          "to": 0
+         },
+         "distance": {
+          "compareMethod": ">=",
+          "value": 0
+         },
+         "dynamicLocale": false,
+         "enemyEquipmentExclusive": [],
+         "enemyEquipmentInclusive": [],
+         "enemyHealthEffects": [],
+         "id": "3fca9b1a078c2972cd058ae1",
+         "resetOnSessionEnd": false,
+         "savageRole": [],
+         "target": "Savage",
+         "value": 1,
+         "weapon": [],
+         "weaponCaliber": [],
+         "weaponModsExclusive": [],
+         "weaponModsInclusive": []
+        }
+       ],
+       "id": "741fb7dbd2e260cc0276e2d4"
+      },
+      "doNotResetIfCounterCompleted": false,
+      "dynamicLocale": false,
+      "globalQuestCounterId": "",
+      "id": "88445822ed394cdb899cb156",
+      "index": 0,
+      "isNecessary": false,
+      "isResetOnConditionFailed": false,
+      "oneSessionOnly": false,
+      "parentId": "",
+      "type": "Elimination",
+      "value": 18,
+      "visibilityConditions": []
+     }
+    ],
+    "Fail": []
+   },
+   "declinePlayerMessage": "2534f95dcc0bc69f847681fd declinePlayerMessage",
+   "description": "2534f95dcc0bc69f847681fd description",
+   "failMessageText": "2534f95dcc0bc69f847681fd failMessageText",
+   "image": "/files/quest/icon/616d993bc8c5ad2ab30ff6ba.png",
+   "instantComplete": false,
+   "isKey": false,
+   "location": "any",
+   "name": "2534f95dcc0bc69f847681fd name",
+   "note": "",
+   "restartable": false,
+   "rewards": {
+    "Started": [],
+    "Success": [
+     {
+      "findInRaid": false,
+      "id": "9af0ef755b089c04c9c00c1b",
+      "index": 0,
+      "items": [
+       {
+        "_id": "7b630c728e60eae8cf5438f2",
+        "_tpl": "569668774bdc2da2298b4568",
+        "upd": {
+         "StackObjectsCount": 617
+        }
+       }
+      ],
+      "target": "7b630c728e60eae8cf5438f2",
+      "type": "Item",
+      "value": 617
+     },
+     {
+      "findInRaid": true,
+      "id": "9733452216f6ad65ad5c588c",
+      "index": 1,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5bc9bdb8d4351e003562b8a1",
+        "_id": "d1e34a5c1ea04bdbc2c30d18"
+       },
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5bc9bdb8d4351e003562b8a1",
+        "_id": "cc0ca8042ed70767114727fe"
+       }
+      ],
+      "target": "d1e34a5c1ea04bdbc2c30d18",
+      "type": "Item",
+      "value": 2
+     },
+     {
+      "id": "bf8425f04ed4d83ca929032d",
+      "index": 2,
+      "target": "579dc571d53a0658a154fbec",
+      "type": "TraderStanding",
+      "value": 0.03
+     }
+    ],
+    "Fail": []
+   },
+   "secretQuest": false,
+   "side": "Pmc",
+   "startedMessageText": "2534f95dcc0bc69f847681fd startedMessageText",
+   "successMessageText": "2534f95dcc0bc69f847681fd successMessageText",
+   "traderId": "579dc571d53a0658a154fbec",
+   "type": "Elimination"
+  },
+  "085474a2a5eb5b70109b2c32": {
+   "QuestName": "Find and extract (Bolt-action rifles)",
+   "_id": "085474a2a5eb5b70109b2c32",
+   "acceptPlayerMessage": "085474a2a5eb5b70109b2c32 acceptPlayerMessage",
+   "canShowNotificationsInGame": true,
+   "changeQuestMessageText": "085474a2a5eb5b70109b2c32 changeQuestMessageText",
+   "completePlayerMessage": "085474a2a5eb5b70109b2c32 completePlayerMessage",
+   "conditions": {
+    "AvailableForStart": [
+     {
+      "conditionType": "Level",
+      "dynamicLocale": false,
+      "id": "e175195254f8f1a936fcc195",
+      "compareMethod": ">=",
+      "value": 1,
+      "globalQuestCounterId": "",
+      "index": 0,
+      "parentId": "",
+      "visibilityConditions": []
+     }
+    ],
+    "AvailableForFinish": [
+     {
+      "isEncoded": false,
+      "conditionType": "FindItem",
+      "countInRaid": true,
+      "dogtagLevel": 0,
+      "dynamicLocale": false,
+      "globalQuestCounterId": "",
+      "id": "75231d2924cf41f2bbe90766",
+      "index": 0,
+      "maxDurability": 100,
+      "minDurability": 0,
+      "onlyFoundInRaid": false,
+      "parentId": "",
+      "target": [
+       "5b5f798886f77447ed5636b5"
+      ],
+      "value": 4,
+      "visibilityConditions": []
+     },
+     {
+      "completeInSeconds": 0,
+      "conditionType": "CounterCreator",
+      "counter": {
+       "conditions": [
+        {
+         "target": [
+          "any"
+         ],
+         "id": "52859c1f41141ce96563ebed",
+         "dynamicLocale": true,
+         "conditionType": "Location"
+        },
+        {
+         "status": [
+          "Survived"
+         ],
+         "id": "493a910b7d8618a541d542a2",
+         "dynamicLocale": true,
+         "conditionType": "ExitStatus"
+        },
+        {
+         "equipmentInclusive": [
+          [
+           "5b5f798886f77447ed5636b5"
+          ]
+         ],
+         "IncludeNotEquippedItems": true,
+         "id": "849c10e52670bd49c4d6d625",
+         "dynamicLocale": true,
+         "conditionType": "Equipment"
+        }
+       ],
+       "id": "d4776dbc6059e143c741101a"
+      },
+      "doNotResetIfCounterCompleted": false,
+      "dynamicLocale": true,
+      "globalQuestCounterId": "",
+      "id": "7f7e8ac8e25f4f7bf9f23903",
+      "index": 1,
+      "isNecessary": false,
+      "isResetOnConditionFailed": false,
+      "oneSessionOnly": true,
+      "parentId": "",
+      "type": "PickUp",
+      "value": 1,
+      "visibilityConditions": []
+     }
+    ],
+    "Fail": []
+   },
+   "declinePlayerMessage": "085474a2a5eb5b70109b2c32 declinePlayerMessage",
+   "description": "085474a2a5eb5b70109b2c32 description",
+   "failMessageText": "085474a2a5eb5b70109b2c32 failMessageText",
+   "image": "/files/quest/icon/62bd61b1b818ff064405b827.jpg",
+   "instantComplete": false,
+   "isKey": false,
+   "location": "any",
+   "name": "085474a2a5eb5b70109b2c32 name",
+   "note": "",
+   "restartable": false,
+   "rewards": {
+    "Started": [],
+    "Success": [
+     {
+      "findInRaid": false,
+      "id": "80956a2a2e6fcf61e6998dab",
+      "index": 0,
+      "items": [
+       {
+        "_id": "99f46b242ba9544b6609aad8",
+        "_tpl": "569668774bdc2da2298b4568",
+        "upd": {
+         "StackObjectsCount": 267
+        }
+       }
+      ],
+      "target": "99f46b242ba9544b6609aad8",
+      "type": "Item",
+      "value": 267
+     },
+     {
+      "findInRaid": true,
+      "id": "c6d1ec1191f50274dd4dfb41",
+      "index": 1,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5bc9bdb8d4351e003562b8a1",
+        "_id": "21abbfca35f47a44b15f3900"
+       }
+      ],
+      "target": "21abbfca35f47a44b15f3900",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "id": "b731ae1ab22a7eda561b8843",
+      "index": 2,
+      "target": "579dc571d53a0658a154fbec",
+      "type": "TraderStanding",
+      "value": 0.01
+     }
+    ],
+    "Fail": []
+   },
+   "secretQuest": false,
+   "side": "Pmc",
+   "startedMessageText": "085474a2a5eb5b70109b2c32 startedMessageText",
+   "successMessageText": "085474a2a5eb5b70109b2c32 successMessageText",
+   "traderId": "579dc571d53a0658a154fbec",
+   "type": "PickUp"
+  },
+  "aaff707f1fbae7ceefd9de42": {
+   "QuestName": "Find and extract (Provisions)",
+   "_id": "aaff707f1fbae7ceefd9de42",
+   "acceptPlayerMessage": "aaff707f1fbae7ceefd9de42 acceptPlayerMessage",
+   "canShowNotificationsInGame": true,
+   "changeQuestMessageText": "aaff707f1fbae7ceefd9de42 changeQuestMessageText",
+   "completePlayerMessage": "aaff707f1fbae7ceefd9de42 completePlayerMessage",
+   "conditions": {
+    "AvailableForStart": [
+     {
+      "conditionType": "Level",
+      "dynamicLocale": false,
+      "id": "92c52777fc3feda509d005fe",
+      "compareMethod": ">=",
+      "value": 1,
+      "globalQuestCounterId": "",
+      "index": 0,
+      "parentId": "",
+      "visibilityConditions": []
+     }
+    ],
+    "AvailableForFinish": [
+     {
+      "isEncoded": false,
+      "conditionType": "FindItem",
+      "countInRaid": true,
+      "dogtagLevel": 0,
+      "dynamicLocale": false,
+      "globalQuestCounterId": "",
+      "id": "f2572e4f8b75ebc4e29d6b77",
+      "index": 0,
+      "maxDurability": 100,
+      "minDurability": 0,
+      "onlyFoundInRaid": false,
+      "parentId": "",
+      "target": [
+       "5b47574386f77428ca22b340"
+      ],
+      "value": 10,
+      "visibilityConditions": []
+     },
+     {
+      "completeInSeconds": 0,
+      "conditionType": "CounterCreator",
+      "counter": {
+       "conditions": [
+        {
+         "target": [
+          "any"
+         ],
+         "id": "d0dcc2afda8861355e70cefb",
+         "dynamicLocale": true,
+         "conditionType": "Location"
+        },
+        {
+         "status": [
+          "Survived"
+         ],
+         "id": "81fa0eebf27afdf67b24ad36",
+         "dynamicLocale": true,
+         "conditionType": "ExitStatus"
+        },
+        {
+         "equipmentInclusive": [
+          [
+           "5b47574386f77428ca22b340"
+          ]
+         ],
+         "IncludeNotEquippedItems": true,
+         "id": "2a2b8bec3933f4929383b5ce",
+         "dynamicLocale": true,
+         "conditionType": "Equipment"
+        }
+       ],
+       "id": "7423152c9cc82dc0070668d1"
+      },
+      "doNotResetIfCounterCompleted": false,
+      "dynamicLocale": true,
+      "globalQuestCounterId": "",
+      "id": "1ac9dd135c604f4ada0408c0",
+      "index": 1,
+      "isNecessary": false,
+      "isResetOnConditionFailed": false,
+      "oneSessionOnly": true,
+      "parentId": "",
+      "type": "PickUp",
+      "value": 1,
+      "visibilityConditions": []
+     }
+    ],
+    "Fail": []
+   },
+   "declinePlayerMessage": "aaff707f1fbae7ceefd9de42 declinePlayerMessage",
+   "description": "aaff707f1fbae7ceefd9de42 description",
+   "failMessageText": "aaff707f1fbae7ceefd9de42 failMessageText",
+   "image": "/files/quest/icon/62bd61b1b818ff064405b827.jpg",
+   "instantComplete": false,
+   "isKey": false,
+   "location": "any",
+   "name": "aaff707f1fbae7ceefd9de42 name",
+   "note": "",
+   "restartable": false,
+   "rewards": {
+    "Started": [],
+    "Success": [
+     {
+      "findInRaid": false,
+      "id": "5006ed97337ba9d65b50fa8b",
+      "index": 0,
+      "items": [
+       {
+        "_id": "af6d7d516c4d17f298b4e31b",
+        "_tpl": "569668774bdc2da2298b4568",
+        "upd": {
+         "StackObjectsCount": 267
+        }
+       }
+      ],
+      "target": "af6d7d516c4d17f298b4e31b",
+      "type": "Item",
+      "value": 267
+     },
+     {
+      "findInRaid": true,
+      "id": "1eff67f40a5f3c3765331f28",
+      "index": 1,
+      "items": [
+       {
+        "upd": {
+         "StackObjectsCount": 1
+        },
+        "_tpl": "5bc9bdb8d4351e003562b8a1",
+        "_id": "3a97e3066e820f8b65e563e5"
+       }
+      ],
+      "target": "3a97e3066e820f8b65e563e5",
+      "type": "Item",
+      "value": 1
+     },
+     {
+      "id": "9df86a10e68af2dfc9e4a625",
+      "index": 2,
+      "target": "579dc571d53a0658a154fbec",
+      "type": "TraderStanding",
+      "value": 0.01
+     }
+    ],
+    "Fail": []
+   },
+   "secretQuest": false,
+   "side": "Pmc",
+   "startedMessageText": "aaff707f1fbae7ceefd9de42 startedMessageText",
+   "successMessageText": "aaff707f1fbae7ceefd9de42 successMessageText",
+   "traderId": "579dc571d53a0658a154fbec",
+   "type": "PickUp"
+  }
+ },
+ "items": {},
+ "itemMeta": {},
+ "locales": {
+  "en": {
+   "70d3ea0b80ba66236c456096 name": "Wild Wild Woods",
+   "70d3ea0b80ba66236c456096 description": "Have you seen what's been going on in Priozersk lately? The Scavs have gone wild. Splinter gangs no longer take Fence's orders and shoot at anyone they meet. They are armed with revolvers and lever-action rifles, so they clearly looted someone's stash. Rumor has it the rebels are hauling the loot into the nature reserve, where a ton of valuables can now be found. Shturman is in every raid now, and he always carries a Silver Badge. Bring me twelve of those badges, found in raid, and the reserve will be worth your time.",
+   "70d3ea0b80ba66236c456096 successMessageText": "Twelve badges. So the rumor was true. The reserve is full of valuables now - go get your share before the gangs haul it all away.",
+   "2534f95dcc0bc69f847681fd name": "Eliminate Scavs",
+   "2534f95dcc0bc69f847681fd description": "Fence wants the mutinous Scavs thinned out. Eighteen of them, any location, no questions asked.",
+   "2534f95dcc0bc69f847681fd successMessageText": "Eighteen gone. The rest will think twice before ignoring me again.",
+   "085474a2a5eb5b70109b2c32 name": "Find and extract: Bolt-action rifles",
+   "085474a2a5eb5b70109b2c32 description": "Fence needs bolt-action rifles. Find four of them in a single raid and get them out with you.",
+   "085474a2a5eb5b70109b2c32 successMessageText": "Bolt-action rifles, four of them, still in one piece. Good work.",
+   "aaff707f1fbae7ceefd9de42 name": "Find and extract: Provisions",
+   "aaff707f1fbae7ceefd9de42 description": "Fence needs food and drink for the people hiding out in the reserve. Ten items, found in one raid, extracted with you.",
+   "aaff707f1fbae7ceefd9de42 successMessageText": "Ten provisions. That will keep them fed for a while. Fence owes you.",
+   "70d3ea0b80ba66236c456096 acceptPlayerMessage": "",
+   "70d3ea0b80ba66236c456096 declinePlayerMessage": "",
+   "70d3ea0b80ba66236c456096 completePlayerMessage": "",
+   "70d3ea0b80ba66236c456096 changeQuestMessageText": "",
+   "70d3ea0b80ba66236c456096 startedMessageText": "",
+   "70d3ea0b80ba66236c456096 failMessageText": "",
+   "2534f95dcc0bc69f847681fd acceptPlayerMessage": "",
+   "2534f95dcc0bc69f847681fd declinePlayerMessage": "",
+   "2534f95dcc0bc69f847681fd completePlayerMessage": "",
+   "2534f95dcc0bc69f847681fd changeQuestMessageText": "",
+   "2534f95dcc0bc69f847681fd startedMessageText": "",
+   "2534f95dcc0bc69f847681fd failMessageText": "",
+   "085474a2a5eb5b70109b2c32 acceptPlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 declinePlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 completePlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 changeQuestMessageText": "",
+   "085474a2a5eb5b70109b2c32 startedMessageText": "",
+   "085474a2a5eb5b70109b2c32 failMessageText": "",
+   "aaff707f1fbae7ceefd9de42 acceptPlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 declinePlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 completePlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 changeQuestMessageText": "",
+   "aaff707f1fbae7ceefd9de42 startedMessageText": "",
+   "aaff707f1fbae7ceefd9de42 failMessageText": "",
+   "17b9e46d73f359a8f1e1a649": "Find Silver Badge in raid",
+   "d29971f82b3cba918f4cccf7": "Hand over the found in raid item: Silver Badge",
+   "88445822ed394cdb899cb156": "Eliminate Scavs",
+   "5bc9bdb8d4351e003562b8a1 Name": "Silver Badge",
+   "5bc9bdb8d4351e003562b8a1 ShortName": "Badge",
+   "5bc9bdb8d4351e003562b8a1 Description": "An old silver badge, probably belonged to some sheriff.",
+   "5449016a4bdc2d6f028b456f Name": "Roubles",
+   "5449016a4bdc2d6f028b456f ShortName": "RUB",
+   "5449016a4bdc2d6f028b456f Description": "A few notes of the still-valued Russian rouble.",
+   "569668774bdc2da2298b4568 Name": "Euros",
+   "569668774bdc2da2298b4568 ShortName": "EUR",
+   "569668774bdc2da2298b4568 Description": "Several notes of the EU currency.",
+   "63fc44e2429a8a166c7f61e6 Name": "Armasight Zeus-Pro 640 2-8x50 30Hz thermal scope",
+   "63fc44e2429a8a166c7f61e6 ShortName": "Zeus-Pro 640",
+   "63fc44e2429a8a166c7f61e6 Description": "The Zeus-Pro 640 is a thermal scope with a 2x and 8x magnification. Manufactured by Armasight.",
+   "627e14b21713922ded6f2c15 Name": "Accuracy International AXMC .338 LM bolt-action sniper rifle",
+   "627e14b21713922ded6f2c15 ShortName": "AXMC",
+   "627e14b21713922ded6f2c15 Description": "The AXMC is the latest in a long and distinguished line of combat proven sniper rifles designed and manufactured by the British company Accuracy International. Chambered in .338 Lapua Magnum, but can be quickly converted to .300 Winchester Magnum and .308 Winchester by changing the barrel, bolt, and magazine/insert.",
+   "6769b8e3c1a1466c850658a8 Name": "7.62x51mm M80A1 ammo pack (20 pcs)",
+   "6769b8e3c1a1466c850658a8 ShortName": "M80A1",
+   "6769b8e3c1a1466c850658a8 Description": "A box of 7.62x51mm M80A1 cartridges, 20 pieces.",
+   "657023ccbfc87b3a3409320a Name": ".338 Lapua Magnum FMJ ammo pack (20 pcs)",
+   "657023ccbfc87b3a3409320a ShortName": "FMJ",
+   "657023ccbfc87b3a3409320a Description": "A box of .338 Lapua Magnum FMJ cartridges, 20 pieces.",
+   "5c0126f40db834002a125382 Name": "Red Rebel ice pick",
+   "5c0126f40db834002a125382 ShortName": "RedRebel",
+   "5c0126f40db834002a125382 Description": "A perfectly balanced ice axe, the tip is made of a single piece of hardened metal.",
+   "5780cf7f2459777de4559322 Name": "Dorm room 314 marked key",
+   "5780cf7f2459777de4559322 ShortName": "Dorm mrk.",
+   "5780cf7f2459777de4559322 Description": "A dormitory room 314 key with strange symbols scratched onto it where the room label would normally be. The key has completely rusted through, making it very fragile.",
+   "588892092459774ac91d4b11 Name": "Lobaev Arms DVL-10 7.62x51 bolt-action sniper rifle",
+   "588892092459774ac91d4b11 ShortName": "DVL-10",
+   "588892092459774ac91d4b11 Description": "DVL-10 is a lightweight, compact, and silenced rifle in proprietary and current military subsonic calibers. Developed for special service and combat missions where exceptional accuracy and range are needed. Equipped with a standard Lobaev Arms foldable buttstock and Lobaev Hummer Barrels stainless steel match-grade barrel.",
+   "5888988e24597752fe43a6fa Name": "DVL-10 7.62x51 10-round magazine",
+   "5888988e24597752fe43a6fa ShortName": "DVL-10",
+   "5888988e24597752fe43a6fa Description": "A standard-issue DVL-10 sniper rifle magazine by Lobaev Arms, for 7.62x51 cartridges.",
+   "5888956924597752983e182d Name": "DVL-10 M2 7.62x51 660mm barrel",
+   "5888956924597752983e182d ShortName": "DVL-10 M2 660mm",
+   "5888956924597752983e182d Description": "A 660mm long 7.62x51 match-grade stainless steel barrel manufactured by LOBAEV Hummer Barrels for the DVL-10 M2 sniper rifle.",
+   "5888996c24597754281f9419 Name": "DVL-10 M2 7.62x51 muzzle brake",
+   "5888996c24597754281f9419 ShortName": "DVL-10 M2",
+   "5888996c24597754281f9419 Description": "A standard-issue DVL-10 M2 sniper rifle muzzle brake, manufactured by Lobaev Arms.",
+   "5888976c24597754281f93f5 Name": "DVL-10 M2 handguard",
+   "5888976c24597754281f93f5 ShortName": "DVL-10 M2",
+   "5888976c24597754281f93f5 Description": "A standard-issue handguard for the DVL-10 M2 sniper rifle, manufactured by Lobaev Arms.",
+   "57c55f172459772d27602381 Name": "Hogue OverMolded Rubber Grip (Olive Drab)",
+   "57c55f172459772d27602381 ShortName": "OMRG OD",
+   "57c55f172459772d27602381 Description": "A fiberglass rubber-overmolded anti-slip pistol grip for AR systems, manufactured by Hogue. Olive Drab version.",
+   "58889d0c2459775bc215d981 Name": "DVL-10 Lobaev Arms stock",
+   "58889d0c2459775bc215d981 ShortName": "Lobaev",
+   "58889d0c2459775bc215d981 Description": "A standard-issue universal stock for sniper rifles manufactured by Lobaev Arms."
+  },
+  "ch": {
+   "70d3ea0b80ba66236c456096 name": "狂野森林",
+   "70d3ea0b80ba66236c456096 description": "你最近看到普里奥焦尔斯克那边出什么事了吗？那帮 Scav 彻底失控了：分裂出来的帮派不再听 Fence 的命令，见人就开枪。他们手里拿着左轮和杠杆步枪，显然是挖到了谁的藏货。传闻这些叛徒正把战利品往自然保护区里搬，现在那片林子里到处是值钱货。Shturman 每局都在，而且身上必定带着一枚银徽章。给我带 12 枚回来，必须是战局里找到的。",
+   "70d3ea0b80ba66236c456096 successMessageText": "十二枚徽章。看来传闻是真的。现在自然保护区里到处是值钱货——趁那帮人还没搬空，去拿你那份。",
+   "2534f95dcc0bc69f847681fd name": "消灭",
+   "2534f95dcc0bc69f847681fd description": "Fence 要把这群哗变的 Scav 清理掉。18 个，不限地图，不问过程。",
+   "2534f95dcc0bc69f847681fd successMessageText": "18 个没了。剩下的再想无视我之前，得先掂量掂量。",
+   "085474a2a5eb5b70109b2c32 name": "寻物并撤离：栓动式步枪",
+   "085474a2a5eb5b70109b2c32 description": "Fence 需要栓动式步枪。在单场战局里找齐 4 支，然后把它们带出战场。",
+   "085474a2a5eb5b70109b2c32 successMessageText": "4 支栓动式步枪，一件没坏。干得不错。",
+   "aaff707f1fbae7ceefd9de42 name": "寻物并撤离：饮食",
+   "aaff707f1fbae7ceefd9de42 description": "Fence 要给躲在保护区里的人凑吃的喝的。10 件饮食，单场战局里找齐并带出战场。",
+   "aaff707f1fbae7ceefd9de42 successMessageText": "10 件饮食。够他们吃一阵了。Fence 记你这份情。",
+   "70d3ea0b80ba66236c456096 acceptPlayerMessage": "",
+   "70d3ea0b80ba66236c456096 declinePlayerMessage": "",
+   "70d3ea0b80ba66236c456096 completePlayerMessage": "",
+   "70d3ea0b80ba66236c456096 changeQuestMessageText": "",
+   "70d3ea0b80ba66236c456096 startedMessageText": "",
+   "70d3ea0b80ba66236c456096 failMessageText": "",
+   "2534f95dcc0bc69f847681fd acceptPlayerMessage": "",
+   "2534f95dcc0bc69f847681fd declinePlayerMessage": "",
+   "2534f95dcc0bc69f847681fd completePlayerMessage": "",
+   "2534f95dcc0bc69f847681fd changeQuestMessageText": "",
+   "2534f95dcc0bc69f847681fd startedMessageText": "",
+   "2534f95dcc0bc69f847681fd failMessageText": "",
+   "085474a2a5eb5b70109b2c32 acceptPlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 declinePlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 completePlayerMessage": "",
+   "085474a2a5eb5b70109b2c32 changeQuestMessageText": "",
+   "085474a2a5eb5b70109b2c32 startedMessageText": "",
+   "085474a2a5eb5b70109b2c32 failMessageText": "",
+   "aaff707f1fbae7ceefd9de42 acceptPlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 declinePlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 completePlayerMessage": "",
+   "aaff707f1fbae7ceefd9de42 changeQuestMessageText": "",
+   "aaff707f1fbae7ceefd9de42 startedMessageText": "",
+   "aaff707f1fbae7ceefd9de42 failMessageText": "",
+   "17b9e46d73f359a8f1e1a649": "在战局中找到银徽章",
+   "d29971f82b3cba918f4cccf7": "上交战局中找到的物品：银徽章",
+   "88445822ed394cdb899cb156": "消灭 Scav",
+   "5bc9bdb8d4351e003562b8a1 Name": "银徽章",
+   "5bc9bdb8d4351e003562b8a1 ShortName": "徽章",
+   "5bc9bdb8d4351e003562b8a1 Description": "SheriffEli的银徽章。",
+   "5449016a4bdc2d6f028b456f Name": "卢布",
+   "5449016a4bdc2d6f028b456f ShortName": "卢布",
+   "5449016a4bdc2d6f028b456f Description": "一些仍有价值的俄罗斯卢布。",
+   "569668774bdc2da2298b4568 Name": "欧元",
+   "569668774bdc2da2298b4568 ShortName": "欧元",
+   "569668774bdc2da2298b4568 Description": "一些欧元钞票。",
+   "63fc44e2429a8a166c7f61e6 Name": "Armasight Zeus-Pro 640 2-8x50 30Hz热成像瞄准镜",
+   "63fc44e2429a8a166c7f61e6 ShortName": "ZeusPro 640",
+   "63fc44e2429a8a166c7f61e6 Description": "Zeus-Pro 640 热成像瞄准镜具备 2-8 倍变倍功能，由 Armasight 设计制造。",
+   "627e14b21713922ded6f2c15 Name": "Accuracy International AXMC .338 LM 栓动式狙击步枪",
+   "627e14b21713922ded6f2c15 ShortName": "AXMC",
+   "627e14b21713922ded6f2c15 Description": "AXMC 是英国精准国际打造的最新一代栓动式狙击步枪，融合了前代装备的大量设计经验，并结合实战教训进行改良。.338 Lapua Magnum 口径，通过更换枪管、枪机套件以及弹匣井机构也可快速转换为发射 .300 温彻斯特 Magnum 与 .308 温彻斯特口径弹药。",
+   "6769b8e3c1a1466c850658a8 Name": "7.62x51mm M80A1 弹药包（20发装）",
+   "6769b8e3c1a1466c850658a8 ShortName": "M80A1",
+   "6769b8e3c1a1466c850658a8 Description": "一盒7.62x51mm M80A1弹药，20发装。",
+   "657023ccbfc87b3a3409320a Name": ".338 Lapua Magnum FMJ弹药包（20发装）",
+   "657023ccbfc87b3a3409320a ShortName": "FMJ",
+   "657023ccbfc87b3a3409320a Description": "一盒20发装的.338 Lapua Magnum FMJ弹。",
+   "5c0126f40db834002a125382 Name": "Red Rebel冰镐",
+   "5c0126f40db834002a125382 ShortName": "RedRebel",
+   "5c0126f40db834002a125382 Description": "完美平衡的冰镐，顶端由一块高硬度金属制成。",
+   "5780cf7f2459777de4559322 Name": "宿舍楼 314 房间符号钥匙",
+   "5780cf7f2459777de4559322 ShortName": "314钥匙",
+   "5780cf7f2459777de4559322 Description": "宿舍楼 314 房间钥匙，原本标有房间号的地方刻满了奇怪的符号。这把钥匙锈蚀得很厉害，至多再使用几次就会断掉。",
+   "588892092459774ac91d4b11 Name": "DVL-10 7.62x51 栓动式狙击步枪",
+   "588892092459774ac91d4b11 ShortName": "DVL-10",
+   "588892092459774ac91d4b11 Description": "DVL-10是一款集轻便，紧凑和消音于一体的步枪。使用具有优异精度和射程，以满足特勤和作战任务需要的军用亚音速子弹。配备有标准Lobaev可折叠枪托和Lobaev Hummer Barrels不锈钢竞赛级枪管。",
+   "5888988e24597752fe43a6fa Name": "DVL-10 7.62x51 10发弹匣",
+   "5888988e24597752fe43a6fa ShortName": "DVL-10",
+   "5888988e24597752fe43a6fa Description": "LOBAEV Arms生产的标准DVL-10狙击步枪弹匣，适用于.308口径的子弹。",
+   "5888956924597752983e182d Name": "DVL-10 M2 7.62x51 660 毫米枪管",
+   "5888956924597752983e182d ShortName": "DVL-10 M2 660mm",
+   "5888956924597752983e182d Description": "LOBAEV Hummer Barrels 为 DVL-10 M2 Urbana 制造的 7.62x51 口径竞赛级不锈钢枪管，长度 660 毫米。",
+   "5888996c24597754281f9419 Name": "DVL-10 M2 7.62x51膛口制退器",
+   "5888996c24597754281f9419 ShortName": "DVL-10 M2制退器",
+   "5888996c24597754281f9419 Description": "DVL-10 M2狙击步枪的标准膛口制退器。",
+   "5888976c24597754281f93f5 Name": "LOBAEV Arms DVL-10 M2护木",
+   "5888976c24597754281f93f5 ShortName": "DVL-10 M2",
+   "5888976c24597754281f93f5 Description": "DVL-10 M2狙击枪的标准LOBAEV Arms护木。",
+   "57c55f172459772d27602381 Name": "Hogue OverMolded 橡胶握把（橄榄绿）",
+   "57c55f172459772d27602381 ShortName": "OMRG OD",
+   "57c55f172459772d27602381 Description": "由玻璃纤维以及橡胶包覆成型的防滑手枪式握把，AR 武器系统专用，由 Hogue 制造。橄榄绿色版本。",
+   "58889d0c2459775bc215d981 Name": "LOBAEV Arms枪托",
+   "58889d0c2459775bc215d981 ShortName": "LOBAEV Arms枪托",
+   "58889d0c2459775bc215d981 Description": "LOBAEV Arms的标准通用枪托。"
+  }
+ }
+}

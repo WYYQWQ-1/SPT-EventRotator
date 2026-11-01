@@ -1,0 +1,15 @@
+{
+  "name": "SPT-EventRotator",
+  "version": "1.3.15",
+  "author": "Kirisame dish",
+  "modGUID": "com.kirisame.eventrotator",
+  "sptVersion": "~4.1.0",
+  "loadBefore": [],
+  "loadAfter": [
+    "com.wtt.contentbackport"
+  ],
+  "incompatibilities": [],
+  "isBundleMod": false,
+  "contributors": [],
+  "license": "MIT"
+}

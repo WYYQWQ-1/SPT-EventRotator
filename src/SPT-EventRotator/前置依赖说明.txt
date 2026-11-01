@@ -1,0 +1,82 @@
+SPT-EventRotator v1.3.11 —— 前置依赖说明
+========================================
+
+一、必须（缺了直接跑不了）
+----------------------------
+1. SPT 4.1.6（EFT 0.16.9）
+   package.json 写的是 sptVersion ~4.1.0，4.1.x 全系可读；4.0.x 未验证。
+
+2. 四件套必须装全（缺一个就会出现「看不到活动 / 找不到补丁」）
+   ① SPT_Runtime/user/mods/SPT-EventRotator/            （服务端）
+   ② SPT_Runtime/user/patchers/com.kirisame.eventrotator/EventRotatorEnums.json  （预补丁）
+   ③ BepInEx/plugins/SPT-EventRotator.Client/            （客户端插件）
+   ④ BepInEx/patchers/SPT-EventRotator.Patcher.dll       （客户端预补丁）
+   ⚠ 缺 ④ 会弹：Requested value 'cleanupcrew' / 'pillager' / 'bloodhound' /
+      'gus' / 'basmach' / 'bossScourge' was not found.
+
+3. 本 mod 自带的 db 数据（随包提供，不要删）
+   db/bots/types/ 下 7 个：bossScourge / followerScourge / cleanupcrew /
+   pillager / bloodhound / gus / basmach
+   ⇒ 缺了对应活动就不刷人。
+
+4. 本 mod 自带的 questlines/（含 images/ 子目录）
+   ⇒ 任务配图从这里读，不要只复制 json 而漏掉 images。
+
+
+二、强烈建议（不装也能跑，但体验会缺）
+---------------------------------------
+1. SAIN（客户端 + Solarint-SAIN-ServerMod 服务端）★ 推荐
+   本 mod 已为**所有自定义角色**做兼容：
+   - 服务端：往 SAIN 每个预设补角色条目（克隆现成角色，写前自动备份）
+   - 服务端：通过 SAIN.ServerInterop 注册角色（不注册的话 SAIN 会静默丢弃这些键，
+     客户端会刷 "does not exist in SAINSettings Dictionary!"）
+   - 没有 SAIN：只打一行 warning 就跳过，**不报错、不崩**
+   装了之后 AI 会用掩体/peek/小队协同，明显更凶；不装走 SPT 原生 AI。
+
+2. BigBrain（客户端）
+   灾厄小队（bossScourge / followerScourge）的**小队战术层**来自本 mod 内置的 13 个
+   行为文件（抄自 danauraborealis/Scourge），需要 BigBrain 才能注入到自定义 brain。
+   没有时：bot 会生成、能打你，但没有那套战术配合。
+
+3. CSGasServer（服务端）
+   灾厄小队投掷的 **CS 毒气弹**（6a5d6a5f4ed8c025a0a2cff0）由它提供。
+   没有时：只是少一种投掷物，不影响刷新与战斗。
+
+4. ABPS / ProgressiveBotSystem（服务端）
+   装了的场合：街区/储备站等自定义首领的刷新密度更高；
+   注意它只认本体那 19 个首领角色，**不认我们新增的角色**
+   （我们的角色靠 BossLocationSpawn 自己刷，不受 ABPS 影响）。
+
+
+三、可选（只影响外观与掉落丰富度）
+------------------------------------
+灾厄小队的 bot 表继承本体 arenaFighterEvent 的装备池，其中部分物品来自：
+
+  · WTT（各种武器配件）
+  · ISB（Infection State / 相关物品）
+  · Black Division
+  · Croupier
+  · Manimal1920 的物品
+
+没装这些 mod 时：小队会**缺件**（主武器有兜底，其余没有）——不影响刷新和战斗。
+
+
+四、已知取舍（不是 bug）
+--------------------------
+· 清场小队 / 劫掠者 / 寻血猎犬 的 bot 数据与本体 arenaFighterEvent 逐字节相同，
+  gus / basmach 与 followerKolontaySecurity 相同
+  ⇒ 名字、行为、敌对正确，但外观/语音与本体一致。本版目标是「身份对」，换皮留待以后。
+
+· Import Control 的等级条件在官方数据里写的是 Level >= 99（上限 79），
+  本 mod 用 relaxLevelQuests 在活动期间临时降为 1，关活动自动还原。
+
+· 「晴/雨雪/雾」的开关在 config.json → weather.*，
+  两个子开关互相独立，都不开就不改天气（B站玩家提的需求）。
+
+
+五、故障排查
+--------------
+看不到活动        → 检查 force.txt（手动强制）与 config.json → rotation
+弹 "Requested value" → 装全四件套，特别是 ④ 那个 patcher
+任务图标空白      → 确认 questlines/images/ 一起复制了
+名字显示成英文    → 检查 SPT_Runtime/user/patchers 里的 EventRotatorEnums.json 是否在位

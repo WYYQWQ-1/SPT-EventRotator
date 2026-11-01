@@ -1,0 +1,128 @@
+================================================================================================
+casus_belli / interchange looseLootInject 离线探针（真身代码 + 实机数据副本）
+  mod 目录   : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator
+  实机点位源 : D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\user\mods\ManimalInterchange\db\locations\interchange\looseLoot.json  (3820 spawnpoints)
+  核心文件   : D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\locations\interchange\looseLoot.json  (3159 spawnpoints，被 mod 覆盖)
+  实机文件只读：探针全程不碰它（临时副本退出即删）
+
+[0] casus_belli.looseLootInject.interchange：density=1、valuable.chance=0、tpls=6a1f00c70000000000000001、decor.chance=0、region「小黄车」maxPoints=3、guaranteedPoints=1、anchor=(110.16,21.34,290.89)「车」
+
+[1] 自造物品 6a1f00c70000000000000001：_name=casus_arena_template_crate、_parent=590c745b86f7743cc433c5f2、W/H=3/2、Grids=0
+  ✅ items 定义读得出来（_name=casus_arena_template_crate）
+  ✅ locale en Name 逐字 = Arena reward template crate
+  ✅ locale ch Name 逐字 = 竞技场奖励模板箱
+  ✅ locale en/ch 都有「Name」三件套之一
+  ✅ locale en/ch 都有「ShortName」三件套之一
+  ✅ locale en/ch 都有「Description」三件套之一
+  ✅ 新 tpl 不与本机 items.json 撞车
+  ✅ 新物品的 _parent 链落在可拾取 BarterItem 类 5448eb774bdc2d0a728b4567  [590c745b86f7743cc433c5f2 → 5448eb774bdc2d0a728b4567 → 54009119af1c881c07000029]
+  ✅ 新物品 Prefab **逐字等于**原版武器箱 59fb023c… 的 Prefab  [assets/content/items/containers/item_container_weaponcase/item_container_weaponcase.bundle]
+  ✅ 原版武器箱自身的真尺寸 = 5×2（如实记录，不是 2×2/3×2）  [5×2]
+  ✅ 已不再使用 675a081c… 的 Prefab（上一版那张「海报」的根因）  [assets/content/items/barter/item_barter_flyers/item_barter_flyers_strange_case.bundle]
+      · locale en 名：675a081c… =「Things Sure Are Strange poster」/「Poster」；59fb023c… =「Weapon case」/「Weapons」
+  ✅ 上一版 prefab 的主人本体名就叫「…poster / Poster」⇒ 地上像海报是必然（不是渲染 bug）
+  ✅ Prefab 落在 containers/item_container_weaponcase 目录
+  ✅ 新物品格子 = 3×2（5 宽塞不进 4×4 口袋 ⇒ 捡不起来，故取 3×2）  [3×2]
+  ✅ 3×2 能塞进 4×4 口袋（玩家不用背背包也能捡）
+  ✅ FindItem / HandoverItem target 都是新 tpl（实际 6a1f00c70000000000000001,6a1f00c70000000000000001）
+
+[2] 基线：spawnpoints=3820，mean=621.244，序列化 89,251,489 chars
+[2] region「小黄车」盒内可替换点位：6 个（上限 3、必刷 1）
+[2] 锚点「车」= (110.16, 21.34, 290.89)；盒内点位按 3D 距离由近到远：
+      (111.29, 22.54, 286.69)  d3D=4.51 m  dXZ=4.35 m  dy=+1.2  p=0.43704  loc=(111,28638, 22,544811, 286,69067)
+      (112.34, 22.51, 286.83)  d3D=4.75 m  dXZ=4.61 m  dy=+1.17  p=0.41111  loc=(112,34241, 22,512814, 286,83472)
+      (105.33, 22.7, 292.95)  d3D=5.42 m  dXZ=5.25 m  dy=+1.36  p=0.10741  loc=(105,3324, 22,697811, 292,94568)
+      (104.25, 22.64, 287.03)  d3D=7.18 m  dXZ=7.06 m  dy=+1.3  p=0.14074  loc=(104,24536, 22,64281, 287,02966)
+      (102.23, 22.62, 287.16)  d3D=8.85 m  dXZ=8.76 m  dy=+1.28  p=0.14074  loc=(102,231445, 22,61781, 287,16272)
+      (122.8, 22.05, 289.88)  d3D=12.7 m  dXZ=12.68 m  dy=+0.71  p=0.21852  loc=(122,79736, 22,052807, 289,88464)
+[2] 坐标系核对（ManimalInterchange 的 looseLoot 是否与 woods 同一套 x/y/z）：
+      [EventRotator][地面战利品注入] interchange：已挂上官方 LazyLoad.AddTransformer（LooseLoot 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (111.29, 22.54, 286.69) 距车 4.51 米
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (112.34, 22.51, 286.83) 距车 4.75 米
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (105.33, 22.7, 292.95) 距车 5.42 米
+      [EventRotator][地面战利品注入] ★ interchange：点位 3820 → 3820（densityMultiplier=1，克隆 +0）；物品替换 valuable 0 / decor 0（另有 regions 确定性替换 3）；valuable 基础概率 0、decor 0（regions 生效 1 个包围盒）
+      [EventRotator][地面战利品注入] ★ interchange：region「小黄车」命中 6 个，实际替换 3 个（上限 3）
+      [EventRotator][地面战利品注入] ★ interchange：region「小黄车」其中 1 个点位 Probability=1.0 ⇒ **每局必刷**（SPT GenerateDynamicLoot：Probability==1.0 不进概率抽取，直接进 list3/list4）
+      [EventRotator][地面战利品注入] ★ interchange：regions 合计确定性替换 3 个（占点位 3820 的 0.1%）
+      [EventRotator][地面战利品注入] ★ interchange：替换分布 6a1f00c70000000000000001×3
+
+[断言 ①] 全局 chance=0 ⇒ 只有 region 内 maxPoints 个点被替换，其余点位不动
+  ✅ 盒内命中 6 个点（≥ maxPoints 3，才可能替换 3 个）
+  ✅ 实际替换 3 个 = maxPoints 3（不是全图）  [全图共 3820 个点位]
+  ✅ 替换数量在验收要求 2~3 之间  [3]
+  ✅ densityMultiplier=1.0 ⇒ 点位数不变（没有克隆）  [3820 → 3820]
+  ✅ 维度日志逐字：命中 N 个，实际替换 M 个（上限 X）  [[EventRotator][地面战利品注入] ★ interchange：region「小黄车」命中 6 个，实际替换 3 个（上限 3）]
+  ✅ 全局替换 valuable 0 / decor 0（chance=0 生效，没再出现 3769 全图事故）  [[EventRotator][地面战利品注入] ★ interchange：点位 3820 → 3820（densityMultiplier=1，克隆 +0）；物品替换 valuable 0 / decor 0（另有 regions 确定性替换 3）；valuable 基础概率 0、decor 0（regions 生效 1 个包围盒）]
+
+[断言 ①b] 按「到锚点的 3D 距离」精确挑点 / 逐点坐标日志 / 必刷（上限 3）
+  ✅ 被替换的 3 个点 == 盒内**离车最近的 3 个**（按 3D 距离）  [最近：4.51m / 4.75m / 5.42m]
+  ✅ 最近的替换点距车 ≤ 6 m（实测 4.51 m）
+  ✅ 最远的替换点距车 ≤ 12 m（实测 5.42 m）
+  ✅ 逐点坐标日志 3 行，逐字匹配「… 选区替换点 (x, y, z) 距车 d 米」（≤5 行）  [[EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (111.29, 22.54, 286.69) 距车 4.51 米]
+      （逐点日志实测）
+        [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (111.29, 22.54, 286.69) 距车 4.51 米
+        [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (112.34, 22.51, 286.83) 距车 4.75 米
+        [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (105.33, 22.7, 292.95) 距车 5.42 米
+  ✅ 最近 1 个替换点 Probability 已设 1.0 ⇒ 局内必刷（SPT：Probability==1.0 不进概率抽取）  [实测 1/1；其余 2 个保持原概率]
+  ✅ 维度打出了「Probability=1.0 ⇒ 每局必刷」的日志  [[EventRotator][地面战利品注入] ★ interchange：region「小黄车」其中 1 个点位 Probability=1.0 ⇒ **每局必刷**（SPT GenerateDynamicLoot：Probability==1.0 不进概率抽取，直接进 list3/list4）]
+[断言 ①c] ManimalInterchange 的 looseLoot 坐标系与 woods 一致（x/z 未交换、y 同轴）
+  ✅ 把 x/z 交换后盒内命中 = 0（0 ⇒ 没有轴交换）
+  ✅ 按 (x,z) 判定盒内恰好 6 个点
+  ✅ 盒内所有点的 y 与车同一层（|dy| ≤ 5 m）  [dy=1.2/1.17/1.36/1.3/1.28/0.71]
+  ✅ 盒内 y 落在 interchange 的实测 y 带内（-13 ~ 39）  [y=22.54/22.51/22.7/22.64/22.62/22.05]
+  ✅ 除注入 tpl 外没有任何其它 tpl 被改动（差异 0 个点）
+
+[断言 ②] 替换后的点位里装的正是自造物品
+  ✅ 被替换点位的 _tpl 全部 = 6a1f00c70000000000000001
+  ✅ 替换点是单物品刷点：Items 1 条 + ItemDistribution 1 条（合成键对齐，局内必落该件）
+  ✅ 基线里本来 0 个该 tpl（所以「替换后 = 新 tpl」统计不会混入原有物品）
+
+[断言 ③] 新 tpl 不是容器（IsContainer 等价判据 = _props.Grids 非空）
+  ✅ 新物品 _props.Grids 为空 ⇒ 不是容器类物品  [Grids=0]
+  ✅ 对照：原版武器箱 59fb023c… 的 _props.Grids 非空（所以它是容器类物品）  [Grids=1]
+  ✅ 新物品模板上没有 IsContainer=true 标记
+
+[断言 ③b] 新 tpl 能被服务端 items 表查到 + 能被 loose loot 生成器接受
+  ✅ 按 MongoId 在 TemplateTable.Items 里查得到新 tpl（Loader 的落点同型）
+  ✅ 查回来的模板 `_props.Grids` 为空 ⇒ 不是容器
+  ✅ 查回来的模板 Prefab 与 JSON 逐字一致
+  ✅ QuestItem != true（客户端 GetQuestLootReady 会把 QuestItem 刷点从 loot 里摘掉 ⇒ 地上什么都不出）
+  ✅ loose loot 生成器产出的替换点，其 `_tpl` 都能在 items 表里解析
+
+[断言 ④] 还原 / 切到别的活动 / 再切回本活动
+      [EventRotator][地面战利品注入] ✔ interchange 已还原：transformer 转为直通（该活动期间共按注入规则生成过 2 次；looseLoot.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  ✅ 还原后 .Value 的序列化结果 == 注入前（逐字节）  [len 89251489 vs 89251489]
+  ✅ 点位数量回到原值
+      [EventRotator][地面战利品注入] ⚠ 找不到地图 'woods'，跳过
+  ✅ 切到另一个活动（wild_wild_woods）后 interchange 仍是原样（逐字节）  [len 89251489]
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (111.29, 22.54, 286.69) 距车 4.51 米
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (112.34, 22.51, 286.83) 距车 4.75 米
+      [EventRotator][地面战利品注入] interchange：小黄车 选区替换点 (105.33, 22.7, 292.95) 距车 5.42 米
+      [EventRotator][地面战利品注入] ★ interchange：点位 3820 → 3820（densityMultiplier=1，克隆 +0）；物品替换 valuable 0 / decor 0（另有 regions 确定性替换 3）；valuable 基础概率 0、decor 0（regions 生效 1 个包围盒）
+      [EventRotator][地面战利品注入] ★ interchange：region「小黄车」命中 6 个，实际替换 3 个（上限 3）
+      [EventRotator][地面战利品注入] ★ interchange：region「小黄车」其中 1 个点位 Probability=1.0 ⇒ **每局必刷**（SPT GenerateDynamicLoot：Probability==1.0 不进概率抽取，直接进 list3/list4）
+      [EventRotator][地面战利品注入] ★ interchange：regions 合计确定性替换 3 个（占点位 3820 的 0.1%）
+      [EventRotator][地面战利品注入] ★ interchange：替换分布 6a1f00c70000000000000001×3
+  ✅ 切回 casus_belli 后重新生效，替换数 3 = maxPoints 3
+
+[断言 ⑤] 注入容器类 tpl（旧武器箱）时必须打 warning
+      [EventRotator][地面战利品注入] ⚠ interchange：注入的 tpl 59fb023c86f7746d0d4b423c 是**容器类物品**（`IsContainer` / `_props.Grids` 非空）⇒ 这类物品当 loose loot **可能不显示**，风险较高。⚠ 未证实：vanilla loose loot 里背包 56e335e4d2720b6c058b456d / 文件包 590c60fc86f77412b13fddcf 等带 Grids 的物品本来也能正常落地，所以**不是**「容器一律不显示」；客户端唯一显式分支是刷点 `IsContainer=true` 时按静态容器 Id 匹配，找不到就 `lootId is missing` 跳过（Assembly-CSharp.decompiled.cs:552171/552201）——我们替换后该字段仍是 false。原版武器箱 59fb023c86f7746d0d4b423c 这次看不到的具体原因仍未证实。建议改用非容器物品。
+      [EventRotator][地面战利品注入] ★ interchange：点位 3820 → 3820（densityMultiplier=1，克隆 +0）；物品替换 valuable 0 / decor 0（另有 regions 确定性替换 1）；valuable 基础概率 0、decor 0（regions 生效 1 个包围盒）
+      [EventRotator][地面战利品注入] ★ interchange：region「诊断盒」命中 6 个，实际替换 1 个（上限 1）
+      [EventRotator][地面战利品注入] ★ interchange：regions 合计确定性替换 1 个（占点位 3820 的 0.0%）
+      [EventRotator][地面战利品注入] ★ interchange：替换分布 59fb023c86f7746d0d4b423c×1
+  ✅ 诊断事件确实把 1 个点换成了容器类旧武器箱
+  ✅ 维度对容器类 tpl 打了 warning（这类当 loose loot 可能不显示）  [[EventRotator][地面战利品注入] ⚠ interchange：注入的 tpl 59fb023c86f7746d0d4b423c 是**容器类物品**（`IsContainer` / `_props.Grids` 非空）⇒ 这类物品当 loose loot **可能不显示**，风险较高。⚠ 未证实：vanilla loose loot 里背包 56e335e4d2720b6c058b456d / 文件包 590c60fc86f77412b13fddcf 等带 Grids 的物品本来也能正常落地，所以**不是**「容器一律不显示」；客户端唯一显式分支是刷点 `IsContainer=true` 时按静态容器 Id 匹配，找不到就 `lootId is missing` 跳过（Assembly-CSharp.decompiled.cs:552171/552201）——我们替换后该字段仍是 false。原版武器箱 59fb023c86f7746d0d4b423c 这次看不到的具体原因仍未证实。建议改用非容器物品。]
+      [EventRotator][地面战利品注入] ✔ interchange 已还原：transformer 转为直通（该活动期间共按注入规则生成过 2 次；looseLoot.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+
+[断言 ⑥] 兜底方案「车旁 append 一个静态容器」**不可行**的实测依据
+  ✅ 实机 interchange 的 906 个静态容器 **Position 全是 (0,0,0)**（0 个非零） ⇒ 位置由客户端场景对象提供，服务端 JSON 里根本没有坐标可写
+  ✅ 每个静态容器的 Id 都是场景实例名（Lootable_00000…）且唯一  [唯一 Id 906]
+  ✅ 静态容器条目全部 IsContainer=true  [906/906]
+      客户端 `SpawnLoot`（Assembly-CSharp.decompiled.cs:552171-552231）对 IsContainer 刷点的处理：
+        var staticLoot = array2.FirstOrDefault(x => x.Id == lootId);   // array2 = 场景里已有的 StaticLoot/LootableContainer/StationaryWeapon
+        if (staticLoot == null) UnityEngine.Debug.LogError(lootId + " is missing");   // ⇒ 新 Id 在场景里不存在 ⇒ 什么都不生成
+      ⇒ 想要"新增一个能开的箱子"，得往**客户端地图场景**里放对象（Unity 资产），服务端 append 一条 JSON 做不到。
+
+================================================================================================
+结果：53 项通过 / 0 项失败

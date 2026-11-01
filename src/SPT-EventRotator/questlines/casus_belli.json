@@ -1,0 +1,1970 @@
+{
+  "eventId": "casus_belli",
+  "quests": {
+    "b5bb719b23a5e861cea8b702": {
+      "QuestName": "Casus Belli",
+      "_id": "b5bb719b23a5e861cea8b702",
+      "acceptPlayerMessage": "b5bb719b23a5e861cea8b702 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "b5bb719b23a5e861cea8b702 changeQuestMessageText",
+      "completePlayerMessage": "b5bb719b23a5e861cea8b702 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "633dae536f07706f48609e56",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "afa30958743392d27113648f",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [
+                    "arenaFighterEvent"
+                  ],
+                  "target": "Savage",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                }
+              ],
+              "id": "7d3b319f16f2bade72b8f7e5"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "301bfda004c2ccc1b7b6ef13",
+            "index": 0,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 5,
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "HandoverItem",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "b6a79fb5e91a986ee97c1ab6",
+            "index": 1,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": true,
+            "parentId": "",
+            "target": [
+              "67a5c657782ce4655104db16",
+              "67a5c5df782ce4655104db14",
+              "67a5c5f37f52620c5b05b4d6",
+              "67a5c61c7f52620c5b05b4d8",
+              "67a5c6068fcd9fb73f0752cf",
+              "68a9a15d73d52d47830759c9"
+            ],
+            "value": 3,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "b5bb719b23a5e861cea8b702 declinePlayerMessage",
+      "description": "b5bb719b23a5e861cea8b702 description",
+      "failMessageText": "b5bb719b23a5e861cea8b702 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "any",
+      "name": "b5bb719b23a5e861cea8b702 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 10000,
+            "id": "74e449e965a9dcc0a44b1e57",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "9ba9609df5db6adfeba72844",
+            "index": 1,
+            "items": [
+              {
+                "_id": "4bb704d248f4129ab053bcbe",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 61
+                }
+              }
+            ],
+            "target": "4bb704d248f4129ab053bcbe",
+            "type": "Item",
+            "value": 61
+          },
+          {
+            "findInRaid": false,
+            "id": "019c52b475a3f01bae993e7e",
+            "index": 2,
+            "items": [
+              {
+                "_id": "e41fe65acb06ae078624b4c5",
+                "_tpl": "5fbcc1d9016cce60e8341ab3",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "e41fe65acb06ae078624b4c5",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "cd0a448cf1bc6e6bf09dd35a",
+            "index": 3,
+            "items": [
+              {
+                "_id": "97b8b3350dc62eb19622586b",
+                "_tpl": "544a378f4bdc2d30388b4567",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "97b8b3350dc62eb19622586b",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "c7c2802d4dd4a067014dae03",
+            "index": 4,
+            "items": [
+              {
+                "_id": "5953d4cbf5a0b756fe8ba404",
+                "_tpl": "657023bebfc87b3a34093207",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "5953d4cbf5a0b756fe8ba404",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "b5bb719b23a5e861cea8b702 startedMessageText",
+      "successMessageText": "b5bb719b23a5e861cea8b702 successMessageText",
+      "traderId": "6617beeaa9cfa777ca915b7c",
+      "type": "Elimination"
+    },
+    "1349dec113c15500f6e7fa93": {
+      "QuestName": "Retrieve the Lost Property",
+      "_id": "1349dec113c15500f6e7fa93",
+      "acceptPlayerMessage": "1349dec113c15500f6e7fa93 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "1349dec113c15500f6e7fa93 changeQuestMessageText",
+      "completePlayerMessage": "1349dec113c15500f6e7fa93 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "a85ceb790796a48a9daa5c31",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "58f917b3da5ae146e557e946",
+            "target": "b5bb719b23a5e861cea8b702",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 1
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "0ba72ef3d9ecd540c73a63d6",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [
+                    "arenaFighterEvent"
+                  ],
+                  "target": "Savage",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                }
+              ],
+              "id": "099c669f806e67be929ddb88"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "0d5f68a4302823ee0d5f9ef0",
+            "index": 0,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 10,
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "LeaveItemAtLocation",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "36db512ac3bed3a3f45400b2",
+            "index": 1,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "plantTime": 10,
+            "target": [
+              "67a5c657782ce4655104db16",
+              "67a5c5df782ce4655104db14",
+              "67a5c5f37f52620c5b05b4d6",
+              "67a5c61c7f52620c5b05b4d8",
+              "67a5c6068fcd9fb73f0752cf",
+              "68a9a15d73d52d47830759c9"
+            ],
+            "value": 4,
+            "visibilityConditions": [],
+            "zoneId": "place_peacemaker_010_2"
+          }
+        ],
+        "Fail": [
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "95fedc21d3df65b0d3e6ddd2",
+            "target": "2dd3d24a1a6223dd115e4a13",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 0
+          }
+        ]
+      },
+      "declinePlayerMessage": "1349dec113c15500f6e7fa93 declinePlayerMessage",
+      "description": "1349dec113c15500f6e7fa93 description",
+      "failMessageText": "1349dec113c15500f6e7fa93 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5704e554d2720bac5b8b456e",
+      "name": "1349dec113c15500f6e7fa93 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 15000,
+            "id": "d5650b43bf6166dfc818c3a2",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "8061f2ec9e67fd5444c8ee48",
+            "index": 1,
+            "items": [
+              {
+                "_id": "41cd73537e584b3e42be0a78",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 91
+                }
+              }
+            ],
+            "target": "41cd73537e584b3e42be0a78",
+            "type": "Item",
+            "value": 91
+          },
+          {
+            "findInRaid": false,
+            "id": "fd7638deac40bcdb44c3c842",
+            "index": 2,
+            "items": [
+              {
+                "_id": "fa10f0abc9c27b509e829846",
+                "_tpl": "6183afd850224f204c1da514",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "fa10f0abc9c27b509e829846",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "a7bebe0c542086027ce206ec",
+            "index": 3,
+            "items": [
+              {
+                "_id": "0d3b0efa3e38153a41c5d30a",
+                "_tpl": "618168dc8004cc50514c34fc",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "0d3b0efa3e38153a41c5d30a",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "22bf58095e53623e8c21a5ba",
+            "index": 4,
+            "items": [
+              {
+                "_id": "fe4d2fc6cf151cf20fca5aae",
+                "_tpl": "6570254fcfc010a0f5006a22",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "fe4d2fc6cf151cf20fca5aae",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "1349dec113c15500f6e7fa93 startedMessageText",
+      "successMessageText": "1349dec113c15500f6e7fa93 successMessageText",
+      "traderId": "6617beeaa9cfa777ca915b7c",
+      "type": "Exploration"
+    },
+    "2c9d5272b5674c718fadae75": {
+      "QuestName": "The Dead Salute You",
+      "_id": "2c9d5272b5674c718fadae75",
+      "acceptPlayerMessage": "2c9d5272b5674c718fadae75 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "2c9d5272b5674c718fadae75 changeQuestMessageText",
+      "completePlayerMessage": "2c9d5272b5674c718fadae75 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "e899afc3813df27f1ee0d361",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "e6760f41ebe274bc8b2c4890",
+            "target": "1349dec113c15500f6e7fa93",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 1
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "FindItem",
+            "countInRaid": false,
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "9502170b897efae6eaec9a43",
+            "index": 0,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "target": [
+              "6a1f00c70000000000000001"
+            ],
+            "value": 1,
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "HandoverItem",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "54f011e16674904296b1836f",
+            "index": 1,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "target": [
+              "6a1f00c70000000000000001"
+            ],
+            "value": 1,
+            "visibilityConditions": [
+              {
+                "conditionType": "CompleteCondition",
+                "id": "ca99c88bdbae3f839b98504c",
+                "target": "9502170b897efae6eaec9a43"
+              }
+            ]
+          },
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "2057bfdd7e2fe22bf532513e",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [],
+                  "target": "AnyPmc",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                },
+                {
+                  "IncludeNotEquippedItems": false,
+                  "conditionType": "Equipment",
+                  "dynamicLocale": false,
+                  "equipmentExclusive": [],
+                  "equipmentInclusive": [
+                    [
+                      "67a5c657782ce4655104db16"
+                    ],
+                    [
+                      "67a5c5df782ce4655104db14"
+                    ],
+                    [
+                      "67a5c5f37f52620c5b05b4d6"
+                    ]
+                  ],
+                  "id": "3aa7649ac67f5a48bdd1e930"
+                }
+              ],
+              "id": "38c10a104bb1608db36786a3"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "2201b092900e5836f8260875",
+            "index": 3,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 10,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "2c9d5272b5674c718fadae75 declinePlayerMessage",
+      "description": "2c9d5272b5674c718fadae75 description",
+      "failMessageText": "2c9d5272b5674c718fadae75 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5714dbc024597771384a510d",
+      "name": "2c9d5272b5674c718fadae75 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [
+          {
+            "findInRaid": false,
+            "id": "ffe0e95e3fab5300bdfc1cf9",
+            "index": 0,
+            "items": [
+              {
+                "_id": "3ef50e5a9c9510a8a37826ef",
+                "_tpl": "5e42c83786f7742a021fdf3c",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "3ef50e5a9c9510a8a37826ef",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 17000,
+            "id": "b81f8a8ea9c0bb91b8711694",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "262425e451bd000227bf60c7",
+            "index": 1,
+            "items": [
+              {
+                "_id": "09a7c982e4a9e1243b9ce1c3",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 245
+                }
+              }
+            ],
+            "target": "09a7c982e4a9e1243b9ce1c3",
+            "type": "Item",
+            "value": 245
+          },
+          {
+            "findInRaid": false,
+            "id": "e8a12522e6ca8a292b95f2b3",
+            "index": 2,
+            "items": [
+              {
+                "_id": "62faaa7d81f8ee3dfd63c47b",
+                "_tpl": "66571bf06a723f7f005a0619",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "62faaa7d81f8ee3dfd63c47b",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "2c9d5272b5674c718fadae75 startedMessageText",
+      "successMessageText": "2c9d5272b5674c718fadae75 successMessageText",
+      "traderId": "6617beeaa9cfa777ca915b7c",
+      "type": "Exploration"
+    },
+    "9882cf75c7d9bb5bdc9fa8c2": {
+      "QuestName": "Keep an Escape Route",
+      "_id": "9882cf75c7d9bb5bdc9fa8c2",
+      "acceptPlayerMessage": "9882cf75c7d9bb5bdc9fa8c2 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "9882cf75c7d9bb5bdc9fa8c2 changeQuestMessageText",
+      "completePlayerMessage": "9882cf75c7d9bb5bdc9fa8c2 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "66fa10704024ed71b0a61685",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "fad442c1f0456621bc3d62c5",
+            "target": "b5bb719b23a5e861cea8b702",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 1
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "LeaveItemAtLocation",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "0ad2b549c2121aca4897c216",
+            "index": 0,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "plantTime": 10,
+            "target": [
+              "590c657e86f77412b013051d"
+            ],
+            "value": 1,
+            "visibilityConditions": [],
+            "zoneId": "nf2024_1"
+          },
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "86fbd8f7e903f7fa81a58da7",
+                  "target": [
+                    "woods"
+                  ]
+                },
+                {
+                  "conditionType": "ExitStatus",
+                  "dynamicLocale": false,
+                  "id": "36e84fbfe52a6425889b1876",
+                  "status": [
+                    "Transit"
+                  ]
+                }
+              ],
+              "id": "be171a51b55a2ce1fdc618cd"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "c521fbf0dce11318fbbdfae6",
+            "index": 1,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Completion",
+            "value": 1,
+            "visibilityConditions": []
+          },
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "506efb74a96d3fdb45b0c820",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [],
+                  "target": "Any",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                },
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "26b3fe19b6d4c82fc4e57603",
+                  "target": [
+                    "bigmap"
+                  ]
+                }
+              ],
+              "id": "5def614cf87826d981ce17f7"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "58516560f47fa1427f6f81d3",
+            "index": 2,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 6,
+            "visibilityConditions": []
+          },
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "156760225591b7c8bbcba88a",
+                  "target": [
+                    "bigmap"
+                  ]
+                },
+                {
+                  "conditionType": "ExitStatus",
+                  "dynamicLocale": false,
+                  "id": "734bf7cafa31b90a292d74ab",
+                  "status": [
+                    "Survived"
+                  ]
+                }
+              ],
+              "id": "d0ece39aa4b34bf1e98feb4c"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "f35c65038bb1682399789a0c",
+            "index": 3,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Completion",
+            "value": 1,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "9882cf75c7d9bb5bdc9fa8c2 declinePlayerMessage",
+      "description": "9882cf75c7d9bb5bdc9fa8c2 description",
+      "failMessageText": "9882cf75c7d9bb5bdc9fa8c2 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5704e3c2d2720bac5b8b4567",
+      "name": "9882cf75c7d9bb5bdc9fa8c2 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 12000,
+            "id": "2db5ce6dcf9f126af8d34bd5",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "1daf1588860d765e54d626d9",
+            "index": 1,
+            "items": [
+              {
+                "_id": "72f7283d3ee58930590dd835",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 61
+                }
+              }
+            ],
+            "target": "72f7283d3ee58930590dd835",
+            "type": "Item",
+            "value": 61
+          },
+          {
+            "findInRaid": false,
+            "id": "e0ffaae7b844171ef1db2bfd",
+            "index": 2,
+            "items": [
+              {
+                "_id": "31a8d6da730fb54d5511eb9d",
+                "_tpl": "606587252535c57a13424cfd",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "31a8d6da730fb54d5511eb9d",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "b0f017876c2ef24a9f624d84",
+            "index": 3,
+            "items": [
+              {
+                "_id": "254665c90e6e87ce502ac90b",
+                "_tpl": "59d6272486f77466146386ff",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "254665c90e6e87ce502ac90b",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "59efda085c824c41f2bc90c1",
+            "index": 4,
+            "items": [
+              {
+                "_id": "6971b1b1f6188711e10abde0",
+                "_tpl": "64acea09c4eda9354b0226ad",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "6971b1b1f6188711e10abde0",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "9882cf75c7d9bb5bdc9fa8c2 startedMessageText",
+      "successMessageText": "9882cf75c7d9bb5bdc9fa8c2 successMessageText",
+      "traderId": "6617beeaa9cfa777ca915b7c",
+      "type": "Completion"
+    },
+    "2dd3d24a1a6223dd115e4a13": {
+      "QuestName": "Running Aground",
+      "_id": "2dd3d24a1a6223dd115e4a13",
+      "acceptPlayerMessage": "2dd3d24a1a6223dd115e4a13 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "2dd3d24a1a6223dd115e4a13 changeQuestMessageText",
+      "completePlayerMessage": "2dd3d24a1a6223dd115e4a13 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "5fff018304de4c1901450ba1",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "LeaveItemAtLocation",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "ec947558966cb08a23b19572",
+            "index": 0,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "plantTime": 10,
+            "target": [
+              "564ca9df4bdc2d35148b4569"
+            ],
+            "value": 2,
+            "visibilityConditions": [],
+            "zoneId": "place_skier_11_2"
+          },
+          {
+            "conditionType": "LeaveItemAtLocation",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "45d350e0a7b3ef29006a52f0",
+            "index": 1,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "plantTime": 10,
+            "target": [
+              "57372e73245977685d4159b4"
+            ],
+            "value": 2,
+            "visibilityConditions": [],
+            "zoneId": "place_skier_11_2"
+          },
+          {
+            "conditionType": "LeaveItemAtLocation",
+            "dogtagLevel": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "8c1a413ecaa0204d9146c662",
+            "index": 2,
+            "isEncoded": false,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "onlyFoundInRaid": false,
+            "parentId": "",
+            "plantTime": 10,
+            "target": [
+              "5448be9a4bdc2dfd2f8b456a"
+            ],
+            "value": 2,
+            "visibilityConditions": [],
+            "zoneId": "place_skier_11_2"
+          }
+        ],
+        "Fail": [
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "381aece99e8d520c73651ced",
+            "target": "1349dec113c15500f6e7fa93",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 0
+          }
+        ]
+      },
+      "declinePlayerMessage": "2dd3d24a1a6223dd115e4a13 declinePlayerMessage",
+      "description": "2dd3d24a1a6223dd115e4a13 description",
+      "failMessageText": "2dd3d24a1a6223dd115e4a13 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "56f40101d2720b2a4d8b45d6",
+      "name": "2dd3d24a1a6223dd115e4a13 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 15000,
+            "id": "0c62242775fcefe8115ed6b2",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "e25bb805098031ac8a926c18",
+            "index": 1,
+            "items": [
+              {
+                "_id": "d8c8803dd1d62c49ee4dd690",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 245000
+                }
+              }
+            ],
+            "target": "d8c8803dd1d62c49ee4dd690",
+            "type": "Item",
+            "value": 245000
+          },
+          {
+            "findInRaid": false,
+            "id": "9e44e1273de40a825e0a42c2",
+            "index": 2,
+            "items": [
+              {
+                "_id": "0e22537a45d7f29b58cd09c1",
+                "_tpl": "6499849fc93611967b034949",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "0e22537a45d7f29b58cd09c1",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "55cf90eda3fdf8098a50c280",
+            "index": 3,
+            "items": [
+              {
+                "_id": "a68058c5faa5825617b69145",
+                "_tpl": "5aaa4194e5b5b055d06310a5",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "a68058c5faa5825617b69145",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "be85cd3bf19a839fa23b4cd2",
+            "index": 4,
+            "items": [
+              {
+                "_id": "f5b8a5f5b229f63b0b7e0ffa",
+                "_tpl": "57372e73245977685d4159b4",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "f5b8a5f5b229f63b0b7e0ffa",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "2dd3d24a1a6223dd115e4a13 startedMessageText",
+      "successMessageText": "2dd3d24a1a6223dd115e4a13 successMessageText",
+      "traderId": "58330581ace78e27b8b10cee",
+      "type": "Exploration"
+    },
+    "ddf04260840c8b9752210ae1": {
+      "QuestName": "Undercutting",
+      "_id": "ddf04260840c8b9752210ae1",
+      "acceptPlayerMessage": "ddf04260840c8b9752210ae1 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "ddf04260840c8b9752210ae1 changeQuestMessageText",
+      "completePlayerMessage": "ddf04260840c8b9752210ae1 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "40a919de925387c26b989086",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "2a012566947a77c440d3e0c2",
+            "target": "2dd3d24a1a6223dd115e4a13",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 1
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "fb782728153a57627023e473",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [],
+                  "target": "AnyPmc",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                }
+              ],
+              "id": "f3c0e415f30f4215129b3b17"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "1b69dd48e410b066c8d032cf",
+            "index": 0,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 5,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "ddf04260840c8b9752210ae1 declinePlayerMessage",
+      "description": "ddf04260840c8b9752210ae1 description",
+      "failMessageText": "ddf04260840c8b9752210ae1 failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "any",
+      "name": "ddf04260840c8b9752210ae1 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 12000,
+            "id": "84f44275d4cdafb555101cc3",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "06eb0bc7f71202fcab8dfe87",
+            "index": 1,
+            "items": [
+              {
+                "_id": "8dda5cea667eddd34c59a7bb",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 183750
+                }
+              }
+            ],
+            "target": "8dda5cea667eddd34c59a7bb",
+            "type": "Item",
+            "value": 183750
+          },
+          {
+            "findInRaid": false,
+            "id": "b7e6981ab738457b32e84889",
+            "index": 2,
+            "items": [
+              {
+                "_id": "af60b02c532175ee33211279",
+                "_tpl": "5fbcc1d9016cce60e8341ab3",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "56713032c0111e8aecb1b66d",
+                "_tpl": "5fbcc1d9016cce60e8341ab3",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "af60b02c532175ee33211279",
+            "type": "Item",
+            "value": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "29b4e44847519f7dd12cd370",
+            "index": 3,
+            "items": [
+              {
+                "_id": "4cddf0b0d21fc8bc88c1fa31",
+                "_tpl": "55d4887d4bdc2d962f8b4570",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "a46e670231f765065e770352",
+                "_tpl": "55d4887d4bdc2d962f8b4570",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "6c2b25797baa1a757e47c2c0",
+                "_tpl": "55d4887d4bdc2d962f8b4570",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "359135ef9ebda7fd7012d865",
+                "_tpl": "55d4887d4bdc2d962f8b4570",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "4cddf0b0d21fc8bc88c1fa31",
+            "type": "Item",
+            "value": 4
+          },
+          {
+            "findInRaid": false,
+            "id": "8c9a5a6a03db472eb4852602",
+            "index": 4,
+            "items": [
+              {
+                "_id": "38d8396e70ce9213c6dba450",
+                "_tpl": "657023bebfc87b3a34093207",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "73aa160c55d06bf362c865c2",
+                "_tpl": "657023bebfc87b3a34093207",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              },
+              {
+                "_id": "4a985f2a56e6239c768e7ca6",
+                "_tpl": "657023bebfc87b3a34093207",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "38d8396e70ce9213c6dba450",
+            "type": "Item",
+            "value": 3
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "ddf04260840c8b9752210ae1 startedMessageText",
+      "successMessageText": "ddf04260840c8b9752210ae1 successMessageText",
+      "traderId": "58330581ace78e27b8b10cee",
+      "type": "Elimination"
+    },
+    "6c67498003d3306a913abb5d": {
+      "QuestName": "Time to Eat!",
+      "_id": "6c67498003d3306a913abb5d",
+      "acceptPlayerMessage": "6c67498003d3306a913abb5d acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6c67498003d3306a913abb5d changeQuestMessageText",
+      "completePlayerMessage": "6c67498003d3306a913abb5d completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "2374b79c681ba4dfe24d9984",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "3f9488e8127777a9a069f89d",
+            "target": "ddf04260840c8b9752210ae1",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": [],
+            "index": 1
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "PlaceBeacon",
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "34f36d86260b9f4de5bdfef2",
+            "index": 0,
+            "parentId": "",
+            "plantTime": 30,
+            "target": [
+              "5991b51486f77447b112d44f"
+            ],
+            "value": 1,
+            "visibilityConditions": [],
+            "zoneId": "place_merch_21_1"
+          },
+          {
+            "conditionType": "PlaceBeacon",
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "674cf35e940d5e19c40a729a",
+            "index": 1,
+            "parentId": "",
+            "plantTime": 30,
+            "target": [
+              "5991b51486f77447b112d44f"
+            ],
+            "value": 1,
+            "visibilityConditions": [],
+            "zoneId": "place_merch_21_1"
+          },
+          {
+            "completeInSeconds": 0,
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "bodyPart": [],
+                  "compareMethod": ">=",
+                  "conditionType": "Kills",
+                  "daytime": {
+                    "from": 0,
+                    "to": 0
+                  },
+                  "distance": {
+                    "compareMethod": ">=",
+                    "value": 0
+                  },
+                  "dynamicLocale": false,
+                  "enemyEquipmentExclusive": [],
+                  "enemyEquipmentInclusive": [],
+                  "enemyHealthEffects": [],
+                  "id": "ad9969f62c12e42c5625d56e",
+                  "resetOnSessionEnd": false,
+                  "savageRole": [],
+                  "target": "AnyPmc",
+                  "value": 1,
+                  "weapon": [],
+                  "weaponCaliber": [],
+                  "weaponModsExclusive": [],
+                  "weaponModsInclusive": []
+                },
+                {
+                  "IncludeNotEquippedItems": false,
+                  "conditionType": "Equipment",
+                  "dynamicLocale": false,
+                  "equipmentExclusive": [],
+                  "equipmentInclusive": [
+                    [
+                      "67a5c61c7f52620c5b05b4d8"
+                    ],
+                    [
+                      "67a5c6068fcd9fb73f0752cf"
+                    ],
+                    [
+                      "68a9a15d73d52d47830759c9"
+                    ]
+                  ],
+                  "id": "710de6e200b6ae769da36b53"
+                }
+              ],
+              "id": "ed313b4458363825fc00e14a"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "cb0a05213f664091b33249dc",
+            "index": 2,
+            "isResetOnConditionFailed": false,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 10,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6c67498003d3306a913abb5d declinePlayerMessage",
+      "description": "6c67498003d3306a913abb5d description",
+      "failMessageText": "6c67498003d3306a913abb5d failMessageText",
+      "image": "/files/quest/icon/664088150e8c3b39563f2b73.png",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5714dbc024597771384a510d",
+      "name": "6c67498003d3306a913abb5d name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [
+          {
+            "findInRaid": false,
+            "id": "b3bc7a8e5157eca5b4351da9",
+            "index": 0,
+            "items": [
+              {
+                "_id": "fb736d59efad6f87e4995cf6",
+                "_tpl": "5991b51486f77447b112d44f",
+                "upd": {
+                  "StackObjectsCount": 2
+                }
+              }
+            ],
+            "target": "fb736d59efad6f87e4995cf6",
+            "type": "Item",
+            "value": 2
+          }
+        ],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 18000,
+            "id": "70255a114567cabcf7a9550b",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "1aeb6a57fc0d8ae5510657b0",
+            "index": 1,
+            "items": [
+              {
+                "_id": "69549401e367d0fbfe4f6f1c",
+                "_tpl": "59fb023c86f7746d0d4b423c",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "69549401e367d0fbfe4f6f1c",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6c67498003d3306a913abb5d startedMessageText",
+      "successMessageText": "6c67498003d3306a913abb5d successMessageText",
+      "traderId": "58330581ace78e27b8b10cee",
+      "type": "Completion"
+    }
+  },
+  "items": {
+    "6a1f00c70000000000000001": {
+      "_id": "6a1f00c70000000000000001",
+      "_name": "casus_arena_template_crate",
+      "_parent": "590c745b86f7743cc433c5f2",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "blue",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": true,
+        "ConflictingItems": [],
+        "Description": "A crate snatched from a Pillager. Inside are the arena's brand-new reward templates, still sealed.",
+        "DiscardLimit": 1,
+        "DiscardingBlock": false,
+        "DropSoundType": "None",
+        "ExamineExperience": 10,
+        "ExamineTime": 1,
+        "ExaminedByDefault": true,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Grids": [],
+        "Height": 2,
+        "HideEntrails": false,
+        "InsuranceDisabled": false,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "generic",
+        "LeftHandItem": false,
+        "LootExperience": 30,
+        "MaxResource": 0,
+        "MergesWithChildren": false,
+        "Name": "Arena reward template crate",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/containers/item_container_weaponcase/item_container_weaponcase.bundle",
+          "rcid": ""
+        },
+        "QuestItem": true,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RarityPvE": "Rare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "Resource": 0,
+        "ShortName": "Arena crate",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 6,
+        "Width": 3
+      },
+      "_type": "Item"
+    }
+  },
+  "itemMeta": {
+    "6a1f00c70000000000000001": {
+      "price": 150000,
+      "handbookParent": "5b5f6fa186f77409407a7eb7"
+    }
+  },
+  "locales": {
+    "en": {
+      "b5bb719b23a5e861cea8b702 name": "Casus Belli",
+      "b5bb719b23a5e861cea8b702 description": "Ref here. The arena's fighters broke out. A crate was cracked open, the crowd scattered, and now the Pillagers are loose on Customs, Woods, Interchange, Lighthouse and Shoreline, robbing everyone they meet. They still wear the painted CQCM masks they took from the arena locker room. Put down five of them and bring me three of those painted masks you pull off their bodies. I will make it worth your while.",
+      "b5bb719b23a5e861cea8b702 successMessageText": "Five Pillagers and three masks. Not bad for a freelancer. Keep the mask money - I have a bigger job for you.",
+      "b5bb719b23a5e861cea8b702 failMessageText": "",
+      "b5bb719b23a5e861cea8b702 acceptPlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 declinePlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 completePlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 changeQuestMessageText": "",
+      "b5bb719b23a5e861cea8b702 startedMessageText": "",
+      "1349dec113c15500f6e7fa93 name": "Retrieve the Lost Property",
+      "1349dec113c15500f6e7fa93 description": "The Pillagers emptied the arena's vault before they ran off. My masks, my prizes, all of it. Kill ten of them. Then take four of the painted masks to the shoreline and hide them where I told you - the old fishing spot. Skier is meanwhile setting up an ambush on Customs: help him and our deal is off for good.",
+      "1349dec113c15500f6e7fa93 successMessageText": "Four masks, back where I can reach them. The Referee remembers who helped him and who did not.",
+      "1349dec113c15500f6e7fa93 failMessageText": "",
+      "1349dec113c15500f6e7fa93 acceptPlayerMessage": "",
+      "1349dec113c15500f6e7fa93 declinePlayerMessage": "",
+      "1349dec113c15500f6e7fa93 completePlayerMessage": "",
+      "1349dec113c15500f6e7fa93 changeQuestMessageText": "",
+      "1349dec113c15500f6e7fa93 startedMessageText": "",
+      "2c9d5272b5674c718fadae75 name": "The Dead Salute You",
+      "2c9d5272b5674c718fadae75 description": "A Pillager dumped a crate of the arena's brand-new reward templates on Interchange - it's lying right next to the yellow van by the container yard, lid open. Just walk over and pick it up, no keycard needed. Then put on one of the painted masks - Day of the Dead, Scars or Target - and put down ten PMCs. Let them know how the dead salute each other.",
+      "2c9d5272b5674c718fadae75 successMessageText": "So the dead do salute. The templates are mine again - take the crate from my stock, you earned it.",
+      "2c9d5272b5674c718fadae75 failMessageText": "",
+      "2c9d5272b5674c718fadae75 acceptPlayerMessage": "",
+      "2c9d5272b5674c718fadae75 declinePlayerMessage": "",
+      "2c9d5272b5674c718fadae75 completePlayerMessage": "",
+      "2c9d5272b5674c718fadae75 changeQuestMessageText": "",
+      "2c9d5272b5674c718fadae75 startedMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 name": "Keep an Escape Route",
+      "9882cf75c7d9bb5bdc9fa8c2 description": "Things may turn ugly, and a man in my line of work always keeps a way out. Hide a Grizzly medkit in the big barn at the old sawmill in the woods. Then walk out of the woods into Customs, clear six targets there and survive the extraction.",
+      "9882cf75c7d9bb5bdc9fa8c2 successMessageText": "Good. Now there is a medkit waiting in the woods for a day I hope never comes.",
+      "9882cf75c7d9bb5bdc9fa8c2 failMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 acceptPlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 declinePlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 completePlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 changeQuestMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 startedMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 name": "Running Aground",
+      "2dd3d24a1a6223dd115e4a13 description": "So the Ref's little gladiators got loose and now everyone grabs what they can. I had a shipment on a boat at Customs - gone already. But I stashed gear by the water before it went bad, and I need you to hide it in the grass next to the white container: two 6L18 magazines, two 120-round boxes of 5.45 PS and two RGD-5 grenades. Keep your mouth shut and do not help the Referee with his fighters or his masks, or you and me are done.",
+      "2dd3d24a1a6223dd115e4a13 successMessageText": "Everything is where it should be. When this blows over, we go back and dig it up together.",
+      "2dd3d24a1a6223dd115e4a13 failMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 acceptPlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 declinePlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 completePlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 changeQuestMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 startedMessageText": "",
+      "ddf04260840c8b9752210ae1 name": "Undercutting",
+      "ddf04260840c8b9752210ae1 description": "While Ref plays his little games, you are going to steal his customers from under his nose. Drop five PMCs on Customs, Woods, Interchange, Lighthouse or Shoreline and I will pay you like a professional.",
+      "ddf04260840c8b9752210ae1 successMessageText": "Five operators, five clients who will think twice about signing with the Referee. Here is your cut.",
+      "ddf04260840c8b9752210ae1 failMessageText": "",
+      "ddf04260840c8b9752210ae1 acceptPlayerMessage": "",
+      "ddf04260840c8b9752210ae1 declinePlayerMessage": "",
+      "ddf04260840c8b9752210ae1 completePlayerMessage": "",
+      "ddf04260840c8b9752210ae1 changeQuestMessageText": "",
+      "ddf04260840c8b9752210ae1 startedMessageText": "",
+      "6c67498003d3306a913abb5d name": "Time to Eat!",
+      "6c67498003d3306a913abb5d description": "Ref's junk got loaded onto my boat at Customs, and now the whole thing sits in a fenced warehouse area on Interchange - either inside the fence or in the van. Take two MS2000 markers and tag the stashes. And wear one of those black painted masks while you work: the Demon, the Skull or the Demonic Face. Then we eat.",
+      "6c67498003d3306a913abb5d successMessageText": "Both stashes tagged and a masked man walking free. Now we eat - my share first.",
+      "6c67498003d3306a913abb5d failMessageText": "",
+      "6c67498003d3306a913abb5d acceptPlayerMessage": "",
+      "6c67498003d3306a913abb5d declinePlayerMessage": "",
+      "6c67498003d3306a913abb5d completePlayerMessage": "",
+      "6c67498003d3306a913abb5d changeQuestMessageText": "",
+      "6c67498003d3306a913abb5d startedMessageText": "",
+      "301bfda004c2ccc1b7b6ef13": "Eliminate Pillagers",
+      "b6a79fb5e91a986ee97c1ab6": "Hand over the painted CQCM masks found in raid",
+      "0d5f68a4302823ee0d5f9ef0": "Eliminate Pillagers",
+      "36db512ac3bed3a3f45400b2": "Hide the painted CQCM masks at the specified place on Shoreline",
+      "9502170b897efae6eaec9a43": "Find and obtain the crate with the new arena reward templates on Interchange",
+      "54f011e16674904296b1836f": "Hand over the item you found",
+      "2201b092900e5836f8260875": "Eliminate PMC operatives while wearing the specified painted CQCM mask",
+      "0ad2b549c2121aca4897c216": "Hide a Grizzly medkit in the big barn at the old sawmill in the woods",
+      "c521fbf0dce11318fbbdfae6": "Move from Woods to Customs",
+      "58516560f47fa1427f6f81d3": "Eliminate any targets on Customs",
+      "f35c65038bb1682399789a0c": "Survive and extract from Customs",
+      "ec947558966cb08a23b19572": "Hide the 6L18 magazines at the specified place on Customs",
+      "45d350e0a7b3ef29006a52f0": "Hide the 5.45x39mm PS ammo packs (120 pcs) at the specified place on Customs",
+      "8c1a413ecaa0204d9146c662": "Hide the RGD-5 grenades at the specified place on Customs",
+      "1b69dd48e410b066c8d032cf": "Eliminate PMC operatives on Customs, Woods, Interchange, Lighthouse or Shoreline",
+      "34f36d86260b9f4de5bdfef2": "Mark the arena reward stashes on Interchange with an MS2000 Marker",
+      "674cf35e940d5e19c40a729a": "Mark the second arena reward stash on Interchange with an MS2000 Marker",
+      "cb0a05213f664091b33249dc": "Eliminate PMC operatives while wearing the specified painted CQCM mask",
+      "67a5c657782ce4655104db16 Name": "Atomic Defense CQCM ballistic mask (El Día de Muertos)",
+      "67a5c657782ce4655104db16 ShortName": "Muertos",
+      "67a5c657782ce4655104db16 Description": "Atomic Defense's CQCM ballistic mask provides protection against short-range weapons including pistols, shotguns and knives. The drawing is applied with a durable paint for true fans of El Día de Muertos, the Day of the Dead.",
+      "67a5c5df782ce4655104db14 Name": "Atomic Defense CQCM ballistic mask (Scars)",
+      "67a5c5df782ce4655104db14 ShortName": "Scars",
+      "67a5c5df782ce4655104db14 Description": "Atomic Defense's CQCM ballistic mask provides protection against short-range weapons including pistols, shotguns and knives. Scars or ritual symbols - what it depicts is up to you to determine.",
+      "67a5c5f37f52620c5b05b4d6 Name": "Atomic Defense CQCM ballistic mask (Target)",
+      "67a5c5f37f52620c5b05b4d6 ShortName": "Target",
+      "67a5c5f37f52620c5b05b4d6 Description": "Atomic Defense's CQCM ballistic mask provides protection against short-range weapons including pistols, shotguns and knives. This reinforced mask covers the wearer's face completely. It's unclear who had the idea to paint a target on it, but that sure is pretty ironic.",
+      "67a5c61c7f52620c5b05b4d8 Name": "Atomic Defense CQCM ballistic mask (Demon)",
+      "67a5c61c7f52620c5b05b4d8 ShortName": "Demon",
+      "67a5c61c7f52620c5b05b4d8 Description": "Atomic Defense's CQCM ballistic mask provides protection against short-range weapons including pistols, shotguns and knives. This reinforced mask covers the wearer's face completely. Mom always asked you to smile more, but she hardly expected this.",
+      "67a5c6068fcd9fb73f0752cf Name": "Atomic Defense CQCM ballistic mask (Skull)",
+      "67a5c6068fcd9fb73f0752cf ShortName": "Skull",
+      "67a5c6068fcd9fb73f0752cf Description": "Atomic Defense's CQCM ballistic mask provides protection against short-range weapons including pistols, shotguns and knives. Some say the skull is a universal symbol that inspires fear and respect in opponents.",
+      "68a9a15d73d52d47830759c9 Name": "Atomic Defense CQCM ballistic mask (Demonic Face)",
+      "68a9a15d73d52d47830759c9 ShortName": "Demonic",
+      "68a9a15d73d52d47830759c9 Description": "Atomic Defense's CQCM ballistic mask provides protection against wide variety of short-mid range weapons including shotguns and assault rifles. Has all the qualities of a top arena fighter – stylish, luxurious, and intimidating all at once.",
+      "5991b51486f77447b112d44f Name": "MS2000 Marker",
+      "5991b51486f77447b112d44f ShortName": "MS2000",
+      "5991b51486f77447b112d44f Description": "A strobe marker light that is used during nighttime operations. It emits signals in the IR region which are visible through NVGs. Uses a special filter when operating in the IR mode. If the filter is removed, it appears as a bright flash in the visible spectrum. In the extended mode operates with a blue flash.",
+      "5e42c83786f7742a021fdf3c Name": "Object #21WS keycard",
+      "5e42c83786f7742a021fdf3c ShortName": "#21WS",
+      "5e42c83786f7742a021fdf3c Description": "An electronic limited-use access keycard that, according to the logo on the front, belongs to TerraGroup.",
+      "59fb023c86f7746d0d4b423c Name": "Weapon case",
+      "59fb023c86f7746d0d4b423c ShortName": "Weapons",
+      "59fb023c86f7746d0d4b423c Description": "A storage case for weapons, ammunition, and weapon parts.",
+      "66571bf06a723f7f005a0619 Name": "Locked equipment crate (Rare)",
+      "66571bf06a723f7f005a0619 ShortName": "Equipment (Rare)",
+      "66571bf06a723f7f005a0619 Description": "A trophy for participating in Arena battles. It contains various equipment to help you survive and kill in the harsh world of Tarkov. But first, you need to find a way to open this box.",
+      "590c657e86f77412b013051d Name": "Grizzly medical kit",
+      "590c657e86f77412b013051d ShortName": "Grizzly",
+      "590c657e86f77412b013051d Description": "Sportsman Series Grizzly Medical Kit is considered one of the best first aid kits. It contains everything necessary to provide immediate medical care in extreme conditions.",
+      "5448be9a4bdc2dfd2f8b456a Name": "RGD-5 hand grenade",
+      "5448be9a4bdc2dfd2f8b456a ShortName": "RGD-5",
+      "5448be9a4bdc2dfd2f8b456a Description": "RGD-5 (GAU index - 57-G-717) is an antipersonnel fragmentation time-delayed offensive hand grenade. The grenade's UZRGM fuze insures a time delay of 3.2 - 4.2 seconds. Due to the offensive type of the grenade, its fragments are relatively light and have a smaller dispersion radius.",
+      "564ca9df4bdc2d35148b4569 Name": "AK-74 5.45x39 6L18 45-round magazine",
+      "564ca9df4bdc2d35148b4569 ShortName": "6L18",
+      "564ca9df4bdc2d35148b4569 Description": "A 45-round 5.45x39 Izhmash 6L18 bakelite magazine, for AK-74 and compatible systems. It's also a standard issue RPK-74 magazine.",
+      "57372e73245977685d4159b4 Name": "5.45x39mm PS gs ammo pack (120 pcs)",
+      "57372e73245977685d4159b4 ShortName": "PS",
+      "57372e73245977685d4159b4 Description": "A waterproof package of 5.45x39 PS gs cartridges, 120 pieces.",
+      "5d235b4d86f7742e017bc88a Name": "GP coin",
+      "5d235b4d86f7742e017bc88a ShortName": "GP",
+      "5d235b4d86f7742e017bc88a Description": "A strange looking golden coin. According to rumors, it was actively used as a means of payment for PMC services during the Contract Wars.",
+      "5449016a4bdc2d6f028b456f Name": "Roubles",
+      "5449016a4bdc2d6f028b456f ShortName": "RUB",
+      "5449016a4bdc2d6f028b456f Description": "A few notes of the still-valued Russian rouble.",
+      "5fbcc1d9016cce60e8341ab3 Name": "SIG MCX .300 Blackout assault rifle",
+      "5fbcc1d9016cce60e8341ab3 ShortName": "MCX .300 BLK",
+      "5fbcc1d9016cce60e8341ab3 Description": "The .300 Blackout MCX line, designed and manufactured by SIG Sauer, is available in both semi-automatic and automatic versions and features a short-stroke gas piston system, which is inherited from the earlier SIG MPX submachine gun. The .300 Blackout ammo and the MCX are compatible with all AR-15 magazines.",
+      "544a378f4bdc2d30388b4567 Name": "AR-15 5.56x45 Magpul PMAG 40 GEN M3 STANAG 40-round magazine",
+      "544a378f4bdc2d30388b4567 ShortName": "GEN M3",
+      "544a378f4bdc2d30388b4567 Description": "The PMAG 40 GEN M3 is a 40-round 5.56x45 NATO (.223 Remington) polymer magazine for AR-15/M4 compatible weapons.",
+      "657023bebfc87b3a34093207 Name": ".300 Blackout BCP FMJ ammo pack (50 pcs)",
+      "657023bebfc87b3a34093207 ShortName": "FMJ",
+      "657023bebfc87b3a34093207 Description": "A box of .300 Blackout BCP FMJ cartridges, 50 pieces.",
+      "6183afd850224f204c1da514 Name": "FN SCAR-H 7.62x51 assault rifle",
+      "6183afd850224f204c1da514 ShortName": "Mk 17",
+      "6183afd850224f204c1da514 Description": "The FN SCAR-H (Special Operations Forces Combat Assault Rifle - Heavy) assault rifle chambered in 7.62x51 NATO rounds, was adopted by the US SOCOM as the Mk 17. Features a side-folding polymer stock and a free-floating, cold hammer-forged Mil-Spec barrel with hardchromed bore. Fully-ambidextrous operating controls instantly adapt the SCAR to any user or any shooting position. The receiver-integrated optical rail plus three accessory rails enable mounting of a wide variety of scopes, electronic sights, tactical lights and lasers. Manufactured by Fabrique Nationale Herstal.",
+      "618168dc8004cc50514c34fc Name": "FN SCAR-H 7.62x51 20-round magazine",
+      "618168dc8004cc50514c34fc ShortName": "Mk17",
+      "618168dc8004cc50514c34fc Description": "A 20-round magazine for the FN SCAR-H 7.62x51 battle rifle.",
+      "6570254fcfc010a0f5006a22 Name": "7.62x51mm M61 ammo pack (20 pcs)",
+      "6570254fcfc010a0f5006a22 ShortName": "M61",
+      "6570254fcfc010a0f5006a22 Description": "A box of 7.62x51mm M61 cartridges, 20 pieces.",
+      "606587252535c57a13424cfd Name": "CMMG Mk47 Mutant 7.62x39 assault rifle",
+      "606587252535c57a13424cfd ShortName": "Mk47",
+      "606587252535c57a13424cfd Description": "CMMG Mk47 Mutant, an American-made carbine chambered in 7.62x39mm, manufactured by CMMG Inc. Works with all types of AK magazines, including steel, polymer and drums. The carbine has shown exceptional reliability, which, together with the classic ergonomics of the AR system, gives an excellent example of a firearm. This variant features a fully automatic firing mode, for Law Enforcement and Millitary use only.",
+      "59d6272486f77466146386ff Name": "AK 7.62x39 Magpul PMAG 30 GEN M3 30-round magazine",
+      "59d6272486f77466146386ff ShortName": "GEN M3",
+      "59d6272486f77466146386ff Description": "A 30-round polymer Magpul Pmag 30 AK/AKM GEN M3 magazine for 7.62x39 AK and compatible weapons. Can also be supplied with .366 TKM ammo for use with the corresponding caliber AK-compatible weapons.",
+      "64acea09c4eda9354b0226ad Name": "7.62x39mm T-45M1 gzh ammo pack (20 pcs)",
+      "64acea09c4eda9354b0226ad ShortName": "T-45M1",
+      "64acea09c4eda9354b0226ad Description": "A 20-round package of 7.62x39 T-45M1 gzh cartridges.",
+      "6499849fc93611967b034949 Name": "Kalashnikov AK-12 5.45x39 assault rifle",
+      "6499849fc93611967b034949 ShortName": "AK-12",
+      "6499849fc93611967b034949 Description": "The Kalashnikov AK-12 5.45 automatic rifle is the primary model of individual small arms for personnel of motorized and other units of the Russian Armed Forces. The AK-12 is a part of the Ratnik equipment system.",
+      "5aaa4194e5b5b055d06310a5 Name": "AK-74 5.45x39 Magpul PMAG 30 GEN M3 30-round magazine",
+      "5aaa4194e5b5b055d06310a5 ShortName": "GEN M3",
+      "5aaa4194e5b5b055d06310a5 Description": "A 30-round polymer Magpul Pmag 30 AK74 GEN M3 magazine for 5.45x39 AK and compatible weapons.",
+      "55d4887d4bdc2d962f8b4570 Name": "AR-15 5.56x45 Colt STANAG 30-round magazine",
+      "55d4887d4bdc2d962f8b4570 ShortName": "STANAG",
+      "55d4887d4bdc2d962f8b4570 Description": "A 30-round metal Colt AR-15 magazine designed in compliance with the STANAG 4179 standard for 5.56x45 ammo.\nThe STANAG 4179 standard was approved by NATO members in 1980 for the unification of allied personnel ammo and magazines.",
+      "6a1f00c70000000000000001 Name": "Arena reward template crate",
+      "6a1f00c70000000000000001 ShortName": "Arena crate",
+      "6a1f00c70000000000000001 Description": "A crate snatched from a Pillager. Inside are the arena's brand-new reward templates, still sealed."
+    },
+    "ch": {
+      "b5bb719b23a5e861cea8b702 name": "战争之因",
+      "b5bb719b23a5e861cea8b702 description": "这里是 Ref。竞技场的角斗士跑出去了：一只货箱被撬开，看客散尽，现在这帮「劫掠者」散落在海关、森林、立交桥、灯塔和海岸线，见谁抢谁。他们脸上还戴着从竞技场更衣室顺走的彩绘 CQCM 面具。清掉 5 个劫掠者，再从他们身上扒 3 张彩绘面具给我，价钱好说。",
+      "b5bb719b23a5e861cea8b702 successMessageText": "五个劫掠者、三张面具。对游击队来说不赖。面具的差价留着吧——我这儿还有更大的活儿。",
+      "b5bb719b23a5e861cea8b702 failMessageText": "",
+      "b5bb719b23a5e861cea8b702 acceptPlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 declinePlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 completePlayerMessage": "",
+      "b5bb719b23a5e861cea8b702 changeQuestMessageText": "",
+      "b5bb719b23a5e861cea8b702 startedMessageText": "",
+      "1349dec113c15500f6e7fa93 name": "回收失物",
+      "1349dec113c15500f6e7fa93 description": "劫掠者跑路之前把竞技场的库房搬空了。我的面具、我的奖品，全没了。先清掉 10 个。然后带 4 张彩绘面具去海岸线，把它们藏在我说的那个旧渔点。另外，Skier 正在海关布置伏击——你要是帮了他，咱这单就彻底作废。",
+      "1349dec113c15500f6e7fa93 successMessageText": "四张面具，又回到我够得着的地方了。裁判会记得谁帮了他、谁没有。",
+      "1349dec113c15500f6e7fa93 failMessageText": "",
+      "1349dec113c15500f6e7fa93 acceptPlayerMessage": "",
+      "1349dec113c15500f6e7fa93 declinePlayerMessage": "",
+      "1349dec113c15500f6e7fa93 completePlayerMessage": "",
+      "1349dec113c15500f6e7fa93 changeQuestMessageText": "",
+      "1349dec113c15500f6e7fa93 startedMessageText": "",
+      "2c9d5272b5674c718fadae75 name": "赴死之人向你致敬",
+      "2c9d5272b5674c718fadae75 description": "有个劫掠者把一箱竞技场全新的奖励模板丢在了立交桥——就在集装箱堆旁边那辆黄色面包车边上，箱子敞着口，走过去直接拿就行，不用钥匙卡。拿到之后，戴上一张指定彩绘面具——亡灵节、战疤或标靶——顺路干掉 10 个 PMC。让他们知道，赴死之人是怎么互相致敬的。",
+      "2c9d5272b5674c718fadae75 successMessageText": "看来死人也会敬礼。模板又回到我手里了——从我库里拿一只箱子走，你配得上。",
+      "2c9d5272b5674c718fadae75 failMessageText": "",
+      "2c9d5272b5674c718fadae75 acceptPlayerMessage": "",
+      "2c9d5272b5674c718fadae75 declinePlayerMessage": "",
+      "2c9d5272b5674c718fadae75 completePlayerMessage": "",
+      "2c9d5272b5674c718fadae75 changeQuestMessageText": "",
+      "2c9d5272b5674c718fadae75 startedMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 name": "留条后路",
+      "9882cf75c7d9bb5bdc9fa8c2 description": "事情可能会变得难看，干我这行的总得留条后路。把一只 Grizzly 急救包藏进森林旧锯木厂那座大型农仓里。然后从森林走出去进海关，在那儿清掉 6 个目标，并活着撤离。",
+      "9882cf75c7d9bb5bdc9fa8c2 successMessageText": "很好。现在森林里有一包急救包在等一个我希望永远不要到来的日子。",
+      "9882cf75c7d9bb5bdc9fa8c2 failMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 acceptPlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 declinePlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 completePlayerMessage": "",
+      "9882cf75c7d9bb5bdc9fa8c2 changeQuestMessageText": "",
+      "9882cf75c7d9bb5bdc9fa8c2 startedMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 name": "摘浅作战",
+      "2dd3d24a1a6223dd115e4a13 description": "Ref 那帮小角斗士跑出来了，现在谁都在抢东西。我本来有一船货停在海关——已经没了。不过在那之前我把一批装备藏在了水边，你替我把它埋进白色集装箱旁边的草丛里：2 个 6L18 弹匣、2 盒 120 发的 5.45 PS 弹药、2 颗 RGD-5 手榴弹。把嘴闭紧，也别帮裁判杀劫掠者或藏他的面具，不然咱俩就到此为止。",
+      "2dd3d24a1a6223dd115e4a13 successMessageText": "东西都在该在的地方。等这阵风过去，我们回去一起挖出来。",
+      "2dd3d24a1a6223dd115e4a13 failMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 acceptPlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 declinePlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 completePlayerMessage": "",
+      "2dd3d24a1a6223dd115e4a13 changeQuestMessageText": "",
+      "2dd3d24a1a6223dd115e4a13 startedMessageText": "",
+      "ddf04260840c8b9752210ae1 name": "挖墙脚",
+      "ddf04260840c8b9752210ae1 description": "趁 Ref 玩他那点小把戏，你去把他的人从他鼻子底下挖走。在海关、森林、立交桥、灯塔或海岸线干掉 5 个 PMC，我就按职业水准给你结账。",
+      "ddf04260840c8b9752210ae1 successMessageText": "五个行动人员，五个会重新考虑要不要跟裁判签约的客户。这是你那份。",
+      "ddf04260840c8b9752210ae1 failMessageText": "",
+      "ddf04260840c8b9752210ae1 acceptPlayerMessage": "",
+      "ddf04260840c8b9752210ae1 declinePlayerMessage": "",
+      "ddf04260840c8b9752210ae1 completePlayerMessage": "",
+      "ddf04260840c8b9752210ae1 changeQuestMessageText": "",
+      "ddf04260840c8b9752210ae1 startedMessageText": "",
+      "6c67498003d3306a913abb5d name": "得吃！",
+      "6c67498003d3306a913abb5d description": "Ref 那批货在海关被装上了我的船，现在整套东西都躺在立交桥一片有围栏的仓库区——不在围栏里就在车上。带上 2 个 MS2000 指示器，把藏匿点都标出来。干活的时候戴上一张指定的黑色彩绘面具：恶魔、骷髅或恶魔獠牙。然后我们就能得吃了。",
+      "6c67498003d3306a913abb5d successMessageText": "两个藏匿点都标好了，还让一个戴面具的人大摇大摆走了出来。现在得吃了——先分我那半。",
+      "6c67498003d3306a913abb5d failMessageText": "",
+      "6c67498003d3306a913abb5d acceptPlayerMessage": "",
+      "6c67498003d3306a913abb5d declinePlayerMessage": "",
+      "6c67498003d3306a913abb5d completePlayerMessage": "",
+      "6c67498003d3306a913abb5d changeQuestMessageText": "",
+      "6c67498003d3306a913abb5d startedMessageText": "",
+      "301bfda004c2ccc1b7b6ef13": "消灭劫掠者",
+      "b6a79fb5e91a986ee97c1ab6": "上交在战局中找到的带有彩绘的 CQCM 面具",
+      "0d5f68a4302823ee0d5f9ef0": "消灭劫掠者",
+      "36db512ac3bed3a3f45400b2": "在海岸线的指定位置藏匿带有彩绘的 CQCM 面具",
+      "9502170b897efae6eaec9a43": "在立交桥找到并获取装有竞技场新奖励模板的箱子",
+      "54f011e16674904296b1836f": "上交找到的物品",
+      "2201b092900e5836f8260875": "佩戴一种指定彩绘 CQCM 面具击杀 PMC 行动人员",
+      "0ad2b549c2121aca4897c216": "将 Grizzly 急救包藏匿在森林旧锯木厂的大型农仓中",
+      "c521fbf0dce11318fbbdfae6": "从森林移动至海关",
+      "58516560f47fa1427f6f81d3": "在海关消灭任意目标",
+      "f35c65038bb1682399789a0c": "幸存并从海关撤离",
+      "ec947558966cb08a23b19572": "在海关的指定位置藏匿 6L18 弹匣",
+      "45d350e0a7b3ef29006a52f0": "在海关的指定位置藏匿 5.45x39mm PS 弹药包（120 发装）",
+      "8c1a413ecaa0204d9146c662": "在海关的指定位置藏匿 RGD-5 手榴弹",
+      "1b69dd48e410b066c8d032cf": "在森林、海关、立交桥、灯塔或海岸线击杀 PMC 行动人员",
+      "34f36d86260b9f4de5bdfef2": "在立交桥使用 MS2000 指示器标记竞技场新奖励的藏匿点",
+      "674cf35e940d5e19c40a729a": "在立交桥使用 MS2000 指示器标记第二处竞技场新奖励的藏匿点",
+      "cb0a05213f664091b33249dc": "佩戴一种指定彩绘 CQCM 面具击杀 PMC 行动人员",
+      "67a5c657782ce4655104db16 Name": "Atomic Defense CQCM 防弹面具（亡灵节）",
+      "67a5c657782ce4655104db16 ShortName": "亡灵",
+      "67a5c657782ce4655104db16 Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。面罩表面涂上了一层厚厚的油彩，为亡灵节、也就是死亡降临之日而打造。",
+      "67a5c5df782ce4655104db14 Name": "Atomic Defense CQCM 防弹面具（战疤）",
+      "67a5c5df782ce4655104db14 ShortName": "战疤",
+      "67a5c5df782ce4655104db14 Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。要么是伤疤要么是为某种仪式刻上的符号——具体是哪一种完全看你喜欢。",
+      "67a5c5f37f52620c5b05b4d6 Name": "Atomic Defense CQCM 防弹面具（标靶）",
+      "67a5c5f37f52620c5b05b4d6 ShortName": "标靶",
+      "67a5c5f37f52620c5b05b4d6 Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。这款加强型面罩能够完全覆盖佩戴者的正脸。不清楚是谁突发奇想在上面画了一个靶子，但显然足够讽刺。",
+      "67a5c61c7f52620c5b05b4d8 Name": "Atomic Defense CQCM 防弹面具（恶魔）",
+      "67a5c61c7f52620c5b05b4d8 ShortName": "恶魔",
+      "67a5c61c7f52620c5b05b4d8 Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。这款加强型面罩能够完全覆盖佩戴者的正脸。妈妈总是要你开朗点，但这露齿笑容未免也太过开朗了点。",
+      "67a5c6068fcd9fb73f0752cf Name": "Atomic Defense CQCM 防弹面具（骷髅）",
+      "67a5c6068fcd9fb73f0752cf ShortName": "骷髅",
+      "67a5c6068fcd9fb73f0752cf Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。有说法是，骷髅是战士们之间共同的语言，能够激起敌人心底对死亡的恐慌，以及对强大敌手的由衷敬意。",
+      "68a9a15d73d52d47830759c9 Name": "Atomic Defense CQCM 防弹面具（恶魔獠牙）",
+      "68a9a15d73d52d47830759c9 ShortName": "恶魔獠牙",
+      "68a9a15d73d52d47830759c9 Description": "Atomic Defense 制造的 CQCM 防弹面罩能够保护使用者的面部，有效降低手枪、霰弹枪以及刀具等近战兵器造成的伤害。同时集齐了竞技场顶级战士的所有特质——时髦、奢华且威慑力十足。",
+      "5991b51486f77447b112d44f Name": "MS2000指示器",
+      "5991b51486f77447b112d44f ShortName": "MS2000",
+      "5991b51486f77447b112d44f Description": "一款设计用于夜间行动的频闪标记器，可发出仅夜视仪视角下可见的红外信号。该款指示器使用特制滤光片以发出红外光谱信号，移除滤光片即可将信号切换为可见光频段下的明亮闪光。在扩展模式下还可以发出蓝色的闪光。",
+      "5e42c83786f7742a021fdf3c Name": "Object #21WS 钥匙卡",
+      "5e42c83786f7742a021fdf3c ShortName": "#21WS",
+      "5e42c83786f7742a021fdf3c Description": "使用次数有限的电子钥匙卡，卡面上的标志显示这张钥匙卡属于 TerraGroup公司。“WS”可能代表武器储藏处。",
+      "59fb023c86f7746d0d4b423c Name": "武器箱",
+      "59fb023c86f7746d0d4b423c ShortName": "武器箱",
+      "59fb023c86f7746d0d4b423c Description": "用于存放武器、弹药和配件的储藏箱。",
+      "66571bf06a723f7f005a0619 Name": "上锁的装备箱（稀有）",
+      "66571bf06a723f7f005a0619 ShortName": "装备箱（稀有）",
+      "66571bf06a723f7f005a0619 Description": "参加竞技场战斗的奖品。包含各种装备，能够帮助你在混乱的塔科夫中杀出重围。不过，你得先想办法打开它。",
+      "590c657e86f77412b013051d Name": "Grizzly急救包",
+      "590c657e86f77412b013051d ShortName": "Grizzly",
+      "590c657e86f77412b013051d Description": "旅行用Grizzly急救包被认为是最好的急救包之一。它包含了所有极端情况下所需要的一切医疗用品。",
+      "5448be9a4bdc2dfd2f8b456a Name": "RGD-5手榴弹",
+      "5448be9a4bdc2dfd2f8b456a ShortName": "RGD-5",
+      "5448be9a4bdc2dfd2f8b456a Description": "RGD-5（远程手榴弹 5 型，GAU 编号：57-G-717）是一款延时引信反人员进攻型手榴弹。该款手榴弹标配的 UZRGM 引信延时一般在 3.2-4.2 秒之间。作为一款进攻型手榴弹，RGD-5 的破片相对较少并且散布半径更小。",
+      "564ca9df4bdc2d35148b4569 Name": "6L18 5.45x39 AK-74 45发弹匣",
+      "564ca9df4bdc2d35148b4569 ShortName": "6L18",
+      "564ca9df4bdc2d35148b4569 Description": "Izhmash 公司为 AK-74 及其他兼容的武器系统所生产的 45 发 5.45x39 胶木弹匣（GRAU 编号：6L18），同时也是 RPK-74 轻机枪的标配弹匣。",
+      "57372e73245977685d4159b4 Name": "5.45x39mm PS弹药包（120发装）",
+      "57372e73245977685d4159b4 ShortName": "PS",
+      "57372e73245977685d4159b4 Description": "一包120发的防水包装5.45x39 PS gs子弹。",
+      "5d235b4d86f7742e017bc88a Name": "GP币",
+      "5d235b4d86f7742e017bc88a ShortName": "GP",
+      "5d235b4d86f7742e017bc88a Description": "一枚外观奇特的金币。传闻在契约战争期间，双方经常用这种代币向 PMC 支付薪酬。",
+      "5449016a4bdc2d6f028b456f Name": "卢布",
+      "5449016a4bdc2d6f028b456f ShortName": "卢布",
+      "5449016a4bdc2d6f028b456f Description": "一些仍有价值的俄罗斯卢布。",
+      "5fbcc1d9016cce60e8341ab3 Name": "SIG MCX .300 Blackout 突击步枪",
+      "5fbcc1d9016cce60e8341ab3 ShortName": "MCX .300 BLK",
+      "5fbcc1d9016cce60e8341ab3 Description": ".300 BLK MCX 系列突击步枪由 SIG Sauer 设计制造，共推出半自动的民用版本和面向军警执法部门的全自动型号。MCX 采用的短冲程气活塞设计继承自 MPX 冲锋枪的早期设计。MCX 可使用大部分 AR-15 规格的弹匣，.300 BLK 弹药也能装填进 5.56x45 毫米规格的弹匣内，但弹药无法与 556 通用。",
+      "544a378f4bdc2d30388b4567 Name": "Magpul PMAG 40 GEN M3 5.56x45 STANAG 40发弹匣",
+      "544a378f4bdc2d30388b4567 ShortName": "GEN M3",
+      "544a378f4bdc2d30388b4567 Description": "为 AR-15/M4 及兼容武器平台设计制造的 PMAG 40 GEN M3 5.56x45 弹匣，容量 40 发。",
+      "657023bebfc87b3a34093207 Name": ".300 Blackout FMJ 弹药包（50发装）",
+      "657023bebfc87b3a34093207 ShortName": "FMJ",
+      "657023bebfc87b3a34093207 Description": "一盒50发装的.300 Blackout FMJ 弹。",
+      "6183afd850224f204c1da514 Name": "FN SCAR-H 7.62x51突击步枪",
+      "6183afd850224f204c1da514 ShortName": "Mk 17",
+      "6183afd850224f204c1da514 Description": "FN SCAR-H（特种作战部队战斗突击步枪-重型的缩写）突击步枪发射7.62×51毫米北约步枪弹，美国特种作战司令部采用的型号被命名为Mk 17型。该枪标配可侧向折叠的聚合物枪托与自由浮置式冷锻军规枪管，内膛镀有硬铬。SCAR只需简单改装便可切换拉机柄方向，而其余所有操作皆为双面对称，适应任何习惯的射手在任何场景下的射击姿势。机匣顶部集成有标准皮卡汀尼导轨，护木还另外设有三条附件导轨，可安装多种瞄具、战术灯和激光装置。由Fabrique Nationale Herstal（赫斯塔尔国营兵工厂）设计制造。",
+      "618168dc8004cc50514c34fc Name": "FN SCAR-H 7.62x51 20发弹匣",
+      "618168dc8004cc50514c34fc ShortName": "Mk17",
+      "618168dc8004cc50514c34fc Description": "20发容量的FN SCAR-H 7.62x51步枪弹匣。",
+      "6570254fcfc010a0f5006a22 Name": "7.62x51mm M61 弹药包（20发装）",
+      "6570254fcfc010a0f5006a22 ShortName": "M61",
+      "6570254fcfc010a0f5006a22 Description": "一盒20发装的7.62x51 M61弹药。",
+      "606587252535c57a13424cfd Name": "CMMG Mk47 Mutant 7.62x39 突击步枪",
+      "606587252535c57a13424cfd ShortName": "Mk47",
+      "606587252535c57a13424cfd Description": "Mk47 Mutant（变种人）是一款由美国 CMMG 公司设计制造的 7.62x39 毫米口径短突击步枪。该枪可兼容所有 7.62x39 口径规格的 AK 弹匣，包括钢制弹匣、聚合物弹匣或各类弹鼓。这款步枪的可靠性可与传统 AK 媲美，同时结合了 AR-15 系列优秀人体工学设计与部件扩展能力，堪称枪械设计东西结合的典范。该版本的 Mk 47 拥有全自动射击模式，仅限执法部门和军方采购。",
+      "59d6272486f77466146386ff Name": "Magpul PMAG 30 GEN M3 7.62x39 30发 AK 弹匣",
+      "59d6272486f77466146386ff ShortName": "GEN M3",
+      "59d6272486f77466146386ff Description": "Magpul 为 7.62x39 口径 AK 系列以及兼容武器系统而设计的 PMag GEN M3 弹匣，30 发容量。尽管可装填 .366 TKM 弹药为对应的民用武器供弹，但 .366 TKM 弹药与 7.62x39 枪械不通用，也无法发射。",
+      "64acea09c4eda9354b0226ad Name": "7.62x39mm T-45M1 弹药包（20发装）",
+      "64acea09c4eda9354b0226ad ShortName": "T-45M1",
+      "64acea09c4eda9354b0226ad Description": "一盒7.62x39 T-45M1 gzh弹药，20发装。",
+      "6499849fc93611967b034949 Name": "AK-12 5.45x39突击步枪",
+      "6499849fc93611967b034949 ShortName": "AK-12",
+      "6499849fc93611967b034949 Description": "5.45 毫米口径的卡拉什尼科夫 AK-12 自动步枪是俄联邦武装力量机械化部队以及其他作战单位的主力单兵武器，是俄罗斯新一代“战士”单兵作战系统的一部分。",
+      "5aaa4194e5b5b055d06310a5 Name": "Magpul PMAG 30 GEN M3 5.45x39 30发 AK 弹匣",
+      "5aaa4194e5b5b055d06310a5 ShortName": "GEN M3",
+      "5aaa4194e5b5b055d06310a5 Description": "30 发容量的 Magpul Pmag 30 AK74 GEN M3 弹匣，供 5.45x39 毫米口径的 AK 及其兼容武器系统使用。",
+      "55d4887d4bdc2d962f8b4570 Name": "柯尔特 5.56x45 STANAG 30发弹匣",
+      "55d4887d4bdc2d962f8b4570 ShortName": "STANAG",
+      "55d4887d4bdc2d962f8b4570 Description": "30发的柯尔特 AR-15弹匣是为5.56x45子弹设计的，符合STANAG 4179标准化协定的弹匣。\nSTANAG 4179——标准化协定在1980年被NATO成员国批准，目的是统一盟军人员的弹药和弹匣。",
+      "6a1f00c70000000000000001 Name": "竞技场奖励模板箱",
+      "6a1f00c70000000000000001 ShortName": "模板箱",
+      "6a1f00c70000000000000001 Description": "从劫掠者手里抢来的箱子，里面装着竞技场新款的奖励模板，封条还没拆。"
+    }
+  },
+  "_devNote": [
+    "★ 2026-10-30 全量审查修：7 条任务的配图原写 .jpg，本机实际文件是 .png（图标会不显示），已改 .png。"
+  ]
+}

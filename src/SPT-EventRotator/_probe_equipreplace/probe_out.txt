@@ -1,0 +1,57 @@
+════════ botEquipmentReplace 离线探针 ════════
+mod 构建  : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\bin\Release\net10.0\SPT-EventRotator.dll
+实机 bot  : D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\bots\types\arenafighterevent.json
+events    : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\events.json
+
+  [PASS] Release DLL 存在  | C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\bin\Release\net10.0\SPT-EventRotator.dll
+  [PASS] 实机 arenafighterevent.json 存在（只读）  | D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\bots\types\arenafighterevent.json
+  [PASS] 工作区 events.json 存在  | C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\events.json
+实机原文  : FaceCover = 6 项 / chances.equipment.FaceCover = 75
+             572b7fa524597762b747ce82 : 2
+             5ab8f39486f7745cd93a1cca : 3
+             5ab8f4ff86f77431c60d91ba : 6
+             5b432f3d5acfc4704b4a1dfb : 19
+             5fd8d28367cb5e077335170f : 2
+             60363c0c92ec1c31037959f5 : 1
+
+原始池（规范化逐字节）: {"572b7fa524597762b747ce82":2,"5ab8f39486f7745cd93a1cca":3,"5ab8f4ff86f77431c60d91ba":6,"5b432f3d5acfc4704b4a1dfb":19,"5fd8d28367cb5e077335170f":2,"60363c0c92ec1c31037959f5":1}
+原始概率（逐字节）    : {"FaceCover":75}
+
+  [PASS] 反射找到 Apply/Restore/OnBotGeneratingPrefix  | Apply=True Restore=True Prefix=True
+  [PASS] events.json 找到并反序列化 casus_belli
+  [PASS] EventDef.BotEquipmentReplace 反序列化成功（字段类型正确）
+  [PASS] maps = bigmap/woods/interchange/lighthouse/shoreline  | bigmap,woods,interchange,lighthouse,shoreline
+  [PASS] events.json 配置池 = 恰好 6 个 tpl  | 67a5c657782ce4655104db16,67a5c5df782ce4655104db14,67a5c5f37f52620c5b05b4d6,67a5c61c7f52620c5b05b4d8,67a5c6068fcd9fb73f0752cf,68a9a15d73d52d47830759c9
+
+替换后池 : 6 项 → 67a5c657782ce4655104db16,67a5c5df782ce4655104db14,67a5c5f37f52620c5b05b4d6,67a5c61c7f52620c5b05b4d8,67a5c6068fcd9fb73f0752cf,68a9a15d73d52d47830759c9
+替换后概率: 100
+
+  [PASS] ① 替换后 FaceCover 池内只有 6 个 tpl  | 6 项
+  [PASS] ② 原 4 个巴拉克拉瓦 tpl 已全部不在池内  | 仍在=
+  [PASS] ②b 原池 6 项（含下半脸面巾/GP-7）也全部不在池内  | 仍在=
+  [PASS] ④ BotChances.EquipmentChances["FaceCover"] = 100（一定戴）  | 100
+  [PASS] 日志逐字：bigmap 行与需求格式一致  | [装备替换] bigmap arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+  [PASS] 日志逐字：5 张图各一行（共 5 行）  | 实际 5 行
+  日志实样：
+    [装备替换] bigmap arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+    [装备替换] woods arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+    [装备替换] interchange arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+    [装备替换] lighthouse arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+    [装备替换] shoreline arenaFighterEvent.FaceCover：6 项（原 6 项）｜装备概率 100%
+
+  [PASS] ③a 目标图 woods ⇒ 切到新池（6 项面具）  | 6 项
+  [PASS] ③a 目标图 woods ⇒ 概率 100  | 100
+  [PASS] ③b 非目标图 factory4_day ⇒ 切回原池实例（巴拉克拉瓦照旧）  | 6 项
+  [PASS] ③b 非目标图 ⇒ 概率回到原值 75  | 75
+  [PASS] ③c 再回目标图 ⇒ 重新切到新池
+
+还原后池 : 6 项
+还原后概率: {"FaceCover":75}
+
+  [PASS] ③ 还原后 Equipment[FaceCover] 写回的是**原池实例**（ReferenceEquals）
+  [PASS] ③ 还原后池规范化逐字节 == 原始
+  [PASS] ③ 还原后 chances 逐字节 == 原始
+  [PASS] ③ 还原后概率 == 75
+  [PASS] 还原日志存在  | [装备替换] 已还原 1 条整槽替换（原池实例写回 + 概率回原值）
+
+════════ 结果：PASS 24 / FAIL 0 ════════

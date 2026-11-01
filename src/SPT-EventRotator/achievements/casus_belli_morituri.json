@@ -1,0 +1,85 @@
+[
+  {
+    "id": "5f0b2e8a78040e3de6b80dfc",
+    "name": "5f0b2e8a78040e3de6b80dfc name",
+    "description": "5f0b2e8a78040e3de6b80dfc description",
+    "imageUrl": "/files/achievement/ER_CasusBelli_Morituri_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "dc2e3beae81a5c44a8e6b898",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "b5bb719b23a5e861cea8b702",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "353df1b03ff207718955d098",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "9882cf75c7d9bb5bdc9fa8c2",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "f58236242998a8c38b0be53a",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "1349dec113c15500f6e7fa93",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "91c05e167e8adb4e8f184dcd",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "2c9d5272b5674c718fadae75",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20008
+  }
+]

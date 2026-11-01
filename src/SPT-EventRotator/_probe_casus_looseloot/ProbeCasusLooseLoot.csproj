@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>ProbeCasusLooseLoot</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS0168;CS0219;CS8602</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 离线探针：直接链接被测源码（不复制、不改动生产代码），确保测的是真身 -->
+    <Compile Include="Program.cs" />
+    <Compile Include="../LooseLootInjectDimension.cs" />
+    <Compile Include="../SharedReflect.cs" />
+    <Compile Include="../EventDef.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SPTarkov.Server.Core"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="SPTarkov.Common"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Common.dll</HintPath><Private>true</Private></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProbeRuntimeFiles Include="D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\*.dll" />
+  </ItemGroup>
+  <Target Name="CopyProbeRuntime" AfterTargets="Build">
+    <Copy SourceFiles="@(ProbeRuntimeFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" ContinueOnError="true" />
+  </Target>
+
+</Project>

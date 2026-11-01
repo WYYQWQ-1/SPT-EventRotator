@@ -1,0 +1,85 @@
+[
+  {
+    "id": "45a29b95a264f7c587976ace",
+    "name": "45a29b95a264f7c587976ace name",
+    "description": "45a29b95a264f7c587976ace description",
+    "imageUrl": "/files/achievement/ER_WildWildWoods_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "e69f1411f76e78044dd390ea",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "70d3ea0b80ba66236c456096",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "a28e84f314dbb0403079ced0",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "2534f95dcc0bc69f847681fd",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "cbe5df272a333f0ec440b465",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "085474a2a5eb5b70109b2c32",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "70cbce6ba84332f09438e74f",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "aaff707f1fbae7ceefd9de42",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20009
+  }
+]

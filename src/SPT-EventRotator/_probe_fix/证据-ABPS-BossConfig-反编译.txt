@@ -1,0 +1,182 @@
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+
+namespace BotPlacementSystemServer.Models;
+
+public class BossConfig
+{
+	[JsonPropertyName("bossKnight")]
+	public BossLocationInfo BossKnight { get; set; }
+
+	[JsonPropertyName("bossBully")]
+	public BossLocationInfo BossBully { get; set; }
+
+	[JsonPropertyName("bossTagilla")]
+	public BossLocationInfo BossTagilla { get; set; }
+
+	[JsonPropertyName("bossKilla")]
+	public BossLocationInfo BossKilla { get; set; }
+
+	[JsonPropertyName("bossZryachiy")]
+	public BossLocationInfo BossZryachiy { get; set; }
+
+	[JsonPropertyName("bossGluhar")]
+	public BossLocationInfo BossGluhar { get; set; }
+
+	[JsonPropertyName("bossSanitar")]
+	public BossLocationInfo BossSanitar { get; set; }
+
+	[JsonPropertyName("bossKolontay")]
+	public BossLocationInfo BossKolontay { get; set; }
+
+	[JsonPropertyName("bossBoar")]
+	public BossLocationInfo BossBoar { get; set; }
+
+	[JsonPropertyName("bossKojaniy")]
+	public BossLocationInfo BossKojaniy { get; set; }
+
+	[JsonPropertyName("bossTagillaAgro")]
+	public BossLocationInfo BossTagillaAgro { get; set; }
+
+	[JsonPropertyName("bossKillaAgro")]
+	public BossLocationInfo BossKillaAgro { get; set; }
+
+	[JsonPropertyName("tagillaHelperAgro")]
+	public BossLocationInfo TagillaHelperAgro { get; set; }
+
+	[JsonPropertyName("bossPartisan")]
+	public BossLocationInfo BossPartisan { get; set; }
+
+	[JsonPropertyName("sectantPriest")]
+	public BossLocationInfo SectantPriest { get; set; }
+
+	[JsonPropertyName("arenaFighterEvent")]
+	public BossLocationInfo ArenaFighterEvent { get; set; }
+
+	[JsonPropertyName("pmcBot")]
+	public BossLocationInfo PmcBot { get; set; }
+
+	[JsonPropertyName("exUsec")]
+	public BossLocationInfo ExUsec { get; set; }
+
+	[JsonPropertyName("gifter")]
+	public BossLocationInfo Gifter { get; set; }
+
+	public BossLocationInfo this[string key]
+	{
+		get
+		{
+			return key.ToLowerInvariant() switch
+			{
+				"bossknight" => BossKnight, 
+				"bossbully" => BossBully, 
+				"bosstagilla" => BossTagilla, 
+				"bosskilla" => BossKilla, 
+				"bosszryachiy" => BossZryachiy, 
+				"bossgluhar" => BossGluhar, 
+				"bosssanitar" => BossSanitar, 
+				"bosskolontay" => BossKolontay, 
+				"bossboar" => BossBoar, 
+				"bosskojaniy" => BossKojaniy, 
+				"bossTagillaAgro" => BossTagillaAgro, 
+				"bossKillaAgro" => BossKillaAgro, 
+				"tagillaHelperAgro" => TagillaHelperAgro, 
+				"bosspartisan" => BossPartisan, 
+				"sectantpriest" => SectantPriest, 
+				"arenafighterevent" => ArenaFighterEvent, 
+				"pmcbot" => PmcBot, 
+				"exusec" => ExUsec, 
+				"gifter" => Gifter, 
+				_ => throw new KeyNotFoundException("Boss key '" + key + "' not found."), 
+			};
+		}
+		set
+		{
+			switch (key.ToLowerInvariant())
+			{
+			case "bossknight":
+				BossKnight = value;
+				break;
+			case "bossbully":
+				BossBully = value;
+				break;
+			case "bosstagilla":
+				BossTagilla = value;
+				break;
+			case "bosskilla":
+				BossKilla = value;
+				break;
+			case "bosszryachiy":
+				BossZryachiy = value;
+				break;
+			case "bossgluhar":
+				BossGluhar = value;
+				break;
+			case "bosssanitar":
+				BossSanitar = value;
+				break;
+			case "bosskolontay":
+				BossKolontay = value;
+				break;
+			case "bossboar":
+				BossBoar = value;
+				break;
+			case "bosskojaniy":
+				BossKojaniy = value;
+				break;
+			case "bossTagillaAgro":
+				BossTagillaAgro = value;
+				break;
+			case "bossKillaAgro":
+				BossKillaAgro = value;
+				break;
+			case "tagillaHelperAgro":
+				TagillaHelperAgro = value;
+				break;
+			case "bosspartisan":
+				BossPartisan = value;
+				break;
+			case "sectantpriest":
+				SectantPriest = value;
+				break;
+			case "arenafighterevent":
+				ArenaFighterEvent = value;
+				break;
+			case "pmcbot":
+				PmcBot = value;
+				break;
+			case "exusec":
+				ExUsec = value;
+				break;
+			case "gifter":
+				Gifter = value;
+				break;
+			default:
+				throw new KeyNotFoundException("Boss key '" + key + "' not found.");
+			}
+		}
+	}
+
+	public IEnumerator<KeyValuePair<string, BossLocationInfo>> GetEnumerator()
+	{
+		yield return new KeyValuePair<string, BossLocationInfo>("bossKnight", BossKnight);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossBully", BossBully);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossTagilla", BossTagilla);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossKilla", BossKilla);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossZryachiy", BossZryachiy);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossGluhar", BossGluhar);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossSanitar", BossSanitar);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossKolontay", BossKolontay);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossBoar", BossBoar);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossKojaniy", BossKojaniy);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossTagillaAgro", BossTagillaAgro);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossKillaAgro", BossKillaAgro);
+		yield return new KeyValuePair<string, BossLocationInfo>("tagillaHelperAgro", TagillaHelperAgro);
+		yield return new KeyValuePair<string, BossLocationInfo>("bossPartisan", BossPartisan);
+		yield return new KeyValuePair<string, BossLocationInfo>("sectantPriest", SectantPriest);
+		yield return new KeyValuePair<string, BossLocationInfo>("arenaFighterEvent", ArenaFighterEvent);
+		yield return new KeyValuePair<string, BossLocationInfo>("pmcBot", PmcBot);
+		yield return new KeyValuePair<string, BossLocationInfo>("exUsec", ExUsec);
+		yield return new KeyValuePair<string, BossLocationInfo>("gifter", Gifter);
+	}
+}

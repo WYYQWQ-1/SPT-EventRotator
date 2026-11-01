@@ -1,0 +1,82 @@
+════════ FaceCoverFixDimension 离线探针（casus_belli 劫掠者面具 · 生成后强制修正）════════
+读取：实机 SPT 程序集（只读） + 工作区 events.json / Release DLL
+  [PASS] 反射找到 FaceCoverFixDimension.Apply / OnBotGenerated / Restore  | Apply=True OnBotGenerated=True Restore=True
+  [PASS] 反射找到诊断通道 DiagLog 与 OnRaidStart(每局分母点)  | DiagLog=True OnRaidStart=True
+  [PASS] 注入运行期 TemplateTable 替身（6 件不阻挡 + 1 件阻挡 + 1 件挂件）  | Items=8
+  [PASS] events.json 找到并反序列化 casus_belli
+  ── Apply 日志逐字 ──
+  [面具修正] 'casus_belli' 已武装：role=arenaFighterEvent 面具 6 款（等概率）｜地图=[bigmap,woods,interchange,lighthouse,shoreline]｜生成后强制修正（PBS 接管时同样生效）｜诊断已开：每局一条「[面具修正][诊断] 本局收到 N 只 bot + role Top5 + Location 样例」
+  [PASS] ① Apply 后输出武装日志（含 6 款面具 + 5 张图）  | [面具修正] 'casus_belli' 已武装：role=arenaFighterEvent 面具 6 款（等概率）｜地图=[bigmap,woods,interchange,lighthouse,shoreline]｜生成后强制修正（PBS 接管时同样生效）｜诊断已开：每局一条「[面具修正][诊断] 本局收到 N 只 bot + role Top5 + Location 样例」
+  ── 修正日志逐字（woods / 半面巾）──
+  [面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（标靶）
+  ── 诊断（独立通道）逐字 ──
+  [面具修正][诊断] ★已接管 bot 生成（进程内首次调用）：bot.Info.Settings.Role=arenaFighterEvent｜details.Role=arenaFighterEvent｜details.EventRole=(null)｜details.RoleLowercase=(null)｜details.Location=woods
+  [PASS] ⑭ 首次进 postfix ⇒ 诊断打「★已接管 bot 生成（进程内首次调用）」+ 逐字段取值  | [面具修正][诊断] ★已接管 bot 生成（进程内首次调用）：bot.Info.Settings.Role=arenaFighterEvent｜details.Role=arenaFighterEvent｜details.EventRole=(null)｜details.RoleLowercase=(null)｜details.Location=woods
+  [PASS] ⑭b 诊断行与功能日志分通道（`[面具修正][诊断]` vs `[面具修正] <map> …`）  | diag=1 行 / 功能=1 行
+  [PASS] ① 半面巾被换成 6 款面具之一  | new tpl = 67a5c5f37f52620c5b05b4d6（旧 572b7fa524597762b747ce82）
+  [PASS] ② `_id` 未变  | ffff0000000000000000ffff → ffff0000000000000000ffff
+  [PASS] ②b `upd` 实例/内容未变  | Upd 引用 相同
+  [PASS] ③ 物品条数未变  | 6 → 6
+  [PASS] ③b 别的槽（inventoryroot/Pockets/Headwear/ArmorVest/Backpack）逐项未动  | :55d721 Pockets:557ffd Headwear:5b432d ArmorVest:5c0e51 Backpack:545cda
+  [PASS] ①b 日志格式逐字 = `[面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（…）`  | [面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（标靶）
+  ── 600 次抽样分布 ──  db16×98  db14×102  b4d6×101  b4d8×102  52cf×87  59c9×110
+  [PASS] ④ 抽样覆盖全部 6 款（等概率）  | 缺: 
+  [PASS] ④b 任一档都不超过均匀期望的 1.5 倍（100×1.5=150）  | max=110 min=87
+  [PASS] ④c 从不落到旧 tpl（半面巾）
+  [PASS] ⑤ 非目标 role 'assault' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑤ 非目标 role 'arenafighter' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑤ 非目标 role 'exusec' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑤ 非目标 role 'bossknight' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑤ 非目标 role 'pmcUSEC' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥ 非目标地图 'laboratory' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥ 非目标地图 'tarkovstreets' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥ 非目标地图 'rezervbase' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥ 非目标地图 'factory4_day' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥ 非目标地图 'labyrinth' 不动  | tpl=572b7fa524597762b747ce82
+  [PASS] ⑥b 目标地图 'bigmap' 生效（Shroud 半面罩 → 6 款之一）  | tpl=67a5c5df782ce4655104db14
+  [PASS] ⑥b 目标地图 'woods' 生效（Shroud 半面罩 → 6 款之一）  | tpl=67a5c657782ce4655104db16
+  [PASS] ⑥b 目标地图 'interchange' 生效（Shroud 半面罩 → 6 款之一）  | tpl=67a5c6068fcd9fb73f0752cf
+  [PASS] ⑥b 目标地图 'lighthouse' 生效（Shroud 半面罩 → 6 款之一）  | tpl=67a5c5f37f52620c5b05b4d6
+  [PASS] ⑥b 目标地图 'shoreline' 生效（Shroud 半面罩 → 6 款之一）  | tpl=67a5c5df782ce4655104db14
+  ── 补件日志逐字 ──
+  [面具修正] interchange arenaFighterEvent：原本没有 FaceCover ⇒ 补 1 件 涂装 CQCM（恶魔）
+  [PASS] ⑦ 没有 FaceCover 时补了 1 件  | items 5 → 6
+  [PASS] ⑦b 补的那件 tpl ∈ 6 款  | tpl=67a5c61c7f52620c5b05b4d8
+  [PASS] ⑦c 补的那件 slotId=FaceCover / parentId=Inventory.Equipment（照 SPT GenerateEquipment:471-473）  | slotId=FaceCover parentId=aaaa0000000000000000aaaa（期望 aaaa0000000000000000aaaa）
+  [PASS] ⑦d 补的那件有合法 _id（24 hex）且 upd 只有 StackObjectsCount=1  | id=f492454862bdc053dc3cd48b stack=1
+  [PASS] ⑦e 补件时别的槽逐项未动
+  [PASS] ⑦f 补件日志格式逐字  | [面具修正] interchange arenaFighterEvent：原本没有 FaceCover ⇒ 补 1 件 涂装 CQCM（恶魔）
+  [PASS] ⑧ 已经是目标面具 ⇒ 原样保留（幂等、无日志）  | tpl=67a5c61c7f52620c5b05b4d8 msgs=0
+  [PASS] ⑨ 地图未知 ⇒ 不修正（且只 warning 一次）  | tpl=572b7fa524597762b747ce82 msgs=1 [面具修正] ⚠拿不到 BotGenerationDetails.Location ⇒ 本局**不修正**（避免改到非目标地图）
+  [PASS] ⑩ details.EventRole=arenaFighterEvent 也算目标（bot.Role=arenaFighter）  | tpl=67a5c5df782ce4655104db14
+  [PASS] ⑩b details.RoleLowercase='arenafighterevent' 也算目标（大小写不敏感）  | tpl=67a5c5f37f52620c5b05b4d6
+  [PASS] ⑨b Location 读不到但 details.LocationId='woods' ⇒ 仍然生效（多源兜底）  | tpl=67a5c5df782ce4655104db14
+  [PASS] ⑨c Location='  Woods '（有空格+大小写）⇒ 仍然生效  | tpl=68a9a15d73d52d47830759c9
+  ── 诊断汇总逐字 ──
+  [面具修正][诊断] 本局累计 30 只 bot 采样：本局收到 30 只 bot（统计段 #2，已武装=是）｜role Top5：assault×29 arenaFighterEvent×1｜Location 样例=[woods]｜role 命中 1 只、其中地图命中 1 只｜替换 1、补件 0、已是面具 0、无 Location 跳过 0、头盔阻挡 0（换 0 / 摘 0）
+  [面具修正][诊断] 判定条件：role 必须 ∈ {arenaFighterEvent}（大小写不敏感）；Location 必须 ∈ [bigmap,woods,interchange,lighthouse,shoreline]（大小写不敏感）
+  [PASS] ⑫ 累计满 30 只 ⇒ 打一条本局汇总（含 bot 数 / role Top5 / Location 样例 / 各命中数）  | [面具修正][诊断] 本局累计 30 只 bot 采样：本局收到 30 只 bot（统计段 #2，已武装=是）｜role Top5：assault×29 arenaFighterEvent×1｜Location 样例=[woods]｜role 命中 1 只、其中地图命中 1 只｜替换 1、补件 0、已是面具 0、无 Location 跳过 0、头盔阻挡 0（换 0 / 摘 0）
+[面具修正][诊断] 判定条件：role 必须 ∈ {arenaFighterEvent}（大小写不敏感）；Location 必须 ∈ [bigmap,woods,interchange,lighthouse,shoreline]（大小写不敏感）
+  [PASS] ⑫b 汇总里带上判定条件（role 白名单 + 地图表）便于对照实机  | [面具修正][诊断] 本局累计 30 只 bot 采样：本局收到 30 只 bot（统计段 #2，已武装=是）｜role Top5：assault×29 arenaFighterEvent×1｜Location 样例=[woods]｜role 命中 1 只、其中地图命中 1 只｜替换 1、补件 0、已是面具 0、无 Location 跳过 0、头盔阻挡 0（换 0 / 摘 0）
+[面具修正][诊断] 判定条件：role 必须 ∈ {arenaFighterEvent}（大小写不敏感）；Location 必须 ∈ [bigmap,woods,interchange,lighthouse,shoreline]（大小写不敏感）
+  [PASS] ⑫c 只打一条汇总（不刷屏）  | 条数=1
+  [PASS] ⑬ OnRaidStart ⇒ 把上一局（1 只）打出来再清零  | [面具修正][诊断] 上一局结束（新一局开始，地图=interchange）：本局收到 1 只 bot（统计段 #3，已武装=是）｜role Top5：arenaFighterEvent×1｜Location 样例=[woods]｜role 命中 1 只、其中地图命中 1 只｜替换 1、补件 0、已是面具 0、无 Location 跳过 0、头盔阻挡 0（换 0 / 摘 0）
+[面具修正][诊断] 判定条件：role 必须 ∈ {arenaFighterEvent}（大小写不敏感）；Location 必须 ∈ [bigmap,woods,interchange,lighthouse,shoreline]（大小写不敏感）
+  [PASS] ⑬b 上局一只都没收到 ⇒ 明确打「收到 **0 只 bot** ⇒ 该 postfix 没被调用」  | [面具修正][诊断] 上一局结束（新一局开始，地图=woods）：本局收到 **0 只 bot** ⇒ 该 postfix 没被调用（已武装=是，地图表=[bigmap,woods,interchange,lighthouse,shoreline]）。可能原因：本局没有生成 bot / `BotGenerator.PrepareAndGenerateBot` 被别家 mod 整体替换 / 活动已解除武装。
+  [PASS] ⑮ 16 线程并发 400 只：不抛异常 + 各段「收到 N 只」求和 = 400（计数不丢）  | 异常=0 求和=400（期望 400）汇总段数=2
+  [PASS] ⑯ 非阻挡头盔 LZSh ⇒ 头盔 tpl/_id 原样不动（只换面具）  | head=5b432d215acfc4771e1c6624 mask=67a5c5df782ce4655104db14
+  [PASS] ⑯b 不阻挡时**不打**「阻挡 FaceCover」日志  | [面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（战疤）
+  ── 换头盔日志逐字 ──
+  [面具修正] woods arenaFighterEvent：头盔 滑雪头套 阻挡 FaceCover ⇒ 已换为 LZSh（保留 FaceCover）
+  [面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（骷髅）
+  [PASS] ⑰ 阻挡头盔（无挂件）⇒ 换成不阻挡的（_id 不变 / 物品数不变 / 仍在 Headwear 槽）  | tpl 5ab8f20c86f7745cdb629fb2 → 5b432d215acfc4771e1c6624
+  [PASS] ⑰b 换完照样戴上面具（日志含「保留 FaceCover」+ mask ∈ 6 款）  | [面具修正] woods arenaFighterEvent：头盔 滑雪头套 阻挡 FaceCover ⇒ 已换为 LZSh（保留 FaceCover）
+  ── 摘头盔日志逐字 ──
+  [面具修正] woods arenaFighterEvent：头盔 滑雪头套 阻挡 FaceCover ⇒ 已摘除头盔（含 1 件挂件，保留 FaceCover）
+  [面具修正] woods arenaFighterEvent：替换 1 件 半面巾 → 涂装 CQCM（骷髅）
+  [PASS] ⑱ 阻挡头盔（有 1 件挂件）⇒ 头盔+挂件一起摘除（物品数 -2）  | items 7 → 5
+  [PASS] ⑱b 摘完照样戴上面具（日志含「含 1 件挂件，保留 FaceCover」）  | [面具修正] woods arenaFighterEvent：头盔 滑雪头套 阻挡 FaceCover ⇒ 已摘除头盔（含 1 件挂件，保留 FaceCover）
+  [PASS] ⑲ 面具已是 6 款之一 + 阻挡头盔 ⇒ 面具不动、头盔仍被换/摘  | mask=67a5c5f37f52620c5b05b4d6 head=5b432d215acfc4771e1c6624
+  [PASS] ⑪ Restore 后不再修正（活动关掉即失效）  | tpl=572b7fa524597762b747ce82
+
+═══ 结果：PASS 57 / FAIL 0 ═══

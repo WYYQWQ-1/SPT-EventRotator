@@ -1,0 +1,71 @@
+被测产物: C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\bin\Release\net10.0\SPT-EventRotator.dll
+MOD = SPT-EventRotator 0.0.0.0
+
+临时 mod 目录: C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_probe_disableall\_tmp\run_25de4835\user\mods\SPT-EventRotator
+
+═══ ① 复现根因：force.txt=halloween → 清空 → 活动是否还在？ ═══
+  ✔ force.txt=halloween ⇒ Actives = halloween+night_of_the_cult   实际=halloween,night_of_the_cult
+      LOG Warning | [EventRotator] FORCED event(s) = halloween,night_of_the_cult  （共 2 个同时生效，已含同族展开） ~ null
+      「关掉所有活动」后 Actives = [santa_2022,christmas,newyear,christmas_january,labs_free_generic]
+  ✔ ★根因①复现：清空 force.txt 后**仍有活动生效**（自动层把活动补回来）   实际=santa_2022,christmas,newyear,christmas_january,labs_free_generic
+      LOG Warning | [EventRotator] ★季节活动阶段已到（start）→ 自动开启『圣诞 2022』（本季 WINTER，进度 16%） ~ null
+      LOG Info | [EventRotator][奖励轮换] 今日奖励活动（1/1 个）：labs_free_generic ~ null
+
+═══ ② 模拟上次已套用 halloween，逐项 before 快照 ═══
+      当前 Actives = [halloween,night_of_the_cult]
+  ✔ DB：halloween 套用后 bigmap 首领表被改（加条目/提概率）   条目 2 / 第1条概率 30
+  ✔ 天气：OverrideSeason 被套成 WINTER   实际=WINTER
+  ✔ 外部联动：Blackout.blackoutChance 被拉到 100（before）   Blackout=100 BlackDiv=100
+  ✔ 原生季节镜像：zombieSettings.enabled 被开成 true（before）   实际=True
+      松散战利品倍率(bigmap):  before 3.5（基准 1.0）
+
+═══ ③ disableAllEvents=true ⇒ 硬还原，逐项 after ═══
+  ✔ 闸门：Actives 被清空（不采用 force.txt）   实际= / 返回值=（当前没有活动生效）
+  ✔ force.txt 文件**没被删改**（不采用 ≠ 删文件）   内容=halloween
+  ✔ 方法存在：HardRestoreForDisableAllEvents()
+  ✔ 方法存在：RestoreThenApply()（硬开关分支入口）
+
+  ── 逐项 before / after ──
+      DB 首领表(bigmap):   before 条目 2 / 概率 30   →   after 条目 1 / 概率 30
+  ✔ DB：追加条目被删掉、原概率回放
+      天气 OverrideSeason: before WINTER   →   after null
+  ✔ 天气：OverrideSeason 还原成 null（不覆盖）
+      Blackout 概率:       before 100/100   →   after 25/15
+  ✔ 外部联动：回用户原值 25/15
+      zombieSettings.enabled: before true   →   after False
+  ✔ 原生季节镜像：僵尸开关被关回 false
+  ✔ Actives 仍为空   实际=
+      松散战利品倍率(bigmap): after 1（基准 1.0）
+  ✔ 战利品倍率：Restore() 按 _baseLoose 复位成 1.0
+      任意维度还原闭包:      before dirty   →   after restored
+  ✔ 还原闭包：_restoreActions 被 LIFO 回放（transformer/globals/倍率… 全走这条）
+      ⛔ 日志：1 条
+      LOG Warning | [EventRotator] ⛔ disableAllEvents=true ⇒ 不启用任何活动（已还原上次套用的全部改动） ~ null
+      LOG Info | [EventRotator][disableAllEvents] DB 层已还原：首领追加/概率/红骷髅/zone/5 个 hostility 名单/僵尸敌对性/NonWave 上限（无条件、幂等） ~ null
+      LOG Info | [EventRotator][disableAllEvents] 原生季节镜像已还原：zombieSettings.enabled=false / globals EventType / 圣诞 ItemsToDrop / Khorovod / halloweensummon ~ null
+      LOG Info | [EventRotator][disableAllEvents] 外部联动已还原（Blackout / BlackDivServer 的停电概率回 .bak-eventrotator 的用户原值；未安装则跳过） ~ null
+      LOG Info | [EventRotator][disableAllEvents] 活动季节已还原：seasonal event → auto（按现实日期判定） ~ null
+
+═══ ④ 幂等：再跑一次硬还原 ═══
+  ✔ 幂等：值不变
+  ✔ 幂等：⛔ 日志仍只有 1 条（SigChanged 降噪）   实际=1
+
+═══ ⑤ disableAllEvents=true 时 force.txt 写 halloween ═══
+  ✔ ★仍然不套用（Actives 为空）   实际=
+  ✔ 也没有出现 FORCED 行   FORCED 行数=2
+
+═══ ⑥ disableAllEvents=false ⇒ 恢复正常轮换逻辑 ═══
+  ✔ force.txt=halloween 重新被采用   实际=halloween,night_of_the_cult
+      日志条数：1
+      LOG Warning | [EventRotator] disableAllEvents=false ⇒ 恢复正常轮换逻辑 ~ null
+  ✔ 贴出『恢复正常轮换逻辑』日志
+
+═══ ⑦ 网页面板 ConfigWebService.Save 能否写这个键 ═══
+  ✔ Save({disableAllEvents:true}) 返回 ok   已保存 1 项 · 已热生效（当前活动：（当前没有活动生效））
+  ✔ 写盘回读 = true（ConfigWeb.BoolKeys 白名单生效）   文件值=True
+  ✔ Save({disableAllEvents:false}) 返回 ok   已保存 1 项 · 已热生效（当前活动：halloween,night_of_the_cult）
+  ✔ 写盘回读 = false（可逆）   文件值=False
+  ✔ 默认配置模板里也有这个键（老配置会被 MergeMissingKeys 自动补上）
+
+════════════════════════════════
+全部通过 ✔（0 失败）

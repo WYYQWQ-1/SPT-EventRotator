@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <AssemblyName>MountProbe</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS0168</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="MountProgram.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\0Harmony.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProbeRuntimeFiles Include="D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\*.dll" />
+    <ProbeModFiles Include="D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\user\mods\acidphantasm-botplacementsystem\*.dll" />
+  </ItemGroup>
+
+  <Target Name="CopyProbeRuntime" AfterTargets="Build">
+    <Copy SourceFiles="@(ProbeRuntimeFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" ContinueOnError="true" />
+    <Copy SourceFiles="@(ProbeModFiles)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" ContinueOnError="true" />
+  </Target>
+
+</Project>

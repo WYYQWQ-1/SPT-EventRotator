@@ -1,0 +1,37 @@
+[
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "bossScourge",
+    "constantValue": 13790
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "followerScourge",
+    "constantValue": 13791
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "cleanupcrew",
+    "constantValue": 13792
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "pillager",
+    "constantValue": 13793
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "bloodhound",
+    "constantValue": 13794
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "gus",
+    "constantValue": 13795
+  },
+  {
+    "enumType": "SPTarkov.Server.Core.Models.Eft.Common.WildSpawnType",
+    "constantName": "basmach",
+    "constantValue": 13796
+  }
+]

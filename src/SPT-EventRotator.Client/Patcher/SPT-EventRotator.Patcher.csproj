@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    ★★★ BepInEx 5 预加载补丁（preloader patcher），不是普通插件！
+    产物必须放到 BepInEx\patchers\ 下才会在 Assembly-CSharp.dll 加载【之前】执行。
+    BepInEx.Preloader 的发现规则（反编译 BepInEx.Preloader.dll:860-881 `ToPatcherPlugin`）：
+      类型里有 public static `IEnumerable<string> TargetDLLs` + public static `void Patch(AssemblyDefinition)`
+    即被当作 patcher —— 不需要继承 BaseUnityPlugin / 不需要 BepInEx 引用。
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>SPT-EventRotator.Patcher</AssemblyName>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>CS0168;CS8632</NoWarn>
+    <!-- BepInEx preloader 用 Assembly.LoadFile 载入 patchers 目录的程序集；
+         我们用到的 Mono.Cecil 由 BepInEx 在 core 目录解析，所以不复制到输出。 -->
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Cecil">
+      <HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\core\Mono.Cecil.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- 只用于 `Logger.CreateLogSource`（MoreBotsPrepatch 也是同一写法）；BepInEx 在预加载阶段已经加载。 -->
+    <Reference Include="BepInEx">
+      <HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

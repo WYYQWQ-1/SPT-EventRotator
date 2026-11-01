@@ -1,0 +1,8 @@
+{
+  "manifest": [
+    {
+      "key": "assets/content/audio/phrases/bossscourge_voice.bundle",
+      "dependencyKeys": []
+    }
+  ]
+}

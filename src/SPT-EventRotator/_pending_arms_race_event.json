@@ -1,0 +1,51 @@
+[
+  {
+    "id": "arms_race",
+    "nameZh": "军备竞赛",
+    "nameEn": "Arms Race",
+    "category": "event_task",
+    "desc": "官方『Arms Race（军备竞赛）』（2024-07-16 起）：**街区（tarkovstreets）每局刷两个军火商** —— 古斯（Gus，卖西货）与巴斯马赫（Basmach，卖俄货），各带 **2 名 Kolontay 护卫**（followerKolontaySecurity），出现概率 100%，刷点 = ZoneConstruction / ZoneFactory / ZoneSW01。同时**开启 Import Control 及其 4 条复刻后续任务**（Risks of Small Business / Protection of Interests / Western Quality Standards / Time-Tested）。",
+    "bossSpawns": {
+      "tarkovstreets": [
+        "gus",
+        "basmach"
+      ]
+    },
+    "bossChance": {
+      "tarkovstreets": {
+        "gus": 100,
+        "basmach": 100
+      }
+    },
+    "escortCount": {
+      "tarkovstreets": {
+        "gus": 2,
+        "basmach": 2
+      }
+    },
+    "escortType": {
+      "tarkovstreets": {
+        "gus": "followerKolontaySecurity",
+        "basmach": "followerKolontaySecurity"
+      }
+    },
+    "forceZone": {
+      "tarkovstreets": {
+        "gus": "ZoneConstruction,ZoneFactory,ZoneSW01",
+        "basmach": "ZoneConstruction,ZoneFactory,ZoneSW01"
+      }
+    },
+    "enableQuests": [
+      "668bcccc167d507eb01a268b",
+      "668bcd253e2c5f65cc64d7da",
+      "668bcd367eb38c3c4d58603c",
+      "668bcd7459a35c28386482d0",
+      "668bcd6c3e2c5f65cc64d7dc"
+    ],
+    "alwaysInRotation": true,
+    "uiTag": "experimental",
+    "taskNote": "5 条：Import Control（官方本体内已存在）+ 4 条复刻后续（由 questlines/arms_race.json 注入）",
+    "wiki": "https://escapefromtarkov.fandom.com/wiki/Arms_Race_(16_July_2024)",
+    "devNote": "★ 2026-10-30 第 9 项（服务端部分）· 待 lead 合并进 events.json。数据来源全部逐条可查，未凭感觉： ｜ ① 事件定义 = PPES `Events/EventCatalog.cs:444-454` `new(\"armsRace\", \"Arms Race\", \"Jul 2024\", EventTag.Ready, \"Unlocks the quest Import Control and its recreated follow-ups. The arms dealers Gus and Basmach are on Streets in every raid.\", …)`。 ｜ ② 刷点/概率/护卫 = 同处 `OnRaid:` 体：`if (!ctx.Is(\"tarkovstreets\")) return; foreach (var dealer in new[] { FactionCatalog.Gus, FactionCatalog.Basmach }) if (Effects.AddGroup(ctx, dealer, \"2\", FactionZones[\"tarkovstreets\"], 100)) ctx.Location.BossLocationSpawn!.Last().BossEscortType = \"followerKolontaySecurity\";` ⇒ `escortAmount=\"2\"`（= escortCount 2）、`BossChance=100`、`BossZone=\"ZoneConstruction,ZoneFactory,ZoneSW01\"`（= forceZone，取自 EventCatalog.cs:61 的 FactionZones[\"tarkovstreets\"]）、`BossDifficulty=BossEscortDifficulty=\"normal\"`、`IgnoreMaxBots=true`、`Time=-1`、`Supports=[]`（后 4 项由我们的 BuildEntry 默认值天然对齐，无需单列）。 ｜ ③ 两个角色的枚举/克隆源见 CustomBotTypes.cs（gus=13795 / basmach=13796，克隆源 followerkolontaysecurity，依据 PPES Factions/FactionCatalog.cs:35-38 的 Sources）。 ｜ ④ **enableQuests 是 5 条而不是 4 条**，理由：PPES 这个事件的 `quests` 数组本身就是 `[\"668bcccc167d507eb01a268b\"]`（= Import Control），4 条复刻后续来自 `Quests/eventQuestMeta.json → events.armsRace`；而 **Import Control 在本机 `SPT_Data/configs/quest.json → eventQuests` 里是一条「季节事件任务」**（`{\"name\":\"Import control\",\"season\":\"None\",\"yearly\":false}`）⇒ 不把它列进 enableQuests，本活动就**开不了** Import Control（与 PPES 的语义相反）。⚠ lead 若坚持只放 4 条，删掉第一项即可（后果：Import Control 仍被当作季节任务隐藏）。 ｜ ⑤ **故意不写 forceHostility**：gus/basmach 的 bot json 是 followerkolontaysecurity 的整份拷贝，其 `difficulty.*.Mind` 里 `DEFAULT_BEAR_BEHAVIOUR/DEFAULT_USEC_BEHAVIOUR = AlwaysEnemies`、`DEFAULT_SAVAGE_BEHAVIOUR = Warn` 天然齐全（已逐难度核对 easy/normal/hard/impossible）⇒ **它们本来就会打 PMC**，不像 tarkov_mystery 的 peacemaker/skier 那样需要兜底；PPES 也没给这两个角色写敌对表。而且 forceHostility 会整表改写该图敌对行（我们审计过它不可还原）⇒ 能不加就不加。 ｜ ⑥ **日期窗故意留空（startMonth/startDay/endMonth/endDay 全 0）**：官方起始日有据（wiki 页面名 `Arms_Race_(16_July_2024)`），但**结束日无处可查**；而本 mod 的窗口判定在 endMonth/endDay=0 时会把窗口拉到「次年 1/1」（tarkov_mystery 的 devNote 记过这个真 bug）⇒ 宁可不填（= 常驻/靠轮换），也不要留一个会失控的窗口。要开日期窗请把四段一起填。 ｜ ⑦ `alwaysInRotation: true` 的作用：让它在 `rotation.pool` 为空时按原规则参与自动轮换（照 scourge_incursion 的口径）。不想让它自动进池就删这一行。 ｜ ⑧ ⚠ 未实机验证（本环境不能启动游戏）：条目可被 `EventDef` 反序列化（已用真 EventDef 跑过，见自检 ⑦），但 gus/basmach 实际刷出、护卫类型、任务可接受性都需进游戏确认。"
+  }
+]

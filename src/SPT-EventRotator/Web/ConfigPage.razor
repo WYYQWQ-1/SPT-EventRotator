@@ -1,0 +1,1496 @@
+@page "/eventrotator"
+@layout EventRotator.Web.Shared.MainLayout
+@inject ConfigWebService CfgSvc
+@inject ISnackbar Snackbar
+
+<div class="er-brand mb-3">
+    <div class="er-logo">
+        <img src="@_logoSrc" width="46" height="46" style="border-radius:13px;display:block" alt="EventRotator" />
+    </div>
+    <div>
+        <div class="d-flex align-center gap-2">
+            <span class="er-wordmark">EventRotator</span>
+            <span class="er-ver">v@_version</span>
+        </div>
+        <div class="er-sub">@L("活动轮换配置 · 保存即热生效，标 ⟳ 的项需重启", "Event rotation config · saved changes hot-apply; items marked ⟳ need a restart")</div>
+    </div>
+    <MudSpacer />
+    <MudButton Variant="Variant.Text" Size="Size.Small" StartIcon="@Icons.Material.Filled.Translate" OnClick="ToggleLang">
+        @(_zh ? "EN" : "中文")
+    </MudButton>
+</div>
+
+<div class="d-flex flex-wrap gap-2 align-center mb-3">
+    @foreach (var (kind, value, warn) in _chips)
+    {
+        <span class="er-chip">
+            <span class="dot @(warn ? "warn" : "")"></span>
+            <span>@ChipLabel(kind)</span>
+            <b style="color:#57b6ff">@value</b>
+        </span>
+    }
+    <MudSpacer />
+    @if (ChangedCount > 0)
+    {
+        <MudChip T="string" Size="Size.Small" Color="Color.Warning" Variant="Variant.Filled">
+            @L($"未保存改动 {ChangedCount}", $"{ChangedCount} unsaved")
+        </MudChip>
+        <MudButton Variant="Variant.Outlined" Size="Size.Small" OnClick="ResetAll">@L("撤销改动", "Reset")</MudButton>
+    }
+</div>
+
+@if (_cfg == null)
+{
+    <MudAlert Severity="Severity.Error">@L("读不到 config.json（服务端可能还没加载完，或文件已损坏）", "Could not read config.json")</MudAlert>
+}
+else
+{
+    <div class="d-flex align-start gap-4">
+        <MudPaper Elevation="1" Style="width:240px;flex:0 0 240px;position:sticky;top:8px">
+            <MudNavMenu Class="py-2">
+                <MudText Typo="Typo.overline" Class="px-4 mb-1" Style="opacity:.45">@L("配置", "CONFIG")</MudText>
+                @foreach (var t in _tabs)
+                {
+                    <MudNavLink Icon="@t.icon" OnClick="@(() => _active = t.id)"
+                                Style="@(_active == t.id ? "font-weight:600;color:#ffc23c" : "")">
+                        @L(t.zh, t.en)
+                    </MudNavLink>
+                }
+                <MudDivider Class="my-2" />
+                <MudText Typo="Typo.overline" Class="px-4 mb-1" Style="opacity:.45">@L("活动分类", "EVENT GROUPS")</MudText>
+                @foreach (var g in _groups)
+                {
+                    <MudNavLink OnClick="@(() => { _active = "events"; _activeCat = g.Key; })"
+                                Style="@(_active == "events" && _activeCat == g.Key ? "font-weight:600;color:#57b6ff" : "")">
+                        @CatName(g.Key) · @g.Count()
+                    </MudNavLink>
+                }
+            </MudNavMenu>
+        </MudPaper>
+
+        <div style="flex:1;min-width:0">
+            @if (_active == "basics")
+            {
+                @* ★★★ v2.7.0【硬开关 · 不启用任何活动】放在「基础」页最顶部：这是"一键回到裸 SPT"的总闸。 *@
+                <MudPaper Class="pa-4 mb-4" Elevation="1" Style="border-left:4px solid #ff5252">
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_disableAllEvents" Color="Color.Error"
+                                   Label="@L("不启用任何活动（硬开关）", "Disable all events (hard switch)")" />
+                        @Info("disableAllEvents")
+                    </div>
+                    <div class="er-desc" style="margin:2px 0 0">
+                        @L("开启后无论如何都不套用任何活动：force.txt 手动强制、主轮换、季节阶段自动接管、日期窗、奖励轮换全部忽略；"
+                            + "服务端会先执行一次完整还原（首领/敌对性、战利品 transformer、天气、地点感染、外部联动 Blackout…），"
+                            + "然后停在裸 SPT 状态。下次启动仍是裸 SPT；关掉开关即恢复正常轮换（保存后立刻热生效）。",
+                            "When on, no event is ever applied: force.txt, the main rotation, seasonal-phase takeover, date windows and "
+                            + "reward rotation are all ignored, and every change made by a previously applied event is restored once "
+                            + "(bosses/hostility, loot transformers, weather, map infection, Blackout bridge...), leaving a vanilla SPT "
+                            + "server. It stays that way after a restart; turning it off restores normal rotation immediately on save.")
+                    </div>
+                </MudPaper>
+
+                <MudPaper Class="pa-4 mb-4" Elevation="1">
+                    <MudText Class="er-head mb-3">@L("日志与兜底", "Logging & fallbacks")</MudText>
+                    <MudSelect T="string" @bind-Value="_logLevel" Label="@L("日志等级", "Log level")" Style="max-width:320px" Class="mb-1">
+                        <MudSelectItem T="string" Value="@("off")">@L("关闭", "off")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("basic")">@L("基础", "basic")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("verbose")">@L("详细（逐条明细）", "verbose")</MudSelectItem>
+                    </MudSelect>
+                    @Hint("logLevel")
+
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_weaponFallback" Color="Color.Warning" Label="@L("武器兜底：主武器模板缺失时换原版", "Weapon fallback: swap to vanilla when the tpl is missing")" />
+                        @Info("weaponFallback")
+                    </div>
+
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_sainPresetInject" Color="Color.Warning" Label="@L("SAIN 预设注入", "Inject SAIN presets")" />
+                        @Info("sainPresetInject")
+                        <MudTooltip Text="@(L("这项只在启动时执行一次，改完必须重启服务端。", "Runs once at startup; a server restart is required."))" Placement="Placement.Top" Arrow="true">
+                            <MudChip T="string" Size="Size.Small" Color="Color.Error" Variant="Variant.Outlined" Style="margin-left:8px">⟳ @L("需重启", "restart")</MudChip>
+                        </MudTooltip>
+                    </div>
+
+                    @* ★ 2026-10-31【灾厄小队 · 帧数警告】这条开关在**客户端 F12**里，不在服务端配置里，
+                       但玩家最常在这一页翻设置 ⇒ 放这里提醒：开了会明显掉帧（每个灾厄单位每帧多 6 层判定）。 *@
+                    <MudAlert Severity="Severity.Warning" Dense="true" Class="mt-2">
+                        <b>@L("灾厄小队：开启「套黑狐层」会大幅掉帧", "Scourge squad: enabling \"SAIN / BlackDiv layers\" causes a large FPS drop")</b><br />
+                        @L("客户端 F12 →「★灾厄小队套黑狐层」默认是**关**：随从只吃本 mod 的 3 层 AI，帧数优先。",
+                           "The client-side switch (F12 -> \"use SAIN/BlackDiv layers\") defaults to OFF: followers use only this mod's 3 AI layers, for better FPS.")<br />
+                        @L("一旦打开：每个灾厄单位每帧要多跑 6 层判定（一队 5 个 ≈ 每帧多 30 次）⇒ 行为更像黑狐小队，但**帧数会明显下降**。只在真的需要那种行为时才开。",
+                           "Turned ON: each Scourge unit runs 6 extra layer checks per frame (5 units ≈ 30 extra checks/frame) -> behaviour closer to the Black Division squad, but a noticeable FPS drop. Enable only if you really want that behaviour.")
+                    </MudAlert>
+                </MudPaper>
+            }
+            else if (_active == "rotation")
+            {
+                <MudPaper Class="pa-4 mb-4" Elevation="1">
+                    <div class="d-flex align-center mb-3">
+                        <MudSwitch T="bool" @bind-Value="_rotEnabled" Color="Color.Warning" Label="@L("启用轮换", "Enable rotation")" />
+                        @Info("rotationEnabled")
+                    </div>
+                    <MudSelect T="string" @bind-Value="_rotMode" Label="@L("模式", "Mode")" Style="max-width:320px" Class="mb-1">
+                        <MudSelectItem T="string" Value="@("random")">@L("随机（每档打乱）", "random (shuffled)")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("sequential")">@L("顺序（依次推进）", "sequential")</MudSelectItem>
+                    </MudSelect>
+                    @Hint("mode")
+                    <div class="d-flex flex-wrap gap-4 mb-4">
+                        <MudNumericField T="int" @bind-Value="_rotDays" Label="@L("间隔天数", "Interval (days)")" Min="1" Max="365" Style="max-width:180px" />
+                        <MudNumericField T="int" @bind-Value="_rotCount" Label="@L("每档活动数", "Events per slot")" Min="1" Max="10" Style="max-width:180px" />
+                        <MudNumericField T="int" @bind-Value="_rebaseHour" Label="@L("换档基准小时", "Rebase hour")" Min="0" Max="23" Style="max-width:180px" />
+                    </div>
+                    <MudNumericField T="int" @bind-Value="_seed" Label="@L("种子", "Seed")" Style="max-width:280px" Class="mb-1" />
+                    @Hint("seed")
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_onlyGap" Color="Color.Warning" Label="@L("只在季节间隙轮换", "Only rotate between seasons")" />
+                        @Info("onlyGap")
+                    </div>
+
+                    <MudDivider Class="my-4" />
+                    <MudText Class="er-head mb-2">@L("奖励活动", "Reward events")</MudText>
+                    <div class="d-flex align-center mb-3">
+                        <MudSwitch T="bool" @bind-Value="_rewardEnabled" Color="Color.Warning" Label="@L("启用奖励轮换", "Enable reward rotation")" />
+                        @Info("rewardEnabled")
+                    </div>
+                    <div class="d-flex flex-wrap gap-4 mb-3">
+                        <MudNumericField T="int" @bind-Value="_rewardMin" Label="@L("最少", "Min")" Min="0" Max="10" Style="max-width:150px" />
+                        <MudNumericField T="int" @bind-Value="_rewardMax" Label="@L("最多", "Max")" Min="0" Max="10" Style="max-width:150px" />
+                    </div>
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_rewardAvoid" Color="Color.Warning" Label="@L("奖励活动也避冲突", "Reward events respect conflicts")" />
+                        @Info("rewardAvoid")
+                    </div>
+                </MudPaper>
+            }
+            else if (_active == "seasons")
+            {
+                <MudPaper Class="pa-4 mb-4" Elevation="1">
+                    <MudSelect T="string" @bind-Value="_seasonMode" Label="@L("模式", "Mode")" Style="max-width:320px" Class="mb-1">
+                        <MudSelectItem T="string" Value="@("rotate")">@L("依次轮换", "rotate")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("followEvent")">@L("跟随活动季节", "followEvent")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("fixed")">@L("固定季节", "fixed")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("off")">@L("跟随现实日期", "off")</MudSelectItem>
+                    </MudSelect>
+                    @Hint("seasonMode")
+                    <div class="d-flex flex-wrap gap-4 mb-4">
+                        <MudNumericField T="int" @bind-Value="_seasonDays" Label="@L("每季天数", "Days per season")" Min="1" Max="365" Style="max-width:180px" />
+                        <MudNumericField T="int" @bind-Value="_seasonOffset" Label="@L("偏移档", "Offset slots")" Min="-48" Max="48" Style="max-width:180px" />
+                    </div>
+                    @Hint("seasonDays")
+                    <div class="d-flex flex-wrap gap-4">
+                        <MudSelect T="string" @bind-Value="_season" Label="@L("固定季节", "Fixed season")" Style="max-width:200px">
+                            <MudSelectItem T="string" Value="@("SPRING")">@L("春 SPRING", "SPRING")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("SUMMER")">@L("夏 SUMMER", "SUMMER")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("AUTUMN")">@L("秋 AUTUMN", "AUTUMN")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("WINTER")">@L("冬 WINTER", "WINTER")</MudSelectItem>
+                        </MudSelect>
+                        @Info("fixedSeason")
+                        <MudSelect T="string" @bind-Value="_phase" Label="@L("季节活动阶段", "Seasonal event phase")" Style="max-width:220px">
+                            <MudSelectItem T="string" Value="@("off")">@L("不开启", "off")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("start")">@L("季初", "start")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("middle")">@L("季中", "middle")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("end")">@L("季末", "end")</MudSelectItem>
+                        </MudSelect>
+                    </div>
+                    @Hint("phase")
+
+                    <MudDivider Class="my-4" />
+                    <div class="d-flex align-center">
+                        <MudSwitch T="bool" @bind-Value="_takeoverVanilla" Color="Color.Warning"
+                                   Label="@L("接管原版季节窗（关掉官方按日期自动开节日）", "Take over vanilla seasonal windows")" />
+                    </div>
+                    <div class="er-desc" style="margin:2px 0 10px">
+                        @L("开（默认）= 关闭 SPT 的「按现实日期自动开官方活动」，全部官方季节窗都交给我们调度：万圣节 10/28–11/9、圣诞 12/13–12/31、圣诞 1 月档 1/2–1/14、新年 1/1、愚人节 4/1。",
+                            "On (default) = disable SPT's date-based auto seasonal events; this mod owns all of them: Halloween Oct 28-Nov 9, Christmas Dec 13-31, Christmas Jan Jan 2-14, New Year Jan 1, April Fools Apr 1.")
+                        <br />
+                        @L("落点：SPT_Data\\configs\\seasonalevents.json → enableSeasonalEventDetection（改前自动留 .bak-eventrotator 备份，可回退）。改完需重启服务端。",
+                            "Where: SPT_Data\\configs\\seasonalevents.json -> enableSeasonalEventDetection (auto-backed up as .bak-eventrotator). Restart the server after changing.")
+                    </div>
+
+                    <MudDivider Class="my-4" />
+                    @* ★ 第 26 项：独立天气开关（config.json → weather.suppressRainSnow / weather.suppressFog）
+                       两项互相独立；都不开 = 天气完全不干预（与没装本补丁逐字节一致）。
+                       落点：服务端 WeatherSuppressPatch（WeatherController.Generate / GenerateLocal /
+                       RaidWeatherService.GetCurrentWeather / GetUpcomingWeather 的 postfix）。 *@
+                    <div class="d-flex align-center flex-wrap gap-4">
+                        <MudSwitch T="bool" @bind-Value="_suppressRainSnow" Color="Color.Info"
+                                   Label="@L("压制 雨/雪", "Suppress rain / snow")" />
+                        <MudSwitch T="bool" @bind-Value="_suppressFog" Color="Color.Info"
+                                   Label="@L("压制 浓雾", "Suppress heavy fog")" />
+                    </div>
+                    <div class="er-desc" style="margin:2px 0 10px">
+                        @L("两个开关互相独立：只压雨雪、只压雾、两个都压都可以；两个都不开（默认）= 天气一个字段都不改，等于没装这个补丁。",
+                            "The two switches are independent (rain/snow only, fog only, or both). Both off (default) = no weather field is touched at all.")
+                        <br />
+                        @L("雨/雪：Rain=1、RainIntensity=0（与 SPT 晴天预设取值一致；雪在寒冷季共用这条 Rain 通道，所以一并压掉）。浓雾：Fog=0.0001（比 SPT 雾值表里最小的 0.0013 还低约 13 倍，实测等价于无雾）。",
+                            "Rain/snow: Rain=1, RainIntensity=0 (same values as SPT's sunny preset; snow uses the same Rain channel). Fog: Fog=0.0001 (~13x below SPT's lowest preset fog value 0.0013).")
+                        <br />
+                        @L("两者都**不影响**活动轮换、季节判定，也不动云量 / 风 / 风向 / 阵风 / 气压 / 温度（这些字段一个字都不改）。进下一局自动生效，不需要重启服务端。",
+                            "Neither switch affects event rotation, season logic, cloud, wind, gustiness, pressure or temperature - those are never touched. Applies from the next raid, no server restart needed.")
+                    </div>
+
+                    <MudDivider Class="my-4" />
+                    @* ★ 第 23 项：日期窗规则（config.json 顶层键 dateWindowRule，枚举白名单 seasonOffOnly | always） *@
+                    <MudSelect T="string" @bind-Value="_dateWindowRule" Label="@L("日期窗规则", "Date-window rule")" Style="max-width:380px" Class="mb-1">
+                        <MudSelectItem T="string" Value="@("seasonOffOnly")">@L("跟随季节轮换（默认）", "Follow season rotation (default)")</MudSelectItem>
+                        <MudSelectItem T="string" Value="@("always")">@L("始终生效（旧行为）", "Always active (legacy)")</MudSelectItem>
+                    </MudSelect>
+                    <div class="er-desc" style="margin:2px 0 10px">
+                        @L("跟随季节轮换（seasonOffOnly，默认）= 日期窗只在「季节模式 = 跟随现实日期」时生效；其它季节模式（依次轮换 / 跟随活动季节 / 固定季节）遵循轮换规则，不看日期窗。",
+                            "Follow season rotation (seasonOffOnly, default) = date windows only apply while season mode = real calendar; other modes (rotate / followEvent / fixed) follow the rotation rules and ignore date windows.")
+                        <br />
+                        @L("始终生效（always）= 日期窗永远参与，不管季节模式是什么（这是本选项出现之前的旧行为）。",
+                            "Always active (always) = date windows always take part regardless of season mode (the legacy behavior before this option existed).")
+                    </div>
+                    @Hint("dateWindowRule")
+                </MudPaper>
+            }
+            else if (_active == "events")
+            {
+                @* ★ B 线（契约 v3）：进图预览 —— 可折叠、默认收起、**纯只读**。
+                   只在「展开 / 换图 / 点强制」时调 CfgSvc.BuildPreview()，不写配置、不碰 force.txt、不触发保存。 *@
+                <MudPaper Class="pa-3 mb-4" Elevation="1">
+                    <div class="d-flex flex-wrap align-center" style="cursor:pointer;gap:8px" @onclick="TogglePreview">
+                        <MudIcon Icon="@(_previewOpen ? Icons.Material.Filled.ExpandLess : Icons.Material.Filled.ExpandMore)" Size="Size.Small" Style="opacity:.7" />
+                        <MudText Class="er-head">@L("进图预览", "Raid preview")</MudText>
+                        <span class="er-meta">@L("选地图看下次进图会变什么", "pick a map to see what changes next raid")</span>
+                    </div>
+                    @if (_previewOpen)
+                    {
+                        <div class="d-flex flex-wrap align-center" style="gap:12px;margin:10px 0 4px">
+                            <MudSelect T="string" @bind-Value="PreviewMap" Label="@L("地图", "Map")" Style="max-width:360px">
+                                @foreach (var m in _previewMaps)
+                                {
+                                    <MudSelectItem T="string" Value="@m.Id">@L(m.Zh, m.En) · @m.Id</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </div>
+                        @if (!string.IsNullOrEmpty(_previewError))
+                        {
+                            <MudAlert Severity="Severity.Error" Class="mb-2" Dense="true">@L("预览生成失败：", "Preview failed: ")@_previewError</MudAlert>
+                        }
+                        var groups = OrderedPreviewGroups();
+                        @if (groups.Count == 0)
+                        {
+                            <MudText Typo="Typo.body2" Style="opacity:.6">@L("这张图当前没有任何改动（按「已生效 + 已强制」推导）。", "Nothing affects this map right now (based on applied + forced events).")</MudText>
+                        }
+                        else
+                        {
+                            @foreach (var g in groups)
+                            {
+                                <div class="er-head" style="margin:12px 0 2px">@PreviewTitle(g.Key, g.Title)</div>
+                                @foreach (var it in g.Items)
+                                {
+                                    var fromText = FromLabel(it.From, it.FromName);
+                                    <div class="d-flex flex-wrap align-center py-1" style="gap:8px;border-bottom:1px solid rgba(255,255,255,.06)">
+                                        <span style="flex:1 1 320px;min-width:240px">@it.Text</span>
+                                        @if (!string.IsNullOrEmpty(fromText))
+                                        {
+                                            <span class="er-meta" style="flex:0 0 auto;opacity:.6">@fromText</span>
+                                        }
+                                    </div>
+                                }
+                            }
+                        }
+                        @if (_preview?.Warnings != null && _preview.Warnings.Count > 0)
+                        {
+                            <MudAlert Severity="Severity.Warning" Class="mt-3" Dense="true">
+                                @foreach (var w in _preview.Warnings)
+                                {
+                                    <div>· @w</div>
+                                }
+                            </MudAlert>
+                        }
+                        <MudText Typo="Typo.caption" Style="opacity:.55;margin-top:10px;display:block">@L("预览为近似推导，实际以游戏内为准", "Approximation only - the in-game result is authoritative")</MudText>
+                    }
+                </MudPaper>
+
+                <MudPaper Class="pa-4 mb-4" Elevation="1">
+                    <div class="d-flex flex-wrap gap-3 align-center mb-3">
+                        <MudText Class="er-head">@CatName(_activeCat)</MudText>
+                        <MudTextField T="string" @bind-Value="_search" Immediate="true" DebounceInterval="200" Placeholder="@L("搜活动名 / id / 描述", "Search name / id / description")" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" Style="max-width:300px" />
+                        @Info("search")
+                        @* ★ 第 16 项：地图 / 标签 两个筛选（纯前端；数据来自 EventRow.Touches 的「维度:地图id」与 UiTag） *@
+                        <MudSelect T="string" @bind-Value="_mapFilter" Label="@L("地图", "Map")" Style="max-width:190px">
+                            <MudSelectItem T="string" Value="@("all")">@L("全部地图", "All maps")</MudSelectItem>
+                            @foreach (var m in _previewMaps)
+                            {
+                                <MudSelectItem T="string" Value="@m.Id">@L(m.Zh, m.En)</MudSelectItem>
+                            }
+                        </MudSelect>
+                        <MudSelect T="string" @bind-Value="_tagFilter" Label="@L("标签", "Tag")" Style="max-width:170px">
+                            <MudSelectItem T="string" Value="@("all")">@L("全部标签", "All tags")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("ready")">@L("原生", "Ready")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("simulated")">@L("模拟", "Simulated")</MudSelectItem>
+                            <MudSelectItem T="string" Value="@("experimental")">@L("实验", "Experimental")</MudSelectItem>
+                        </MudSelect>
+                        <MudCheckBox T="bool" @bind-Value="_onlyExcluded" Color="Color.Warning" Label="@L("只看已排除", "Only excluded")" />
+                        <MudSpacer />
+                        <MudText Typo="Typo.caption" Style="opacity:.75">@L($"显示 {ShownCount} / {_events.Count} 个", $"showing {ShownCount} / {_events.Count}")</MudText>
+                        <MudChip T="string" Size="Size.Small" Color="Color.Warning" Variant="Variant.Outlined">@L("已排除", "Excluded") @_excluded.Count</MudChip>
+                    </div>
+                    @if (!string.Equals(_mapFilter, "all", StringComparison.Ordinal) || !string.Equals(_tagFilter, "all", StringComparison.Ordinal))
+                    {
+                        <div class="er-desc" style="margin:-6px 0 8px">
+                            @L("筛选说明：地图筛只看「明确作用到这张图」的活动（EventRow.Touches 里带 维度:地图 的标记，如 bosses:laboratory）；纯全局活动（商人 / 跳蚤 / 藏身处这类没有地图标记的）只在选「全部地图」时出现。",
+                                "Filter note: the map filter keeps only events with a map-specific touch (tokens like bosses:laboratory in EventRow.Touches). Purely global events (traders / flea / hideout ... with no map token) only show under All maps.")
+                        </div>
+                    }
+
+                    @Hint("exclude")
+
+                    @if (_forceIds.Count > 0)
+                    {
+                        <MudAlert Severity="Severity.Warning" Class="mb-3" Dense="true">
+                            @L("当前强制开启（可多个）：", "Forced (multiple allowed): ") @string.Join(", ", _forceIds)
+                            <MudButton Variant="Variant.Text" Size="Size.Small" Color="Color.Warning" OnClick="ClearForce" Class="ml-3">@L("清空", "Clear")</MudButton>
+                        </MudAlert>
+                    }
+
+                    @if (_forceIds.Count > 0)
+                    {
+                        <MudText Typo="Typo.caption" Class="mb-2" Style="opacity:.75">
+                            @L("⚠ 强制只改变「该开哪些活动」；实际战场效果（bot / 掉落 / 天气）要等下一场战局才生效。",
+                               "⚠ Force only changes which events are active; actual in-raid effects apply on your NEXT raid.")
+                        </MudText>
+                        @if (_forceNotApplied || _forceUnknown.Count > 0)
+                        {
+                            <MudAlert Severity="Severity.Error" Class="mb-2" Dense="true">
+                                @if (_forceNotApplied)
+                                {
+                                    <div>@L("服务端没有识别到强制（当前状态仍是「自动」）。可能是 force.txt 里的 id 写错，或格式不对。", "The server did not pick up the force (status still says automatic). Check the ids in force.txt.")</div>
+                                }
+                                @if (_forceUnknown.Count > 0)
+                                {
+                                    <div>@L("force.txt 里有活动表里不存在的 id：", "Unknown ids in force.txt: ")@string.Join(", ", _forceUnknown)</div>
+                                }
+                            </MudAlert>
+                        }
+                        @if (_forceConflicts.Count > 0)
+                        {
+                            <MudAlert Severity="Severity.Error" Class="mb-2" Dense="true">
+                                <div style="font-weight:600">@L("检测到强制活动互相冲突（后写的会覆盖前一个）：", "Forced events conflict (the later one overwrites the earlier):")</div>
+                                @foreach (var c in _forceConflicts)
+                                {
+                                    <div>· @c</div>
+                                }
+                            </MudAlert>
+                        }
+                    }
+
+                    @if (ShownCount == 0)
+                    {
+                        <MudText Typo="Typo.body2" Style="opacity:.6">@L("没有符合当前筛选条件的活动（换个搜索词，或把「地图 / 标签」改回全部）。", "No events match the current filters (try another search term, or set Map / Tag back to All).")</MudText>
+                    }
+                    @foreach (var e in ShownEvents)
+                    {
+                        <div class="er-row d-flex align-start py-2">
+                            <MudCheckBox T="bool" Value="@_excluded.Contains(e.Id)" ValueChanged="@((bool v) => ToggleExclude(e.Id, v))" Color="Color.Warning" Dense="true" />
+                            <div style="flex:1 1 480px;min-width:280px">
+                                <div class="d-flex flex-wrap gap-2 align-center">
+                                    <MudText Typo="Typo.body2" Style="font-weight:600">@(_zh ? e.Label : (string.IsNullOrEmpty(e.En) ? e.Label : e.En))</MudText>
+                                    @* ★ B 线：实现程度徽章（Ready 绿 / Simulated 蓝 / Experimental 橙，未知值按 simulated） *@
+                                    <MudTooltip Text="@TagHint(e.UiTag)" Placement="Placement.Top" Arrow="true">
+                                        <MudChip T="string" Size="Size.Small" Color="@TagColor(e.UiTag)" Variant="Variant.Text" Style="font-size:11px;white-space:nowrap;flex:0 0 auto">@TagLabel(e.UiTag)</MudChip>
+                                    </MudTooltip>
+                                    <code class="er-id" style="flex:0 0 auto">@e.Id</code>
+                                    @if (!string.Equals(e.Window, "-"))
+                                    {
+                                        <span class="er-meta" style="flex:0 0 auto;white-space:nowrap">@e.Window</span>
+                                    }
+                                    @* ★ B 线：日期窗倒计时（StartDay > 0 才算；纯前端按本地今天算） *@
+                                    @{ var countdown = e.StartDay > 0 ? CountdownText(e) : ""; }
+                                    @if (!string.IsNullOrEmpty(countdown))
+                                    {
+                                        <span class="er-meta" style="opacity:.8;flex:0 0 auto;white-space:nowrap">@countdown</span>
+                                    }
+                                    @if (e.Always)
+                                    {
+                                        <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Text">always</MudChip>
+                                    }
+                                </div>
+                                @{ var d = _zh ? e.Desc : (string.IsNullOrEmpty(e.DescEn) ? e.Desc : e.DescEn); }
+                                @if (!string.IsNullOrEmpty(d))
+                                {
+                                    <div class="er-desc">@d</div>
+                                }
+                                @* ★ 冲突提示（2026-10-29 改版）：不再一行挂 N 个长 chip —— 那会把标题列挤成 100px。
+                                   改成「一枚摘要 chip + 悬浮看完整名单」，永远只占一行的宽度。 *@
+                                @{ var conflicts = ConflictsOf(e); }
+                                @* ★ 契约 v2【双向才警告】：本行自己也在「开启 / 强制」状态才提示（判据 = IsCheckedOrActive(e.Id)：_forceIds ∪ StatusText 生效列表）；
+                                   否则整枚 chip 不渲染 —— 门禁放在 @if 上，所以外层那个 div 也不会产生。 *@
+                                @if (conflicts.Count > 0 && IsCheckedOrActive(e.Id))
+                                {
+                                    <div class="d-flex flex-wrap gap-2 align-center" style="margin-top:4px">
+                                        <MudTooltip Placement="Placement.Bottom" Arrow="true">
+                                            <ChildContent>
+                                                <MudChip T="string" Size="Size.Small" Color="Color.Warning" Variant="Variant.Outlined"
+                                                         Style="font-size:11px;white-space:nowrap">
+                                                    @L($"⚠ 与 {conflicts.Count} 个已开启活动冲突", $"⚠ conflicts with {conflicts.Count} enabled event(s)")
+                                                </MudChip>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <div style="max-width:420px;line-height:1.6">
+                                                    @foreach (var c in conflicts)
+                                                    {
+                                                        <div>· @c.Name @(string.IsNullOrEmpty(c.Tip) ? "" : "— " + c.Tip)</div>
+                                                    }
+                                                </div>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </div>
+                                }
+
+                                @* ★ 第 17 + 20 项：任务链展开 + 其它 mod 兼容提示（每行独立、默认收起、展开才渲染内容） *@
+                                @{
+                                    var quests = e.Quests;
+                                    var chainTotal = quests?.Count ?? 0;
+                                    var chainMissing = 0;
+                                    if (quests != null)
+                                    {
+                                        foreach (var q in quests) { if (q != null && !q.Present) chainMissing++; }
+                                    }
+                                    var compat = CompatForMap(e);
+                                    var rowOpen = _expandedRows.Contains(e.Id ?? "");
+                                }
+                                @if (chainTotal > 0 || compat.Count > 0)
+                                {
+                                    <div style="margin-top:4px">
+                                        <div class="d-flex flex-wrap align-center" style="cursor:pointer;gap:6px" @onclick="@(() => ToggleRow(e.Id))">
+                                            <MudIcon Icon="@(rowOpen ? Icons.Material.Filled.ExpandLess : Icons.Material.Filled.ExpandMore)" Size="Size.Small" Style="opacity:.7" />
+                                            <MudText Typo="Typo.caption" Style="opacity:.85">@RowToggleTitle(e, chainTotal, chainMissing, compat.Count)</MudText>
+                                            @if (compat.Count > 0 && chainTotal > 0)
+                                            {
+                                                <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Text" Style="font-size:11px">
+                                                    @L($"其它 mod · {compat.Count} 条", $"other mods · {compat.Count}")
+                                                </MudChip>
+                                            }
+                                        </div>
+                                        @if (rowOpen)
+                                        {
+                                            <div style="margin:4px 0 2px 24px">
+                                                @if (chainTotal > 0)
+                                                {
+                                                    var chain = QuestChainOf(e);
+                                                    @foreach (var q in chain)
+                                                    {
+                                                        var missing = q != null && !q.Present;
+                                                        <div class="d-flex flex-wrap align-center" style="gap:6px;padding:1px 0;@(missing ? "opacity:.5" : "")"
+                                                             title="@(string.IsNullOrEmpty(q?.Source) ? "" : q.Source)">
+                                                            <span style="min-width:20px;opacity:.6">@(chain.IndexOf(q) + 1).</span>
+                                                            <span style="flex:1 1 300px;min-width:200px">@QuestDisplayName(q)</span>
+                                                            @if (!string.IsNullOrEmpty(q?.Trader))
+                                                            {
+                                                                <span class="er-meta">@q.Trader</span>
+                                                            }
+                                                            @if (q != null && q.Level > 0)
+                                                            {
+                                                                <span class="er-meta">Lv@(q.Level)</span>
+                                                            }
+                                                            @if (q != null && q.FromOurQuestline)
+                                                            {
+                                                                <MudChip T="string" Size="Size.Small" Color="Color.Primary" Variant="Variant.Text" Style="font-size:10px">@L("我们", "ours")</MudChip>
+                                                            }
+                                                            else if (!missing)
+                                                            {
+                                                                <span class="er-meta">@L("原版已有", "vanilla")</span>
+                                                            }
+                                                            @if (missing)
+                                                            {
+                                                                <MudChip T="string" Size="Size.Small" Color="Color.Error" Variant="Variant.Filled" Style="font-size:10px">@L("本机没有", "missing locally")</MudChip>
+                                                            }
+                                                        </div>
+                                                    }
+                                                }
+                                                @if (compat.Count > 0)
+                                                {
+                                                    <div class="er-head" style="margin:8px 0 2px;font-size:12px">@L($"其它 mod 在这张图上的动静（{compat.Count} 条）", $"Other mods on this map ({compat.Count})")</div>
+                                                    @foreach (var n in compat)
+                                                    {
+                                                        <div class="d-flex flex-wrap align-center" style="gap:6px;padding:1px 0">
+                                                            <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Outlined" Style="font-size:10px;white-space:nowrap">@n.Source</MudChip>
+                                                            <span style="flex:1 1 300px;min-width:200px">@(_zh ? n.Text : (string.IsNullOrEmpty(n.TextEn) ? n.Text : n.TextEn))</span>
+                                                            @if (!string.IsNullOrEmpty(n.Map) && n.Map != "*")
+                                                            {
+                                                                <span class="er-meta">@n.Map</span>
+                                                            }
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                            <span style="flex:0 0 auto">
+                                @if (_forceIds.Contains(e.Id))
+                                {
+                                    <MudButton Variant="Variant.Text" Size="Size.Small" Color="Color.Error" OnClick="@(() => ToggleForce(e.Id))" Style="white-space:nowrap">@L("取消强制", "Unforce")</MudButton>
+                                }
+                                else
+                                {
+                                    <MudButton Variant="Variant.Text" Size="Size.Small" Color="Color.Warning" OnClick="@(() => ToggleForce(e.Id))" Style="white-space:nowrap">@L("手动开启", "Force")</MudButton>
+                                }
+                            </span>
+                            @* ★ B 线：有 Wiki 才显示外链小图标（新窗口打开；不引新依赖，用现有 Icons.Material.Filled） *@
+                            @if (!string.IsNullOrEmpty(e.Wiki))
+                            {
+                                <MudTooltip Text="@L("在浏览器打开该活动的 Wiki（新窗口）", "Open this event's wiki in a new tab")" Placement="Placement.Top" Arrow="true">
+                                    <a href="@e.Wiki" target="_blank" rel="noopener" style="flex:0 0 auto;align-self:center;display:inline-flex;opacity:.65;margin-left:4px">
+                                        <MudIcon Icon="@Icons.Material.Filled.OpenInNew" Size="Size.Small" />
+                                    </a>
+                                </MudTooltip>
+                            }
+                        </div>
+                    }
+                </MudPaper>
+            }
+            else if (_active == "backups")
+            {
+                <MudPaper Class="pa-4 mb-4" Elevation="1">
+                    @if (_backups.Count == 0)
+                    {
+                        <MudText Typo="Typo.body2" Style="opacity:.6">@L("还没有网页保存记录", "No web saves yet")</MudText>
+                    }
+                    else
+                    {
+                        <MudSelect T="string" @bind-Value="_selectedBackup" Label="@L("选一份回滚", "Pick a backup")" Style="max-width:520px" Class="mb-3">
+                            @foreach (var b in _backups)
+                            {
+                                <MudSelectItem T="string" Value="@b">@b</MudSelectItem>
+                            }
+                        </MudSelect>
+                        <MudButton Variant="Variant.Outlined" Color="Color.Warning" OnClick="RestoreSelected" Disabled="@(string.IsNullOrEmpty(_selectedBackup))">@L("回滚到这份", "Restore this one")</MudButton>
+                    }
+                </MudPaper>
+            }
+        </div>
+    </div>
+
+    <MudPaper Class="pa-3 d-flex align-center mt-4" Elevation="4" Style="position:sticky;bottom:12px">
+        <MudText Typo="Typo.caption" Style="opacity:.7">
+            @L("保存 → 写备份 → 热生效｜标 ⟳ 的项（SAIN 预设注入、枚举预补丁）保存后仍需重启",
+               "Save → back up → hot-apply｜items marked ⟳ still need a restart")
+        </MudText>
+        <MudSpacer />
+        <MudTooltip Text="@(L("写文件 + 备份 + 重读配置 + 重算活动；没有改动时等于重新应用一遍", "Writes file, backs up, re-reads config, recomputes; with no pending changes it just re-applies"))" Placement="Placement.Top" Arrow="true">
+            <span>
+                <MudButton Variant="Variant.Filled" Color="Color.Warning" OnClick="SaveAsync">
+                    @(ChangedCount > 0 ? L($"保存并应用（{ChangedCount} 项）", $"Save & apply ({ChangedCount})") : L("重新应用", "Re-apply"))
+                </MudButton>
+            </span>
+        </MudTooltip>
+    </MudPaper>
+}
+
+@code {
+    private record TabDef(string id, string zh, string en, string icon);
+
+    private readonly List<TabDef> _tabs = new()
+    {
+        new("basics", "基础", "Basics", Icons.Material.Filled.Tune),
+        new("rotation", "轮换", "Rotation", Icons.Material.Filled.Autorenew),
+        new("seasons", "季节", "Seasons", Icons.Material.Filled.WbSunny),
+        new("backups", "备份", "Backups", Icons.Material.Filled.Restore),
+    };
+
+    private JsonObject _cfg;
+    private bool _zh = true;
+    private string _active = "basics";
+    private string _activeCat = "";
+    private string _version = "";
+    private List<(string kind, string value, bool warn)> _chips = new();
+    private List<string> _backups = new();
+    private string _selectedBackup = "";
+
+    private string _logLevel = "basic";
+    private bool _weaponFallback = true, _sainPresetInject = true;
+    private bool _rotEnabled = true, _onlyGap = true;
+    /// <summary>★ v1.3.9 接管原版季节窗：关闭 SPT 按现实日期自动开官方节日（config.json 顶层 vanillaSeasonTakeover）</summary>
+    private bool _takeoverVanilla = true;
+    /// <summary>★ 第 26 项：压雨雪（config.json → weather.suppressRainSnow；服务端 WeatherSuppressPatch 读）。</summary>
+    private bool _suppressRainSnow;
+    /// <summary>★ 第 26 项：压浓雾（config.json → weather.suppressFog；与雨雪开关**互相独立**）。</summary>
+    private bool _suppressFog;
+    /// <summary>
+    /// ★★★ v2.7.0【硬开关】不启用任何活动（config.json 顶层 `disableAllEvents`，默认 false）。
+    /// 开启后无论 force.txt / 轮换 / 季节自动接管写什么都不采用，服务端先做一次完整还原。
+    /// </summary>
+    private bool _disableAllEvents;
+    private string _rotMode = "random";
+    private int _rotDays = 7, _rotCount = 1, _rebaseHour = 4, _seed = 0;
+    private string _seasonMode = "rotate", _season = "WINTER", _phase = "start";
+    private int _seasonDays = 30, _seasonOffset = 0;
+
+    private bool _rewardEnabled = true, _rewardAvoid = true;
+    private int _rewardMin = 1, _rewardMax = 2;
+
+    private List<ConfigWebService.EventRow> _events = new();
+    private HashSet<string> _excluded = new(StringComparer.OrdinalIgnoreCase);
+    private List<string> _forceIds = new();
+    private List<string> _forceConflicts = new();
+    private bool _forceNotApplied;          // force.txt 有内容但服务端仍报"自动"
+    private List<string> _forceUnknown = new();  // force.txt 里对不上活动表的 id
+    private string _search = "";
+    private bool _onlyExcluded;
+    // ★ 第 23 项：日期窗规则（config.json 顶层键 dateWindowRule；seasonOffOnly | always）。会进 Snapshot 与保存补丁。
+    private string _dateWindowRule = "seasonOffOnly";
+    // ★ 第 16 项：活动列表过滤器（纯前端，**不进 Snapshot / 不进 config**，刷新即重置）
+    private string _mapFilter = "all";   // "all" = 全部地图，否则 = 小写 locationId
+    private string _tagFilter = "all";   // "all" = 全部标签，否则 = ready | simulated | experimental
+    // ★ 第 17 + 20 项：哪些活动行展开了「任务链 / 兼容提示」（按活动 id；默认空 = 全部收起；纯 UI 状态，不进 config）
+    private readonly HashSet<string> _expandedRows = new(StringComparer.OrdinalIgnoreCase);
+    private Dictionary<string, string> _baseline = new();
+
+    // ══════════ ★ B 线（契约 v3 · 进图预览）：面板状态 + 地图表 + 分组顺序/标题 ══════════
+    //  纯只读：只调 CfgSvc.BuildPreview(mapId)，不写配置、不碰 force.txt、不触发保存。
+    private bool _previewOpen;                        // 默认收起（契约）
+    private string _previewMap = "bigmap";            // 默认 bigmap（契约）
+    private ConfigWebService.PreviewResult _preview;  // 最近一次推导结果（null = 还没推导 / 推导失败）
+    private string _previewError = "";                // 推导异常时的提示（不外抛，只在本面板里显示）
+
+    /// <summary>地图下拉选项：契约 v3 的 11 个图（中文名 + 小写 locationId）。</summary>
+    private static readonly (string Id, string Zh, string En)[] _previewMaps =
+    {
+        ("bigmap", "海关", "Customs"),
+        ("woods", "森林", "Woods"),
+        ("shoreline", "海岸线", "Shoreline"),
+        ("interchange", "立交桥", "Interchange"),
+        ("rezervbase", "储备站", "Reserve"),
+        ("laboratory", "实验室", "Labs"),
+        ("lighthouse", "灯塔", "Lighthouse"),
+        ("tarkovstreets", "街区", "Streets of Tarkov"),
+        ("factory4_day", "工厂(昼)", "Factory (day)"),
+        ("factory4_night", "工厂(夜)", "Factory (night)"),
+        ("sandbox_high", "沙盒", "Ground Zero"),
+    };
+
+    /// <summary>分组渲染顺序（契约 v3 固定顺序；契约外的未知分组按服务端返回顺序垫后）。</summary>
+    private static readonly string[] _previewOrder =
+        { "bosses", "loot", "exits", "weather", "airdrop", "access", "quests", "traders" };
+
+    /// <summary>分组标题（键 = PreviewGroup.Key；服务端 Title 只作未知分组/缺键时的兜底）。</summary>
+    private static readonly Dictionary<string, (string zh, string en)> _previewTitles = new()
+    {
+        ["bosses"] = ("首领", "Bosses"),
+        ["loot"] = ("战利品", "Loot"),
+        ["exits"] = ("撤离", "Exits"),
+        ["weather"] = ("天气 / 时间", "Weather / time"),
+        ["airdrop"] = ("空投", "Airdrop"),
+        ["access"] = ("门票 / 门禁", "Access"),
+        ["quests"] = ("任务", "Quests"),
+        ["traders"] = ("商人", "Traders"),
+    };
+
+    // 内嵌图标（data URI，避免依赖 SPT 静态资源路由）
+    // 内嵌图标（icon-B 128px，base64 data URI；不依赖 SPT 静态资源路由）
+    private static readonly string _logoSrc = "data:image/png;base64,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";
+
+    private string L(string zh, string en) => _zh ? zh : en;
+
+    private readonly Dictionary<string, (string zh, string en)> _desc = new()
+    {
+        // ★★★ v2.7.0【硬开关】不启用任何活动：优先于一切自动/手动来源
+        ["disableAllEvents"] = ("config.json → disableAllEvents（默认 false）。\n"
+            + "开 = 不启用任何活动：force.txt 手动强制、主轮换、季节阶段自动接管、日期窗、奖励轮换全部不采用；"
+            + "服务端先执行一次完整还原（DB 首领/敌对性、战利品 transformer、天气季节、地点感染、外部联动 Blackout 等），"
+            + "然后停在裸 SPT 状态。\n"
+            + "关 = 恢复正常轮换逻辑（原来的 force.txt / 季节 / 轮换照旧）。\n"
+            + "保存后立刻热生效（会做一次「还原 + 按新状态套用」），不需要重启服务端。",
+            "config.json -> disableAllEvents (default false).\n"
+            + "On = disable all events: force.txt, the main rotation, seasonal-phase takeover, date windows and reward "
+            + "rotation are all ignored, and every change made by a previously applied event is restored once, leaving a "
+            + "vanilla SPT server.\n"
+            + "Off = normal rotation resumes.\n"
+            + "Applies immediately after saving (one restore + re-apply pass); no server restart needed."),
+        ["logLevel"] = ("服务端日志详细程度。basic 只打关键节点（默认，够用）；verbose 会逐条打印每张图的刷新计划与 bot 分布，非常吵——只在排错时开。", "Server log verbosity. basic prints key steps (default); verbose prints per-map spawn plans and bot distribution - very noisy, only for troubleshooting."),
+        ["weaponFallback"] = ("灾厄小队的主武器来自 WTT。若物品表里查不到该武器模板（WTT 版本不匹配 / 没装），8 秒后复查一次，仍缺就把这把枪换成原版武器，避免 bot 生成失败。", "Scourge squads use a WTT weapon. If its template cannot be found, the check re-runs after 8 seconds and then swaps to a vanilla weapon so the bot still spawns."),
+        ["sainPresetInject"] = ("给自定义 boss 类型（bossScourge 等）注入 SAIN 行为预设。只在启动时执行一次，改完必须重启服务端；没装 SAIN 时此项无效。", "Injects SAIN behavior presets for custom boss types. Runs once at startup - a restart is required. No effect if SAIN is not installed."),
+        ["rotationEnabled"] = ("总开关。关掉后不再自动换活动，只保留日期窗活动（万圣节/圣诞这类官方窗口）和手动强制。", "Master switch. When off, only calendar-window events and manual force remain."),
+        ["mode"] = ("random = 每个档位按种子重新打乱候选池，同一档内结果稳定；sequential = 按活动 id 排序依次推进，周期固定可预测。", "random = reshuffle per slot by seed (stable within a slot); sequential = walk events in id order, fully predictable."),
+        ["seed"] = ("洗牌种子。改一个数字 = 同一档位换出一批完全不同的活动；不动它，重启服务端也不会变。", "Shuffle seed. Changing it gives a different set for the same slot; leaving it alone keeps results stable."),
+        ["onlyGap"] = ("开启（默认）= 当季已有季节活动在跑时不轮换填充活动；关闭 = 季节期间也叠加不冲突的填充活动。", "On (default) = filler events pause while a seasonal event runs; off = non-conflicting fillers also run during seasons."),
+        ["rewardEnabled"] = ("奖励活动（掉落/商人/天气这类轻量活动）单独一套轮换，每局随机叠 1~2 个，跟主活动互补。", "Reward events rotate separately and stack 1-2 per raid on top of the main event."),
+        ["rewardAvoid"] = ("开启 = 奖励活动也要通过冲突检查；关闭 = 只避开主活动，奖励之间可能互相覆盖。", "On = reward events also go through conflict checks; off = only avoid the main event."),
+        ["seasonMode"] = ("rotate = 按每季天数推进春夏秋冬；followEvent = 跟当前活动季节；fixed = 锁定固定季节；off = 跟现实日期。", "rotate = advance SPRING->WINTER by day count; followEvent = mirror the active event; fixed = locked season; off = real calendar."),
+        ["seasonDays"] = ("每个季节持续多少天（rotate 模式）。30 天 = 一年四季正常节奏。", "Days per season in rotate mode. 30 = a normal cadence."),
+        ["fixedSeason"] = ("fixed 模式下锁定的季节，其它模式不生效。", "Season locked when mode = fixed; ignored otherwise."),
+        ["phase"] = ("季节活动（万圣节/圣诞等）在一季的第几段开启：off 不开，start 季初，middle 季中，end 季末。", "Where in a season the seasonal event auto-opens: off / start / middle / end."),
+        ["dateWindowRule"] = ("日期窗（活动自带的真实日期区间，如万圣节 10/28–11/9）什么时候参与：\n"
+            + "· 跟随季节轮换（seasonOffOnly，默认）：只有季节模式 =「跟随现实日期」时，日期窗才决定活动开不开；其它季节模式（依次轮换 / 跟随活动季节 / 固定季节）完全交给轮换规则。\n"
+            + "· 始终生效（always）：不管季节模式是什么，日期窗永远参与 —— 这是本选项出现之前的旧行为。\n"
+            + "保存后热生效（不用重启服务端）。",
+            "When a date window (the event's real calendar range, e.g. Halloween Oct 28-Nov 9) takes part:\n"
+            + "· Follow season rotation (seasonOffOnly, default): date windows only decide events while season mode = real calendar; other modes (rotate / followEvent / fixed) are fully driven by the rotation rules.\n"
+            + "· Always active (always): date windows always take part regardless of season mode - the legacy behavior before this option existed.\n"
+            + "Applies immediately after saving (no server restart)."),
+        ["exclude"] = ("勾上的活动不会被自动轮换选中、也不会被季节阶段自动开启；但手动「开启」仍然有效。", "Checked events are never rotated nor auto-opened by a season phase, but manual Force still works."),
+        ["search"] = ("按活动中文名 / 英文名 / id / 描述文字筛选（即时生效）。可与右侧「地图」「标签」下拉和「只看已排除」叠加过滤；过滤状态只影响本页显示，不会写进 config，刷新即重置。",
+            "Filters by Chinese name, English name, id or description text (live). Stacks with the Map / Tag selects and Only excluded. Filter state only affects this page - never written to config, reset on refresh."),
+    };
+
+    private string D(string key) => _desc.TryGetValue(key, out var v) ? (_zh ? v.zh : v.en) : "";
+
+    private RenderFragment Info(string key) => builder =>
+    {
+        var text = D(key);
+        if (string.IsNullOrEmpty(text)) return;
+        builder.OpenComponent<MudTooltip>(0);
+        builder.AddAttribute(1, "Text", text);
+        builder.AddAttribute(2, "Placement", Placement.Top);
+        builder.AddAttribute(3, "Arrow", true);
+        builder.AddAttribute(4, "ChildContent", (RenderFragment)(b =>
+        {
+            b.OpenComponent<MudIcon>(0);
+            b.AddAttribute(1, "Icon", Icons.Material.Filled.Info);
+            b.AddAttribute(2, "Size", Size.Small);
+            b.AddAttribute(3, "Style", "opacity:.45;cursor:help;margin-left:6px");
+            b.CloseComponent();
+        }));
+        builder.CloseComponent();
+    };
+
+    private RenderFragment Hint(string key) => builder =>
+    {
+        var text = D(key);
+        if (string.IsNullOrEmpty(text)) return;
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "er-desc");
+        builder.AddAttribute(2, "style", "margin:2px 0 10px");
+        builder.AddContent(3, text);
+        builder.CloseElement();
+    };
+
+    protected override void OnInitialized() => Reload();
+
+    private void ToggleLang()
+    {
+        _zh = !_zh;
+        _chips = BuildChips(CfgSvc.StatusText);
+        StateHasChanged();
+    }
+
+    private void Reload()
+    {
+        _version = CfgSvc.Version;
+        _cfg = CfgSvc.Load();
+        _backups = CfgSvc.ListBackups();
+        _chips = BuildChips(CfgSvc.StatusText);
+        _events = CfgSvc.ListEvents();
+        RefreshForceState();
+        if (_cfg == null) return;
+
+        _logLevel = Str(_cfg, "logLevel", "basic");
+        _weaponFallback = Bool(_cfg, "weaponFallback", true);
+        _sainPresetInject = Bool(_cfg, "sainPresetInject", true);
+
+        var rot = Obj(_cfg, "rotation");
+        _rotEnabled = Bool(rot, "enabled", true);
+        _rotMode = Str(rot, "mode", "random");
+        _rotDays = Num(rot, "intervalDays", 7);
+        _rotCount = Num(rot, "count", 1);
+        _rebaseHour = Num(rot, "slotRebaseHour", 4);
+        _seed = Num(rot, "seed", 0);
+        _onlyGap = Bool(rot, "onlyWhenNoSeasonal", true);
+        _excluded = new HashSet<string>(
+            (rot?["exclude"] as JsonArray)?.Select(x => x?.ToString()).Where(s => !string.IsNullOrWhiteSpace(s)) ?? Enumerable.Empty<string>(),
+            StringComparer.OrdinalIgnoreCase);
+
+        var rr = Obj(_cfg, "rewardRotation");
+        _rewardEnabled = Bool(rr, "enabled", true);
+        _rewardMin = Num(rr, "countMin", 1);
+        _rewardMax = Num(rr, "countMax", 2);
+        _rewardAvoid = Bool(rr, "avoidConflicts", true);
+
+        var sr = Obj(_cfg, "seasonRotation");
+        _seasonMode = Str(sr, "mode", "rotate");
+        _seasonDays = Num(sr, "intervalDays", 30);
+        _seasonOffset = Num(sr, "offset", 0);
+        _season = Str(sr, "season", "WINTER");
+        _phase = Str(sr, "eventPhase", "start");
+        _takeoverVanilla = Bool(_cfg, "vanillaSeasonTakeover", true);
+        // ★ 第 26 项：独立天气开关（嵌套对象 weather.*；缺省 false = 不干预）
+        var wx = Obj(_cfg, "weather");
+        _suppressRainSnow = Bool(wx, "suppressRainSnow", false);
+        _suppressFog = Bool(wx, "suppressFog", false);
+        // ★★★ v2.7.0【硬开关】不启用任何活动（顶层 bool；缺省 false = 正常轮换）
+        _disableAllEvents = Bool(_cfg, "disableAllEvents", false);
+        // ★ 第 23 项：日期窗规则（白名单枚举；读到非法/缺失值一律回落默认 seasonOffOnly）
+        _dateWindowRule = Str(_cfg, "dateWindowRule", "seasonOffOnly");
+        if (_dateWindowRule != "always" && _dateWindowRule != "seasonOffOnly") _dateWindowRule = "seasonOffOnly";
+
+        if (string.IsNullOrEmpty(_activeCat) && _groups.Any()) _activeCat = _groups.First().Key;
+        _baseline = Snapshot();
+    }
+
+    private void ResetAll()
+    {
+        Reload();
+        Snackbar.Add(L("已撤销未保存的改动", "Unsaved changes discarded"), Severity.Info);
+        StateHasChanged();
+    }
+
+    /// <summary>★ v1.3.9【防假成功】比对"我强制了什么"和"服务端认为当前是什么"。</summary>
+    private void RefreshForceState()
+    {
+        _forceIds = CfgSvc.ReadForce();
+        _forceConflicts = CfgSvc.ForceConflicts();
+
+        // ★ v1.3.9【误报修复】活动表可能是空的（页面在服务端刚启动时加载过一次）——
+        //   那种情况下比对必然"全都不认识"，于是合法 id 也被标成不存在。这里：
+        //   ① 本地快照为空就现场重新读一次 ② 仍然为空则跳过这项检查（服务端会自己报）。
+        var rows = _events;
+        if (rows.Count == 0)
+        {
+            rows = CfgSvc.ListEvents();
+            if (rows.Count > 0) _events = rows;
+        }
+        if (rows.Count > 0)
+        {
+            var known = new HashSet<string>(rows.Select(e => e.Id), StringComparer.OrdinalIgnoreCase);
+            _forceUnknown = _forceIds.Where(x => !known.Contains(x) && !string.Equals(x, "none", StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+        else _forceUnknown.Clear();
+
+        var status = CfgSvc.StatusText ?? "";
+        _forceNotApplied = _forceIds.Count > 0 && status.Contains("来源: 自动");
+    }
+
+    private void ToggleExclude(string id, bool on)
+    {
+        if (on) _excluded.Add(id); else _excluded.Remove(id);
+        StateHasChanged();
+    }
+
+    /// <summary>点一下就加入/移出强制列表（force.txt 支持逗号分隔多个活动）。</summary>
+    private void ToggleForce(string id)
+    {
+        var ids = new List<string>(_forceIds);
+        if (ids.Contains(id, StringComparer.OrdinalIgnoreCase))
+            ids.RemoveAll(x => string.Equals(x, id, StringComparison.OrdinalIgnoreCase));
+        else
+            ids.Add(id);
+
+        var (ok, msg) = CfgSvc.SetForce(ids);
+        Snackbar.Add(msg, ok ? Severity.Success : Severity.Error);
+        RefreshForceState();
+        if (_previewOpen) BuildPreviewForMap();   // ★ 契约 v3：强制集合也是预览输入 ⇒ 面板开着就同步重建（不改任何写盘逻辑）
+        _chips = BuildChips(CfgSvc.StatusText);
+        StateHasChanged();
+    }
+
+    private void ClearForce()
+    {
+        var (ok, msg) = CfgSvc.SetForce(new List<string>());
+        Snackbar.Add(msg, ok ? Severity.Success : Severity.Error);
+        RefreshForceState();
+        if (_previewOpen) BuildPreviewForMap();   // ★ 契约 v3：强制集合也是预览输入 ⇒ 面板开着就同步重建（不改任何写盘逻辑）
+        _chips = BuildChips(CfgSvc.StatusText);
+        StateHasChanged();
+    }
+
+    private Dictionary<string, string> Snapshot() => new()
+    {
+        // ★★★ v2.7.0【硬开关】不启用任何活动 —— 进 Snapshot ⇒ 改动会显示"未保存改动 N 项"
+        ["disableAllEvents"] = _disableAllEvents.ToString(),
+        ["logLevel"] = _logLevel,
+        ["weaponFallback"] = _weaponFallback.ToString(),
+        ["sainPresetInject"] = _sainPresetInject.ToString(),
+        ["rotation.enabled"] = _rotEnabled.ToString(),
+        ["rotation.mode"] = _rotMode,
+        ["rotation.intervalDays"] = _rotDays.ToString(),
+        ["rotation.count"] = _rotCount.ToString(),
+        ["rotation.slotRebaseHour"] = _rebaseHour.ToString(),
+        ["rotation.seed"] = _seed.ToString(),
+        ["rotation.onlyWhenNoSeasonal"] = _onlyGap.ToString(),
+        ["rewardRotation.enabled"] = _rewardEnabled.ToString(),
+        ["rewardRotation.countMin"] = _rewardMin.ToString(),
+        ["rewardRotation.countMax"] = _rewardMax.ToString(),
+        ["rewardRotation.avoidConflicts"] = _rewardAvoid.ToString(),
+        ["seasonRotation.mode"] = _seasonMode,
+        ["seasonRotation.intervalDays"] = _seasonDays.ToString(),
+        ["seasonRotation.offset"] = _seasonOffset.ToString(),
+        ["seasonRotation.season"] = _season,
+        ["seasonRotation.eventPhase"] = _phase,
+        ["vanillaSeasonTakeover"] = _takeoverVanilla.ToString(),
+        // ★ 第 26 项：独立天气开关（与 ConfigWeb.BoolKeys / WeatherSuppressPatch 三处逐字一致）
+        ["weather.suppressRainSnow"] = _suppressRainSnow.ToString(),
+        ["weather.suppressFog"] = _suppressFog.ToString(),
+        ["dateWindowRule"] = _dateWindowRule,
+        ["rotation.exclude"] = string.Join(",", _excluded.OrderBy(x => x, StringComparer.OrdinalIgnoreCase)),
+    };
+
+    private int ChangedCount
+    {
+        get
+        {
+            var now = Snapshot();
+            var n = 0;
+            foreach (var kv in now)
+                if (!_baseline.TryGetValue(kv.Key, out var old) || old != kv.Value) n++;
+            return n;
+        }
+    }
+
+    private IEnumerable<IGrouping<string, ConfigWebService.EventRow>> _groups =>
+        _events.GroupBy(e => string.IsNullOrEmpty(e.Category) ? "other" : e.Category)
+               .OrderBy(g => g.Key, StringComparer.OrdinalIgnoreCase);
+
+    private IEnumerable<ConfigWebService.EventRow> ShownEvents
+    {
+        get
+        {
+            var q = _search?.Trim() ?? "";
+            IEnumerable<ConfigWebService.EventRow> rows = _events;
+            if (q.Length > 0)
+            {
+                // ★ 第 16 项：搜索范围扩到「描述文字」（中文 Desc / 英文 DescEn），其余匹配保持原样
+                rows = rows.Where(e => (e.Id ?? "").Contains(q, StringComparison.OrdinalIgnoreCase)
+                                    || (e.Label ?? "").Contains(q, StringComparison.OrdinalIgnoreCase)
+                                    || (e.En ?? "").Contains(q, StringComparison.OrdinalIgnoreCase)
+                                    || (e.Desc ?? "").Contains(q, StringComparison.OrdinalIgnoreCase)
+                                    || (e.DescEn ?? "").Contains(q, StringComparison.OrdinalIgnoreCase));
+            }
+            else
+            {
+                rows = rows.Where(e => string.Equals(string.IsNullOrEmpty(e.Category) ? "other" : e.Category, _activeCat, StringComparison.OrdinalIgnoreCase));
+            }
+            // ★ 第 16 项：地图 / 标签 / 只看已排除 —— 与上面的分类/搜索**同一套过滤**，纯前端，不写盘
+            if (!string.Equals(_mapFilter, "all", StringComparison.Ordinal)) rows = rows.Where(e => TouchesMap(e.Touches, _mapFilter));
+            if (!string.Equals(_tagFilter, "all", StringComparison.Ordinal)) rows = rows.Where(e => string.Equals(NormTag(e.UiTag), _tagFilter, StringComparison.OrdinalIgnoreCase));
+            if (_onlyExcluded) rows = rows.Where(e => _excluded.Contains(e.Id));
+            return rows;
+        }
+    }
+
+    /// <summary>过滤后的条数（顶部「显示 X / N 个」用；与 <see cref="ShownEvents"/> 同一套谓词，没有第二套过滤逻辑）。</summary>
+    private int ShownCount => ShownEvents.Count();
+
+    /// <summary>标签归一化：ready / simulated / experimental；未知值按 simulated（与徽章 TagColor/TagLabel 同口径）。</summary>
+    private static string NormTag(string tag) => (tag ?? "").Trim().ToLowerInvariant() switch
+    {
+        "ready" => "ready",
+        "experimental" => "experimental",
+        _ => "simulated",
+    };
+
+    /// <summary>
+    /// 地图筛选：<c>EventRow.Touches</c> 里是否有「<c>维度:地图id</c>」且地图命中的 token（如 <c>bosses:laboratory</c>）。
+    /// <para>契约 v2 的 token 只有一个冒号；不带冒号的全局 token 不算命中 ⇒ 纯全局活动只在「全部地图」下显示。</para>
+    /// </summary>
+    private static bool TouchesMap(string touches, string map)
+    {
+        if (string.IsNullOrEmpty(touches) || string.IsNullOrEmpty(map)) return false;
+        foreach (var raw in touches.Split(','))
+        {
+            var tok = raw.Trim();
+            int idx = tok.IndexOf(':');
+            if (idx <= 0 || idx + 1 >= tok.Length) continue;
+            if (string.Equals(tok.Substring(idx + 1).Trim(), map, StringComparison.OrdinalIgnoreCase)) return true;
+        }
+        return false;
+    }
+
+    // ══════════ ★ B 线（2026-10-29）活动列表补充渲染：标签徽章 / Wiki 外链 / 倒计时 / 冲突提示 ══════════
+    //  数据来自 ConfigWeb.EventRow 的新增属性（契约见 audit\第一批补充-接口契约.md）：
+    //    UiTag(ready|simulated|experimental) · Wiki · StartDay/StartMonth/EndDay/EndMonth · ConflictsWith(List<string>)
+    //  这一整段只负责**显示**：不进 Snapshot()、不进 SaveAsync 的 patch ⇒ 配置保存逻辑一行未改。
+
+    private record ConflictInfo(string Id, string Name, string Tip);
+
+    /// <summary>徽章颜色：Ready 绿 / Simulated 蓝 / Experimental 橙（未知值按 simulated 处理）。</summary>
+    private Color TagColor(string tag) => (tag ?? "").Trim().ToLowerInvariant() switch
+    {
+        "ready" => Color.Success,
+        "experimental" => Color.Warning,
+        _ => Color.Info,
+    };
+
+    private string TagLabel(string tag) => (tag ?? "").Trim().ToLowerInvariant() switch
+    {
+        "ready" => L("原生", "Ready"),
+        "experimental" => L("实验", "Experimental"),
+        _ => L("模拟", "Simulated"),
+    };
+
+    private string TagHint(string tag) => (tag ?? "").Trim().ToLowerInvariant() switch
+    {
+        "ready" => L("服务端数据本来就有，活动期只是把它放出来。", "Native server data - the event window just exposes it."),
+        "experimental" => L("依赖客户端机制或旧代码，稳定性未完全验证。", "Depends on client-side mechanics or legacy code; stability not fully verified."),
+        _ => L("用服务端数据模拟还原（刷点 / 倍率 / 商人 / 藏身处 / 跳蚤）。", "Simulated with server data (spawns / rates / traders / hideout / flea)."),
+    };
+
+    /// <summary>
+    /// 日期窗倒计时（纯前端按本地今天算）：距开始 N 天 / 进行中，还剩 N 天 / 已结束。
+    /// <para>events.json 里的月份日期**没有年份**（按年循环）⇒ 跨年窗口（例如 12/13–1/2）要把结束年 +1；
+    /// 年初时上一年那份可能还在进行中，所以先试「去年那份」，不命中再看「今年那份」。
+    /// 「还剩」按**含今天**算（窗口最后一天 = 还剩 1 天）。取不到合法日期就返回空串（这一项不显示）。</para>
+    /// </summary>
+    private string CountdownText(ConfigWebService.EventRow e)
+    {
+        try
+        {
+            if (e == null || e.StartDay <= 0 || e.StartMonth <= 0 || e.EndDay <= 0 || e.EndMonth <= 0) return "";
+            var today = DateTime.Today;
+            bool wraps = e.EndMonth < e.StartMonth || (e.EndMonth == e.StartMonth && e.EndDay < e.StartDay);
+
+            DateTime StartAt(int y) => new DateTime(y, e.StartMonth, e.StartDay);
+            DateTime EndAt(int y) => new DateTime(wraps ? y + 1 : y, e.EndMonth, e.EndDay);
+
+            var s = StartAt(today.Year);
+            var t = EndAt(today.Year);
+            var ps = StartAt(today.Year - 1);
+            var pt = EndAt(today.Year - 1);
+            if (today <= pt) { s = ps; t = pt; }        // 年初还在上一年那份窗口里
+
+            if (today < s) return L($"距开始 {(s - today).Days} 天", $"starts in {(s - today).Days} d");
+            if (today <= t) return L($"进行中，还剩 {(t - today).Days + 1} 天", $"running, {(t - today).Days + 1} d left");
+            return L("已结束", "ended");
+        }
+        catch { return ""; }
+    }
+
+    /// <summary>服务端快照里「当前实际生效」的活动 id（带缓存：快照原文变了才重解析）。</summary>
+    private HashSet<string> _activeIds = new(StringComparer.OrdinalIgnoreCase);
+    private string _activeIdsKey;
+
+    /// <summary>
+    /// 解析 StatusText 的机器可读行拿到当前生效 id：
+    /// <c>#事件|分类|中文名|英文名|id|说明|英文说明</c>（第 5 列）与 <c>#手动|强制id|生效id列表</c>。
+    /// 注意：StatusText 是**服务端快照**（写 当前生效活动.txt 的同一份文本），所以这里就是"正在跑的活动"。
+    /// </summary>
+    private HashSet<string> ActiveEventIds()
+    {
+        var status = CfgSvc.StatusText ?? "";
+        if (string.Equals(_activeIdsKey, status, StringComparison.Ordinal)) return _activeIds;
+        var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        try
+        {
+            foreach (var raw in status.Split('\n'))
+            {
+                var line = raw.Trim();
+                if (line.StartsWith("#事件|", StringComparison.Ordinal))
+                {
+                    var parts = line.Split('|');
+                    if (parts.Length > 4 && parts[4].Trim().Length > 0) set.Add(parts[4].Trim());
+                }
+                else if (line.StartsWith("#手动|", StringComparison.Ordinal))
+                {
+                    foreach (var seg in line.Substring("#手动|".Length).Split('|'))
+                        foreach (var id in seg.Split(new[] { ',', ';', ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries))
+                            if (id.Trim().Length > 0) set.Add(id.Trim());
+                }
+            }
+        }
+        catch { }
+        _activeIds = set;
+        _activeIdsKey = status;
+        return set;
+    }
+
+    /// <summary>这个活动现在算不算「已勾选 / 已生效」：手动强制（force.txt，还没套用也算）+ 服务端快照里正在跑的。</summary>
+    private bool IsCheckedOrActive(string id)
+        => !string.IsNullOrEmpty(id)
+           && (_forceIds.Contains(id, StringComparer.OrdinalIgnoreCase) || ActiveEventIds().Contains(id));
+
+    /// <summary>本行要提示的冲突：<c>ConflictsWith</c> 里当前「已勾选 / 已生效」的那些（名字用现有活动列表现查）。</summary>
+    private List<ConflictInfo> ConflictsOf(ConfigWebService.EventRow e)
+    {
+        var res = new List<ConflictInfo>();
+        try
+        {
+            if (e?.ConflictsWith == null || e.ConflictsWith.Count == 0) return res;
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var rawId in e.ConflictsWith)
+            {
+                var cid = (rawId ?? "").Trim();
+                if (cid.Length == 0 || !seen.Add(cid)) continue;
+                if (!IsCheckedOrActive(cid)) continue;
+                var name = EventDisplayName(cid);
+                res.Add(new ConflictInfo(cid, name,
+                    L($"与 {name}（{cid}）的效果范围重叠，同时开启可能互相覆盖。",
+                      $"Overlaps {name} ({cid}); enabling both may overwrite each other.")));
+            }
+        }
+        catch { }
+        return res;
+    }
+
+    /// <summary>按当前界面语言取活动显示名（查不到就用 id 兜底）。</summary>
+    private string EventDisplayName(string id)
+    {
+        try
+        {
+            var row = _events.FirstOrDefault(x => string.Equals(x?.Id, id, StringComparison.OrdinalIgnoreCase));
+            if (row == null) return id;
+            if (!_zh) return string.IsNullOrEmpty(row.En) ? (string.IsNullOrEmpty(row.Zh) ? id : row.Zh) : row.En;
+            return string.IsNullOrEmpty(row.Zh) ? id : row.Zh;
+        }
+        catch { return id; }
+    }
+
+    // ══════════ ★ B 线（契约 v3 · 进图预览）渲染辅助 ══════════
+
+    /// <summary>地图下拉的绑定属性：换图就重建预览（只在用户选图时被 set）。</summary>
+    private string PreviewMap
+    {
+        get => _previewMap;
+        set
+        {
+            var v = string.IsNullOrWhiteSpace(value) ? "bigmap" : value;
+            if (string.Equals(_previewMap, v, StringComparison.Ordinal)) return;
+            _previewMap = v;
+            BuildPreviewForMap();
+        }
+    }
+
+    /// <summary>展开 / 收起。展开时重建一次；收起不做任何调用 ⇒ 关着的时候零开销、零 I/O。</summary>
+    private void TogglePreview()
+    {
+        _previewOpen = !_previewOpen;
+        if (_previewOpen) BuildPreviewForMap();
+    }
+
+    /// <summary>
+    /// 调服务端只读推导（契约 v3：<c>ConfigWebService.BuildPreview(mapId)</c>）。
+    /// <para>只读：不写配置、不写 force.txt、不触发任何 dimension 的 Apply；异常只在本面板里提示，不往上抛。</para>
+    /// </summary>
+    private void BuildPreviewForMap()
+    {
+        _previewError = "";
+        try { _preview = CfgSvc.BuildPreview(_previewMap); }
+        catch (Exception ex) { _preview = null; _previewError = ex.Message; }
+    }
+
+    /// <summary>按契约 v3 的固定顺序排分组：空分组丢掉；契约外的未知分组按服务端返回顺序垫后。</summary>
+    private List<ConfigWebService.PreviewGroup> OrderedPreviewGroups()
+    {
+        var res = new List<ConfigWebService.PreviewGroup>();
+        var src = _preview?.Groups;
+        if (src == null) return res;
+        var used = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var key in _previewOrder)
+        {
+            var g = src.FirstOrDefault(x => x != null && string.Equals(x.Key, key, StringComparison.OrdinalIgnoreCase));
+            if (g == null || !used.Add(key)) continue;
+            if (g.Items != null && g.Items.Count > 0) res.Add(g);
+        }
+        foreach (var g in src)
+        {
+            if (g == null) continue;
+            if (!used.Add(g.Key ?? "")) continue;
+            if (g.Items != null && g.Items.Count > 0) res.Add(g);
+        }
+        return res;
+    }
+
+    /// <summary>分组标题：按 Key 查本页的中英表；未知分组回退服务端 Title，再回退 Key。</summary>
+    private string PreviewTitle(string key, string fallbackTitle)
+    {
+        var k = (key ?? "").Trim().ToLowerInvariant();
+        if (k.Length > 0 && _previewTitles.TryGetValue(k, out var t)) return L(t.zh, t.en);
+        if (!string.IsNullOrEmpty(fallbackTitle)) return fallbackTitle;
+        return k;
+    }
+
+    /// <summary>「来自 X」：优先服务端 FromName；英文界面优先用活动表里的英文名；最后回退活动 id。</summary>
+    private string FromLabel(string from, string fromName)
+    {
+        var id = (from ?? "").Trim();
+        var name = (fromName ?? "").Trim();
+        if (!_zh && id.Length > 0)
+        {
+            var en = EventDisplayName(id);
+            if (!string.IsNullOrEmpty(en) && !string.Equals(en, id, StringComparison.OrdinalIgnoreCase)) name = en;
+        }
+        if (name.Length == 0) name = id;
+        return name.Length == 0 ? "" : L($"来自 {name}", $"from {name}");
+    }
+
+    // ══════════ ★ 第 17 + 20 项：任务链展开 / 兼容性提示（纯渲染，无网络请求，不进 Snapshot） ══════════
+    //  数据来自 ConfigWeb.EventRow 的新字段（另一条线实现，契约见任务说明）：
+    //    List<QuestInfo> Quests · string QuestSummary · List<CompatNote> Compat
+    //  这一整段只负责**显示**：不改 Save/Reload/Snapshot，过滤状态也不进 config（_expandedRows 只是本组件内存）。
+
+    /// <summary>点标题展开 / 收起这一行的任务链 + 兼容提示（多行可同时展开；默认全收起）。</summary>
+    private void ToggleRow(string id)
+    {
+        var key = (id ?? "").Trim();
+        if (key.Length == 0) return;
+        if (!_expandedRows.Add(key)) _expandedRows.Remove(key);
+    }
+
+    /// <summary>折叠标题：有任务链时是「任务链（summary）」，否则是「其它 mod 的兼容提示（N 条）」。</summary>
+    private string RowToggleTitle(ConfigWebService.EventRow e, int chainTotal, int chainMissing, int compatCount)
+    {
+        if (chainTotal > 0)
+        {
+            if (_zh)
+            {
+                // 中文优先用服务端给的 QuestSummary；为空则自己按条数/缺失数兜底
+                var s = (e?.QuestSummary ?? "").Trim();
+                if (s.Length == 0) s = chainMissing > 0 ? $"{chainTotal} 条 · 本机缺 {chainMissing} 条" : $"{chainTotal} 条";
+                return $"任务链（{s}）";
+            }
+            return chainMissing > 0
+                ? $"Quest chain ({chainTotal} quests, {chainMissing} missing locally)"
+                : $"Quest chain ({chainTotal} quests)";
+        }
+        return _zh ? $"其它 mod 的兼容提示（{compatCount} 条）" : $"Compat notes ({compatCount})";
+    }
+
+    /// <summary>活动行里显示的任务名（跟随界面语言；查不到名字就回退 id）。</summary>
+    private string QuestDisplayName(ConfigWebService.EventRow.QuestInfo q)
+    {
+        if (q == null) return "";
+        var zh = (q.NameZh ?? "").Trim();
+        var en = (q.NameEn ?? "").Trim();
+        var id = (q.Id ?? "").Trim();
+        if (_zh) return zh.Length > 0 ? zh : (en.Length > 0 ? en : id);
+        return en.Length > 0 ? en : (zh.Length > 0 ? zh : id);
+    }
+
+    /// <summary>
+    /// 把 <c>Quests</c> 按 <c>PreviousId</c> 串成一条链（只在**展开时**才调用）。
+    /// <para>容错（都是"绝不丢条目、绝不死循环"）：</para>
+    /// <list type="bullet">
+    /// <item><b>断链</b>（PreviousId 指向列表里不存在的 id）⇒ 该条不算 child、当根处理，链从它开始接。</item>
+    /// <item><b>多个根</b>（新手链 / 前置缺失 / 自引用）⇒ 按 Quests 原顺序逐个当根走，各段顺序拼接。</item>
+    /// <item><b>循环引用</b> ⇒ visited 集合 + 步数上限双保险，走到重复 id 立即停；环里剩下的条目最后按原顺序补在末尾。</item>
+    /// <item><b>分叉</b>（两条的 PreviousId 相同）⇒ 先到先接，另一条由末尾兜底补上。</item>
+    /// </list>
+    /// </summary>
+    private List<ConfigWebService.EventRow.QuestInfo> QuestChainOf(ConfigWebService.EventRow e)
+    {
+        var src = e?.Quests;
+        var ordered = new List<ConfigWebService.EventRow.QuestInfo>();
+        if (src == null || src.Count == 0) return ordered;
+
+        var byId = new Dictionary<string, ConfigWebService.EventRow.QuestInfo>(StringComparer.OrdinalIgnoreCase);
+        foreach (var q in src)
+        {
+            if (q == null) continue;
+            ordered.Add(q);                                  // 原顺序（兜底补尾巴用）
+            var id = (q.Id ?? "").Trim();
+            if (id.Length > 0 && !byId.ContainsKey(id)) byId[id] = q;
+        }
+        if (ordered.Count == 0) return ordered;
+
+        var next = new Dictionary<string, ConfigWebService.EventRow.QuestInfo>(StringComparer.OrdinalIgnoreCase);
+        var isChild = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var q in ordered)
+        {
+            var id = (q.Id ?? "").Trim();
+            var prev = (q.PreviousId ?? "").Trim();
+            if (id.Length == 0 || prev.Length == 0) continue;
+            if (string.Equals(prev, id, StringComparison.OrdinalIgnoreCase)) continue;   // 自引用 ⇒ 当根，不当 child
+            if (!byId.ContainsKey(prev)) continue;                                       // 断链 ⇒ 当根
+            if (!next.ContainsKey(prev)) next[prev] = q;                                 // 分叉 ⇒ 先到先接
+            isChild.Add(id);
+        }
+
+        var roots = new List<ConfigWebService.EventRow.QuestInfo>();
+        foreach (var q in ordered)
+        {
+            var id = (q.Id ?? "").Trim();
+            if (id.Length == 0 || !isChild.Contains(id)) roots.Add(q);
+        }
+        if (roots.Count == 0) roots.Add(ordered[0]);          // 全成环 ⇒ 从第一条开始，靠 visited 收尾
+
+        var result = new List<ConfigWebService.EventRow.QuestInfo>(ordered.Count);
+        var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var root in roots)
+        {
+            var cur = root;
+            var guard = 0;
+            while (cur != null && guard++ <= ordered.Count)
+            {
+                var id = (cur.Id ?? "").Trim();
+                if (id.Length > 0 && !visited.Add(id)) break;                     // 环 / 重复 ⇒ 停
+                result.Add(cur);
+                cur = (id.Length > 0 && next.TryGetValue(id, out var nx)) ? nx : null;
+            }
+        }
+        // 兜底：环外没走到的（分叉的败者）/ 无 id 的，按原顺序补在末尾 —— 保证一条都不丢
+        //（纯环的情况：上面那次 walk 会先把环上每条各收一次，再在回到起点时 break，所以这里不用再接环。）
+        foreach (var q in ordered)
+        {
+            if (result.Contains(q)) continue;
+            var id = (q.Id ?? "").Trim();
+            if (id.Length > 0 && !visited.Add(id)) continue;
+            result.Add(q);
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// 第 20 项：兼容性提示的过滤 —— <c>Map == "*"</c>（或空）永远显示；
+    /// 其余只有「当前地图筛选 = 全部」或「正好是选中的那张图」时才显示。
+    /// </summary>
+    private List<ConfigWebService.EventRow.CompatNote> CompatForMap(ConfigWebService.EventRow e)
+    {
+        var res = new List<ConfigWebService.EventRow.CompatNote>();
+        var notes = e?.Compat;
+        if (notes == null || notes.Count == 0) return res;
+        var want = _mapFilter ?? "all";
+        var filtering = !string.Equals(want, "all", StringComparison.Ordinal);
+        foreach (var n in notes)
+        {
+            if (n == null) continue;
+            var m = (n.Map ?? "").Trim();
+            var isGlobal = m.Length == 0 || m == "*";
+            if (!isGlobal && filtering && !string.Equals(m, want, StringComparison.OrdinalIgnoreCase)) continue;
+            res.Add(n);
+        }
+        return res;
+    }
+
+    private async Task SaveAsync()
+    {
+        // 没有未保存改动 ⇒ 不写盘（避免每次点都生成一份备份），只重读 force + 重算活动
+        if (ChangedCount == 0)
+        {
+            Snackbar.Add(CfgSvc.Reapply(), Severity.Success);
+            _forceIds = CfgSvc.ReadForce();
+            _forceConflicts = CfgSvc.ForceConflicts();
+            _chips = BuildChips(CfgSvc.StatusText);
+            StateHasChanged();
+            await Task.CompletedTask;
+            return;
+        }
+
+        var patch = new JsonObject
+        {
+            // ★★★ v2.7.0【硬开关】不启用任何活动（ConfigWeb.BoolKeys 白名单 + EventEngine.LoadConfig 读取点，
+            //   三处键名逐字一致 = `disableAllEvents`）。保存后 ReloadSettingsFromDisk 检测到状态翻转
+            //   ⇒ 立刻做一次「完整还原 + 按新状态套用」，不用重启服务端。
+            ["disableAllEvents"] = _disableAllEvents,
+            ["logLevel"] = _logLevel,
+            ["weaponFallback"] = _weaponFallback,
+            ["sainPresetInject"] = _sainPresetInject,
+            ["rotation.enabled"] = _rotEnabled,
+            ["rotation.mode"] = _rotMode,
+            ["rotation.intervalDays"] = _rotDays,
+            ["rotation.count"] = _rotCount,
+            ["rotation.slotRebaseHour"] = _rebaseHour,
+            ["rotation.seed"] = _seed,
+            ["rotation.onlyWhenNoSeasonal"] = _onlyGap,
+            ["rewardRotation.enabled"] = _rewardEnabled,
+            ["rewardRotation.countMin"] = _rewardMin,
+            ["rewardRotation.countMax"] = _rewardMax,
+            ["rewardRotation.avoidConflicts"] = _rewardAvoid,
+            ["seasonRotation.mode"] = _seasonMode,
+            ["seasonRotation.intervalDays"] = _seasonDays,
+            ["seasonRotation.offset"] = _seasonOffset,
+            ["seasonRotation.season"] = _season,
+            ["seasonRotation.eventPhase"] = _phase,
+            // ★ 2026-10-29【第 25 项 · 接管原版季节窗】键名与 `ConfigWeb.BoolKeys` 白名单、
+            //   以及 `Plugin.ApplyVanillaSeasonTakeover` 的读取点三者**逐字一致** = `vanillaSeasonTakeover`。
+            //   ⚠ 之前只进了 Snapshot()（所以能显示"未保存改动 1 项"），patch 里没有它 ⇒ 点了保存也写不进去。
+            ["vanillaSeasonTakeover"] = _takeoverVanilla,
+            // ★ 第 26 项：独立天气开关（ConfigWeb.BoolKeys 白名单；服务端 WeatherSuppressPatch 热读，
+            //   进下一局即生效、**不需要重启**，所以不在 RestartRequiredKeys 里）
+            ["weather.suppressRainSnow"] = _suppressRainSnow,
+            ["weather.suppressFog"] = _suppressFog,
+            // ★ 第 23 项：日期窗规则（ConfigWeb.EnumKeys 白名单：seasonOffOnly | always）
+            ["dateWindowRule"] = _dateWindowRule,
+        };
+        var arr = new JsonArray();
+        foreach (var id in _excluded.OrderBy(x => x, StringComparer.OrdinalIgnoreCase)) arr.Add(id);
+        patch["rotation.exclude"] = arr;
+
+        var (ok, msg) = CfgSvc.Save(patch);
+        Snackbar.Add(msg, ok ? Severity.Success : Severity.Error);
+        Reload();
+        StateHasChanged();
+        await Task.CompletedTask;
+    }
+
+    private void RestoreSelected()
+    {
+        var (ok, msg) = CfgSvc.Restore(_selectedBackup);
+        Snackbar.Add(msg, ok ? Severity.Success : Severity.Error);
+        Reload();
+        StateHasChanged();
+    }
+
+    private string CatName(string cat) => cat switch
+    {
+        "event_ai" => L("AI 活动", "AI events"),
+        "event_small" => L("小活动", "Small events"),
+        "event_task" => L("带任务", "With quests"),
+        "reward" => L("奖励活动", "Reward events"),
+        "seasonal" => L("季节活动", "Seasonal events"),
+        _ => cat,
+    };
+
+    private string ChipLabel(string kind) => kind switch
+    {
+        "slot" => L("档位", "Slot"),
+        "start" => L("本档开始", "Slot starts"),
+        "next" => L("下次换档", "Next slot"),
+        "active" => L("当前活动", "Active"),
+        _ => kind,
+    };
+
+    private List<(string kind, string value, bool warn)> BuildChips(string status)
+    {
+        var chips = new List<(string, string, bool)>();
+        try
+        {
+            foreach (var line in (status ?? "").Split('\n'))
+            {
+                var t = line.Trim();
+                if (t.Length == 0) continue;
+
+                if (t.StartsWith("档位:"))
+                {
+                    var v = t.Substring(3).Trim();
+                    var cut = v.IndexOf('（');
+                    var slot = cut > 0 ? v.Substring(0, cut).Trim() : v;
+                    chips.Add(("slot", slot + L($"（每 {_rotDays} 天换一档，基准 {_rebaseHour}:00）", $" ({_rotDays}d per slot, rebase {_rebaseHour}:00)"), false));
+                }
+                else if (t.StartsWith("本档开始:"))
+                    chips.Add(("start", t.Substring(5).Trim(), false));
+                else if (t.StartsWith("下次换档:"))
+                    chips.Add(("next", t.Substring(5).Trim(), false));
+                else if (t.StartsWith("当前活动") || t.StartsWith("生效活动"))
+                    chips.Add(("active", t[(t.IndexOf(':') + 1)..].Trim(), true));
+
+                if (chips.Count >= 4) break;
+            }
+        }
+        catch { }
+        return chips;
+    }
+
+    private static JsonObject Obj(JsonObject root, string key) => root?[key] as JsonObject;
+
+    private static string Str(JsonObject root, string key, string dflt)
+    {
+        try { return root?[key]?.ToString() ?? dflt; } catch { return dflt; }
+    }
+
+    private static bool Bool(JsonObject root, string key, bool dflt)
+    {
+        try
+        {
+            var t = root?[key]?.ToJsonString()?.Trim();
+            if (string.Equals(t, "true", StringComparison.OrdinalIgnoreCase)) return true;
+            if (string.Equals(t, "false", StringComparison.OrdinalIgnoreCase)) return false;
+        }
+        catch { }
+        return dflt;
+    }
+
+    private static int Num(JsonObject root, string key, int dflt)
+    {
+        try
+        {
+            var t = root?[key]?.ToJsonString()?.Trim();
+            if (double.TryParse(t, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var d)) return (int)d;
+        }
+        catch { }
+        return dflt;
+    }
+}

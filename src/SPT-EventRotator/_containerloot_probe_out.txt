@@ -1,0 +1,434 @@
+========================================================================================================
+containerLootInject 离线探针（真身代码 + 实机 staticContainers.json 副本）
+  mod 目录   : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator
+  实机数据   : D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\locations\woods\staticContainers.json
+  临时副本   : C:/Users/32674/OneDrive/Documents/deepseek-harness/default-workspace/fix/SPT-EventRotator/_probe_containerloot/tmp\containerloot_probe_5e5e5a23\staticContainers.json  (345,269 bytes)
+  实机文件只读：探针全程不碰 D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\locations\woods\staticContainers.json（副本退出即删）
+
+[0] items.json 载入：4673 个 tpl
+[0] 首次读 .Value（反序列化）：139 ms，容器 429 个
+[0] events.json → 'wild_wild_woods'，onlyOnMap='woods'，chance=1，categories=jacket,medbox,toolbox,safe,weaponbox,duffle,crate,drawer,groundcache,ammobox,grenadebox,corpse
+[0] 基线序列化：462452 chars
+  ✅ 基线序列化成功
+  [EventRotator][容器注入] woods：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods 夹克：命中 18/18 个容器，注入 18 件
+  [EventRotator][容器注入] woods 医疗箱：命中 15/15 个容器，注入 15 件
+  [EventRotator][容器注入] woods 工具箱：命中 57/57 个容器，注入 57 件
+  [EventRotator][容器注入] woods 保险箱：命中 3/3 个容器，注入 3 件
+  [EventRotator][容器注入] woods 武器箱：命中 50/50 个容器，注入 50 件
+  [EventRotator][容器注入] woods 旅行包：命中 62/62 个容器，注入 62 件
+  [EventRotator][容器注入] woods 木箱/板条箱：命中 57/57 个容器，注入 57 件
+  [EventRotator][容器注入] woods 抽屉/柜子：命中 36/36 个容器，注入 36 件
+  [EventRotator][容器注入] woods 地面藏匿/埋藏桶：命中 45/45 个容器，注入 45 件
+  [EventRotator][容器注入] woods 弹药箱：命中 8/8 个容器，注入 8 件
+  [EventRotator][容器注入] woods 手雷箱：命中 11/11 个容器，注入 11 件
+  [EventRotator][容器注入] woods 尸体：命中 58/58 个容器，注入 58 件
+  [EventRotator][容器注入] woods：容器注入合计 命中 420/420 个容器，注入 420 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods：容器覆盖率 420/429 属于注入类别（97.9%）；未归类 tpl：配给物资箱(8)、节日空投物资箱(1)
+
+[1] Apply 完成：96 ms（含自证读取一次 .Value；登记还原闭包 1 个）
+[1] 读 .Value（注入后）：容器 429 个，Items 总数 849，多物品容器 420 个
+[1] 森林各类容器数：旅行包 62、尸体 58、工具箱 57、木箱/板条箱 57、武器箱 50、地面藏匿/埋藏桶 45、抽屉/柜子 36、夹克 18、医疗箱 15、手雷箱 11、弹药箱 8、保险箱 3
+    配置覆盖容器合计：420 个（占全图 429 个 = 97.9%）
+    未归类容器 tpl：5d6fd13186f77424ad2a8c69×8、67614e3a6a90e4f10b0b140d×1
+
+[断言 ①②] 注入量 ≈ 容器数 × chance；每容器最多 1 件
+  ✅ 没有任何容器被塞超过 1 件  [违规 0 个]
+  ✅ 所有注入都落在配置的容器类别里  [未归类 0 个]
+  ✅ 确实注入了物品  [420 件]
+  ✅ 注入量 420 ≈ 容器 420 × chance 1 = 420.0  [4σ 容差 ±2.0]
+  ✅ 旅行包：62 / 62 个容器命中（期望 62.0）
+  ✅ 尸体：58 / 58 个容器命中（期望 58.0）
+  ✅ 工具箱：57 / 57 个容器命中（期望 57.0）
+  ✅ 木箱/板条箱：57 / 57 个容器命中（期望 57.0）
+  ✅ 武器箱：50 / 50 个容器命中（期望 50.0）
+  ✅ 地面藏匿/埋藏桶：45 / 45 个容器命中（期望 45.0）
+  ✅ 抽屉/柜子：36 / 36 个容器命中（期望 36.0）
+  ✅ 夹克：18 / 18 个容器命中（期望 18.0）
+  ✅ 医疗箱：15 / 15 个容器命中（期望 15.0）
+  ✅ 手雷箱：11 / 11 个容器命中（期望 11.0）
+  ✅ 弹药箱：8 / 8 个容器命中（期望 8.0）
+  ✅ 保险箱：3 / 3 个容器命中（期望 3.0）
+
+[断言 ③④⑥] 注入件结构 / 尺寸 / tpl 存在性
+  ✅ 注入件 _id 全为 24 位 hex  [违规 0]
+  ✅ 注入件 _id 全表唯一  [重复 0]
+  ✅ 注入件 parentId == 容器 Template.Root（数据层不悬空）  [违规 0]
+  ✅ 注入件 slotId == 该容器真实 grid 名（不是硬编码 main）  [违规 0]
+  ✅ 注入件 upd.StackObjectsCount 正确（普通=1；弹药/卢布=配置的 stacks）  [违规 0 ]
+  ✅ 所有注入物 tpl 存在于实机 items.json  [缺失 0]
+  ✅ 注入物都来自该容器所属类别的物品池（不是所有容器都出钥匙卡）  [串类 0]
+  ✅ 所有注入物尺寸适配容器格子（允许旋转）  [越界 0 ]
+
+[实测] 注入 tpl 分布
+      5d1b33a686f7742523398398  ×35
+      60b0f7057897d47c5b04ab94  ×25
+      62a08f4c4f842e1bd12d9d62  ×25
+      5d1b376e86f774252519444e  ×22
+      5449016a4bdc2d6f028b456f  ×22
+      57347baf24597738002c6178  ×21
+      590a3b0486f7743954552bdb  ×21
+      5c0e530286f7747fa1419862  ×20
+      5d03794386f77420415576f5  ×17
+      5d235b4d86f7742e017bc88a  ×17
+      57ac965c24597706be5f975c  ×16
+      544a3a774bdc2d3a388b4567  ×16
+      590c657e86f77412b013051d  ×16
+      57347ca924597744596b4e71  ×15
+      5a1eaa87fcdbcb001865f75e  ×13
+      5ede7a8229445733cb4c18e2  ×11
+      6768c25aa7b238f14a08d3f6  ×11
+      5c12613b86f7743bbe2c3f76  ×11
+      5c05308086f7746b2101e90b  ×9
+      5c110624d174af029e69734c  ×8
+      5fc382a9d724d907e2077dab  ×8
+      5a6086ea4f39f99cd479502f  ×7
+      5c0530ee86f774697952d952  ×6
+      5d80c62a86f7744036212b3f  ×6
+      5d1b5e94d7ad1a2b865a96b0  ×6
+      63a3a93f8a56922e82001f5d  ×5
+      5d80c60f86f77440373c4ece  ×5
+      59faff1d86f7746c51718c9c  ×4
+      5c1d0c5f86f7744bb2683cf0  ×4
+      617fd91e5539a84ec44ce155  ×3
+      5c1d0d6d86f7744bb2683e1f  ×3
+      5c05293e0db83400232fff80  ×2
+      5e32f56fcb6d5863cc5e5ee4  ×2
+      58d3db5386f77426186285a0  ×2
+      618a431df1eb8e24b8741deb  ×2
+      5c1e495a86f7743109743dfb  ×1
+      5c1d0dc586f7744baf2e7b79  ×1
+      5a2a57cfc4a2826c6e06d44a  ×1
+      617aa4dd8166f034d57de9c5  ×1
+
+[断言 ⑦] 生成期父节点修复：把根 _id 换成新 MongoId 后，注入件 parentId 改指新 Root
+  [EventRotator][容器注入] 生成钩子已到达：map=woods，本局静态容器 1 个 ⇒ 注入计划 12 类，chance=1
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (0,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存
+  ✅ 注入件 parentId 已改指运行期新 Root  [旧 6784f7229f182de711123417 → 新 773b44f201bc43f2a5993dea]
+  ✅ 注入件 location 合法（v3：算得出就给显式 {x,y,r}，算不出才 null）  [显式坐标]
+
+[断言 ⑦b] v1 事故复现：预注入件从生成结果里消失 ⇒ postfix 必须当场补齐
+          （实机 spt20261024.log：chance=0.25 与 chance=1.0 两局都是 `A total of: 1822`
+            ⇒ 注入件根本没进 __result；v1 的 postfix 当时 fixedN=0/notSpawned=0 全程静默）
+  ✅ 每个类别各取到 1 个样本容器  [12/12]
+      样本：木箱/板条箱/578f87ad245977356274f2cc、旅行包/578f87a3245977356274f2cb、工具箱/5d6fd45b86f774317075ed43、地面藏匿/埋藏桶/5d6d2bb386f774785b07a77a、夹克/578f8778245977358849a9b5、尸体/6582e6d7b14c3f72eb071420、武器箱/5909d7cf86f77470ee57d75a、医疗箱/5909d24f86f77466f56e6855、抽屉/柜子/578f87b7245977356274f2cd、手雷箱/5909d36d86f774660f0bb900、弹药箱/5909d45286f77465a8136dc6、保险箱/5d07b91b86f7745a077a9432
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00031(木制板条箱)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：旅行包 4x3 → 注入件(Superwater 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Superwater×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 旅行包(578f87a3…) → Superwater
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_DesignMain_00049(旅行包)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：旅行包 4x3 → 注入件(Loot Lord 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Loot Lord×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 旅行包(578f87a3…) → Loot Lord
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：旅行包 4x3 → 注入件(Superwater 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Superwater×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 旅行包(578f87a3…) → Superwater
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：技术物资箱 5x5 → 注入件(内存 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 技术物资箱(5d6fd45b…) → 内存
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00286(技术物资箱)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：技术物资箱 5x5 → 注入件(显卡 2x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 显卡×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 技术物资箱(5d6fd45b…) → 显卡
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：技术物资箱 5x5 → 注入件(内存 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 内存×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 技术物资箱(5d6fd45b…) → 内存
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：物资埋藏桶 3x4 → 注入件(Superwater 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Superwater×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 物资埋藏桶(5d6d2bb3…) → Superwater
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00074(物资埋藏桶)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：物资埋藏桶 3x4 → 注入件(私酒 1x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 私酒×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 物资埋藏桶(5d6d2bb3…) → 私酒
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：物资埋藏桶 3x4 → 注入件(Superwater 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Superwater×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 物资埋藏桶(5d6d2bb3…) → Superwater
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：夹克 2x2 → 注入件(RB-VO 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 RB-VO×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 夹克(578f8778…) → RB-VO
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00151(夹克)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：夹克 2x2 → 注入件(紫卡 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 紫卡×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 夹克(578f8778…) → 紫卡
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：夹克 2x2 → 注入件(RB-VO 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 RB-VO×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 夹克(578f8778…) → RB-VO
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：PMC尸体 4x4 → 注入件(Grizzly 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Grizzly×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 PMC尸体(6582e6d7…) → Grizzly
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_Woods_Blockout2b_00006(PMC尸体)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：PMC尸体 4x4 → 注入件(Propital 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Propital×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 PMC尸体(6582e6d7…) → Propital
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：PMC尸体 4x4 → 注入件(Grizzly 2x2) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Grizzly×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 PMC尸体(6582e6d7…) → Grizzly
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：武器箱 4x4 → 注入件(T-7 2x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 T-7×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 武器箱(5909d7cf…) → T-7
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_DesignMain_00011(武器箱)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：武器箱 4x4 → 注入件(REAP-IR 2x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 REAP-IR×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 武器箱(5909d7cf…) → REAP-IR
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：武器箱 4x4 → 注入件(T-7 2x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 T-7×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 武器箱(5909d7cf…) → T-7
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：SMU06 医疗包 4x3 → 注入件(Propital 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Propital×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 SMU06 医疗包(5909d24f…) → Propital
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00293(SMU06 医疗包)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：SMU06 医疗包 4x3 → 注入件(LEDX 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 LEDX×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 SMU06 医疗包(5909d24f…) → LEDX
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：SMU06 医疗包 4x3 → 注入件(Propital 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 Propital×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 SMU06 医疗包(5909d24f…) → Propital
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：抽屉 2x2 → 注入件(GP 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 GP×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 抽屉(578f87b7…) → GP
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00247(抽屉)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：抽屉 2x2 → 注入件(RB-PKPM 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 RB-PKPM×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 抽屉(578f87b7…) → RB-PKPM
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：抽屉 2x2 → 注入件(GP 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 GP×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 抽屉(578f87b7…) → GP
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：手榴弹箱 3x2 → 注入件(RGO 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 RGO×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 手榴弹箱(5909d36d…) → RGO
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00041(手榴弹箱)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：手榴弹箱 3x2 → 注入件(VOG-17 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 VOG-17×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 手榴弹箱(5909d36d…) → VOG-17
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：手榴弹箱 3x2 → 注入件(RGO 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 RGO×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 手榴弹箱(5909d36d…) → RGO
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木弹药箱 3x3 → 注入件(M61 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 M61×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木弹药箱(5909d452…) → M61
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：n1(木弹药箱)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木弹药箱 3x3 → 注入件(M80A1 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 M80A1×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木弹药箱(5909d452…) → M80A1
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：木弹药箱 3x3 → 注入件(M61 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 M61×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 木弹药箱(5909d452…) → M61
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：Сommon fund储藏处 5x5 → 注入件(GP 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 GP×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 Сommon fund储藏处(5d07b91b…) → GP
+  [EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：Lootable_00063(Сommon fund储藏处)
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：Сommon fund储藏处 5x5 → 注入件(GP 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 GP×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 Сommon fund储藏处(5d07b91b…) → GP
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 1 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：Сommon fund储藏处 5x5 → 注入件(GP 1x1) 放 (1,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods：注入明细 GP×1（共 1 件）
+  [EventRotator][容器注入] woods：样例 Сommon fund储藏处(5d07b91b…) → GP
+  ✅ A) 预注入件丢失 ⇒ 每个容器都被补注入 1 件（v1 事故已修）  [12/12]
+  ✅ B) 预注入件仍在 ⇒ 只修不补，每容器仍只有 1 件（不翻倍）  [12/12]
+  ✅ C) transformer 压根没跑（登记表无此容器）⇒ 仍然补注入 1 件  [12/12]
+  ✅ 补齐件结构全部合格（parentId=运行期Root / slotId=真实grid / location 合法 / 尺寸适配 / 已在JSON里）  []
+  [EventRotator][容器注入] 生成钩子已到达：map=bigmap，本局静态容器 1 个 ⇒ 本图当前没有容器注入计划（活动没生效？）
+  ✅ D) 没有注入计划的地图（bigmap）⇒ 一件不动  [2 → 2]
+  ✅ D) 只打一次「生成钩子已到达」（证明每张图 postfix 都真跑了）  [[EventRotator][容器注入] 生成钩子已到达：map=bigmap，本局静态容器 1 个 ⇒ 本图当前没有容器注入计划（活动没生效？）]
+  ✅ D) 第二次生成完全静默（不刷屏）  [0 行]
+
+[断言 ⑦c] slotId 跟真实 grid 名走：把容器格子改名 grid_custom ⇒ 注入件 slotId 也变
+  [EventRotator][容器注入] woods_probe_gridname：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_gridname 夹克：命中 18/18 个容器，注入 18 件
+  [EventRotator][容器注入] woods_probe_gridname：容器注入合计 命中 18/18 个容器，注入 18 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_gridname：容器覆盖率 18/429 属于注入类别（4.2%）；未归类 tpl：旅行包(62)、木制板条箱(57)、PMC尸体(43)、工具箱(39)、抽屉(36)、物资埋藏桶(25)、武器箱(24)、物资埋藏箱(20)、武器箱(17)、技术物资箱(16)、死去的Scav(13)、手榴弹箱(11)、SMU06 医疗包(9)、配给物资箱(8)、木弹药箱(8)、武器箱(7)、医疗物资箱(6)、武器箱(2)、保险箱(2)、平民尸体(2)、机箱(2)、节日空投物资箱(1)、Сommon fund储藏处(1)
+  ✅ 格子改名后 slotId 跟着改成 grid_custom（夹克 18 个，违规 0）  [grid_custom]
+      [证据] 本活动 12 个容器 tpl 的真实 `_props.Grids[]._name`：
+        578f8778245977358849a9b5  578f8778245977358849a9b5 grid=main         cells=2x2
+        578f8782245977354405a1e3  578f8782245977354405a1e3 grid=main         cells=3x3
+        578f87a3245977356274f2cb  578f87a3245977356274f2cb grid=main         cells=4x3
+        578f87ad245977356274f2cc  578f87ad245977356274f2cc grid=main         cells=5x2
+        578f87b7245977356274f2cd  578f87b7245977356274f2cd grid=main         cells=2x2
+        5909d24f86f77466f56e6855  5909d24f86f77466f56e6855 grid=main         cells=4x3
+        5909d36d86f774660f0bb900  5909d36d86f774660f0bb900 grid=main         cells=3x2
+        5909d45286f77465a8136dc6  5909d45286f77465a8136dc6 grid=main         cells=3x3
+        5909d50c86f774659e6aaebe  5909d50c86f774659e6aaebe grid=main         cells=4x3
+        5909d5ef86f77467974efbd8  5909d5ef86f77467974efbd8 grid=main         cells=5x2
+        5909d76c86f77471e53d2adf  5909d76c86f77471e53d2adf grid=main         cells=6x3
+        5909d7cf86f77470ee57d75a  5909d7cf86f77470ee57d75a grid=main         cells=4x4
+        5909d89086f77472591234a0  5909d89086f77472591234a0 grid=main         cells=5x5
+        5909e4b686f7747f5b744fa4  5909e4b686f7747f5b744fa4 grid=main         cells=4x4
+        59139c2186f77411564f8e42  59139c2186f77411564f8e42 grid=main         cells=4x4
+        5d07b91b86f7745a077a9432  5d07b91b86f7745a077a9432 grid=main         cells=5x5
+        5d6d2b5486f774785c2ba8ea  5d6d2b5486f774785c2ba8ea grid=main         cells=4x4
+        5d6d2bb386f774785b07a77a  5d6d2bb386f774785b07a77a grid=main         cells=3x4
+        5d6fd45b86f774317075ed43  5d6fd45b86f774317075ed43 grid=main         cells=5x5
+        5d6fe50986f77449d97f7463  5d6fe50986f77449d97f7463 grid=main         cells=5x5
+        6582e6d7b14c3f72eb071420  6582e6d7b14c3f72eb071420 grid=main         cells=4x4
+        658420d8085fea07e674cdb6  658420d8085fea07e674cdb6 grid=main         cells=4x4
+
+[断言 ⑦d] 用**实机 SPT 自己的** FastCloner 克隆预注入容器：注入件必须原样活着
+          （`LocationLootGenerator.AddLootToContainer` 第一句就是 `cloner.Clone(staticContainer)`）
+  ✅ FastCloner 克隆后预注入件原样保留（40 个容器）  []
+
+[断言 ⑪] transformer 每局在新鲜对象上跑 ⇒ 连续两次 .Value 注入量一致（不累积）
+  ✅ 第二次读 .Value 注入量仍为 420（实际 420），不是 2 倍
+
+[断言 ①b] 边界：chance=1 ⇒ 每个匹配容器都 +1；chance=0 ⇒ 完全不动
+  [EventRotator][容器注入] woods_probe_c100：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_c100 医疗箱：命中 15/15 个容器，注入 15 件
+  [EventRotator][容器注入] woods_probe_c100：容器注入合计 命中 15/15 个容器，注入 15 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_c100：容器覆盖率 15/429 属于注入类别（3.5%）；未归类 tpl：旅行包(62)、木制板条箱(57)、PMC尸体(43)、工具箱(39)、抽屉(36)、物资埋藏桶(25)、武器箱(24)、物资埋藏箱(20)、夹克(18)、武器箱(17)、技术物资箱(16)、死去的Scav(13)、手榴弹箱(11)、配给物资箱(8)、木弹药箱(8)、武器箱(7)、武器箱(2)、保险箱(2)、平民尸体(2)、机箱(2)、节日空投物资箱(1)、Сommon fund储藏处(1)
+  ✅ chance=1：医疗箱 15 个全部 +1 件（实际 15）
+  [EventRotator][容器注入] woods_probe_c0：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_c0 医疗箱：命中 0/15 个容器，注入 0 件
+  [EventRotator][容器注入] woods_probe_c0：容器注入合计 命中 0/15 个容器，注入 0 件；chance=0，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_c0：容器覆盖率 15/429 属于注入类别（3.5%）；未归类 tpl：旅行包(62)、木制板条箱(57)、PMC尸体(43)、工具箱(39)、抽屉(36)、物资埋藏桶(25)、武器箱(24)、物资埋藏箱(20)、夹克(18)、武器箱(17)、技术物资箱(16)、死去的Scav(13)、手榴弹箱(11)、配给物资箱(8)、木弹药箱(8)、武器箱(7)、武器箱(2)、保险箱(2)、平民尸体(2)、机箱(2)、节日空投物资箱(1)、Сommon fund储藏处(1)
+  ✅ chance=0：医疗箱 15 个一件都不加（实际 0）
+
+[断言 ⑨] 尺寸过滤：4x2 军工电池塞 2x2 夹克 ⇒ 注入 0、日志报跳过
+  [EventRotator][容器注入] woods_probe_size：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_size 夹克：命中 18/18 个容器，注入 0 件（跳过 18 个尺寸不符）
+  [EventRotator][容器注入] woods_probe_size：容器注入合计 命中 18/18 个容器，注入 0 件（尺寸跳过 18）；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_size：容器覆盖率 18/429 属于注入类别（4.2%）；未归类 tpl：旅行包(62)、木制板条箱(57)、PMC尸体(43)、工具箱(39)、抽屉(36)、物资埋藏桶(25)、武器箱(24)、物资埋藏箱(20)、武器箱(17)、技术物资箱(16)、死去的Scav(13)、手榴弹箱(11)、SMU06 医疗包(9)、配给物资箱(8)、木弹药箱(8)、武器箱(7)、医疗物资箱(6)、武器箱(2)、保险箱(2)、平民尸体(2)、机箱(2)、节日空投物资箱(1)、Сommon fund储藏处(1)
+  ✅ 夹克 18 个容器、注入 0 件（4x2 塞不进 2x2）
+  ✅ 日志明确报出尺寸跳过数  [[EventRotator][容器注入] woods_probe_size 夹克：命中 18/18 个容器，注入 0 件（跳过 18 个尺寸不符）]
+
+[断言 ⑩] 非法 tpl：容器/物品 tpl 查不到 ⇒ 整类丢弃 + warning，不抛
+  [EventRotator][容器注入] ⚠ woods_probe_bad/夹克：容器 tpl aaaaaaaaaaaaaaaaaaaaaaaa 不在 TemplateTable.Items 里 ⇒ 丢弃
+  [EventRotator][容器注入] ⚠ woods_probe_bad/夹克：物品 tpl bbbbbbbbbbbbbbbbbbbbbbbb 不在 TemplateTable.Items 里 ⇒ 丢弃（请核对 items.json）
+  [EventRotator][容器注入] ⚠ woods_probe_bad/夹克：没有可用的容器 tpl ⇒ 整类跳过
+  [EventRotator][容器注入] ⚠ 地图 'woods_probe_bad'：没有一条「容器 tpl + 注入物 tpl」通过校验 ⇒ 本维度对该图不生效
+  ✅ 非法 tpl 不抛异常（降级）
+  ✅ 有明确 warning 说明整类被丢弃  [[EventRotator][容器注入] ⚠ woods_probe_bad/夹克：容器 tpl aaaaaaaaaaaaaaaaaaaaaaaa 不在 TemplateTable.Items 里 ⇒ 丢弃]
+  ✅ 非法配置没有向任何容器注入
+
+[断言 ⑧] 日志逐字格式：`[容器注入] woods 医疗箱：命中 N/M 个容器，注入 K 件`
+  ✅ 医疗箱日志格式逐字匹配  [[EventRotator][容器注入] woods 医疗箱：命中 15/15 个容器，注入 15 件]
+  ✅ 老六类各一行统计（兼容旧格式）  [6 行]
+
+[断言 ⑫] v2 诊断日志：`生成钩子已到达` + `本局容器 N 个，含注入物件的容器 M 个，改 parentId K 件`
+  ✅ 每次生成都会打「生成钩子已到达」（证明 postfix 真跑了）  [[EventRotator][容器注入] 生成钩子已到达：map=woods，本局静态容器 1 个 ⇒ 注入计划 12 类，chance=1]
+  ✅ 每局一行「容器/含注入物件容器/改 parentId」诊断（v1 就是这里静默）  [[EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）]
+  ✅ 能明确指出「预注入件登记了但生成结果里找不到我们的件」（v1 丢件的正是这一类）  [[EventRotator][容器注入] ⚠ woods：1 个容器「预注入件登记了，但生成结果的 Items 里找不到我们的件」⇒ 已改走「当场补注入」分支（实际补成 1 件）；样例：container_woods_design_stuff_00031(木制板条箱)]
+
+[断言 ⑬] v3：白名单覆盖率 / 注入明细日志 / 样例 / 显式 location（模拟一整局 429 个容器）
+  ✅ 白名单覆盖率 ≥90%（420/429 = 97.9%）
+  ✅ 未归类的容器 tpl 只剩少数（按需求「先列出、不强行归类」）  [5d6fd13186f77424ad2a8c69×8、67614e3a6a90e4f10b0b140d×1]
+  ✅ 每个类别各一行统计（共 12 类）  [12 行]
+  ✅ 打出一行「容器覆盖率 X/Y 属于注入类别（Z%）+ 未归类 tpl」  [[EventRotator][容器注入] woods：容器覆盖率 420/429 属于注入类别（97.9%）；未归类 tpl：配给物资箱(8)、节日空投物资箱(1)]
+  [EventRotator][容器注入] woods：本局容器 429 个，含注入物件的容器 420 个，改 parentId 420 件；补齐补注入 0 件 ⇒ 本局注入合计 420 件（白名单命中 420 个，grid=main×420）
+  [EventRotator][容器注入] 格子分配：旅行包 4x3 → 注入件(Loot Lord 2x2) 放 (1,0) ×62；跳过 0 个无空位
+  [EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (1,0) ×57
+  [EventRotator][容器注入] 格子分配：PMC尸体 4x4 → 注入件(Propital 1x1) 放 (1,0) ×43
+  [EventRotator][容器注入] 格子分配：工具箱 4x3 → 注入件(Virtex 1x1) 放 (1,0) ×39
+  [EventRotator][容器注入] 格子分配：物资埋藏桶 3x4 → 注入件(私酒 1x2) 放 (1,0) ×25
+  [EventRotator][容器注入] 格子分配：武器箱 4x4 → 注入件(REAP-IR 2x1) 放 (1,0) ×24
+  [EventRotator][容器注入] woods：注入明细 Superwater×35 Loot Lord×25 BEAR Buddy×25 私酒×22 卢布×22 内存×21 电路板×21 Propital×20 坦克电池×17 GP×17 SpecterDR×16 HAMR×16 Grizzly×16 显卡×15 …（还有 25 种）（共 420 件）
+  [EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存；旅行包(578f87a3…) → Loot Lord；木制板条箱(578f87ad…) → SpecterDR；技术物资箱(5d6fd45b…) → 显卡；物资埋藏桶(5d6d2bb3…) → 私酒
+  ✅ 每局一行「注入明细 显卡×12 …（共 N 件）」  [[EventRotator][容器注入] woods：注入明细 Superwater×35 Loot Lord×25 BEAR Buddy×25 私酒×22 卢布×22 内存×21 电路板×21 Propital×20 坦克电池×17 GP×17 SpecterDR×16 HAMR×16 Grizzly×16 显卡×15 …（还有 25 种）（共 420 件）]
+  ✅ 每局一行「样例 工具箱(5909d50c…) → 显示卡…」（最多 5 对）  [[EventRotator][容器注入] woods：样例 木制板条箱(578f87ad…) → 内存；旅行包(578f87a3…) → Loot Lord；木制板条箱(578f87ad…) → SpecterDR；技术物资箱(5d6fd45b…) → 显卡；物资埋藏桶(5d6d2bb3…) → 私酒]
+  ✅ 样例最多 5 对「容器 tpl → 注入 tpl」  [5 对]
+  ✅ 全场注入件 location 合法：显式坐标准确落在格子内、互不重叠（null 只出现在真没空格时）  [直接子物品 840，非法坐标 0，越界 0，重叠 0，null 0 ]
+  ✅ 整套 location JSON 可序列化（null 或 {x,y,r} 两种形态都在）  [len=819886]
+  ✅ 弹药注入件按 stacks 写 StackObjectsCount（M80A1=40，不是 1 发）  [40]
+  [EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 0 件 ⇒ 本局注入合计 0 件（白名单命中 1 个，无空位跳过 1）
+  [EventRotator][容器注入] 格子分配：本局没有可放置的注入件；跳过 1 个无空位
+  ✅ 2x2 夹克被 4 件 1x1 塞满 ⇒ **放弃注入**（件被摘掉，不是留一件 location=null 混过去）  [5 → 5]
+  ✅ 日志明确报出「无空位跳过 N」（实机据此判断是不是没空格被放弃）  [[EventRotator][容器注入] woods：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 0 件 ⇒ 本局注入合计 0 件（白名单命中 1 个，无空位跳过 1）]
+
+[断言 ⑭] v3 自己算格子：①4x3 容器注入 1x2 不重叠且合法 ②满格放弃 ③只剩 2x1 时旋转 r=1
+  [EventRotator][容器注入] woods_probe_grid1：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_grid1 probe_woods_probe_grid1：命中 1/1 个容器，注入 1 件
+  [EventRotator][容器注入] woods_probe_grid1：容器注入合计 命中 1/1 个容器，注入 1 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_grid1：容器覆盖率 1/1 属于注入类别（100.0%）
+  [EventRotator][容器注入] 生成钩子已到达：map=woods_probe_grid1，本局静态容器 1 个 ⇒ 注入计划 1 类，chance=1
+  [EventRotator][容器注入] woods_probe_grid1：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：旅行包 4x3 → 注入件(Salewa 1x2) 放 (3,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods_probe_grid1：注入明细 Salewa×1（共 1 件）
+  [EventRotator][容器注入] woods_probe_grid1：样例 旅行包(578f87a3…) → Salewa
+  ✅ ① 4x3 容器（已有 3 件 1x1 @ (0,0)(1,0)(2,0)）注入 1 件 1x2：落在合法格且**不与已有物品重叠**  [1x2 @ (3,0) r=0]
+  ✅ ① 注入件 slotId 仍是该 grid 的 _name（main）  [main]
+  [EventRotator][容器注入] woods_probe_grid2：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_grid2 probe_woods_probe_grid2：命中 1/1 个容器，注入 1 件
+  [EventRotator][容器注入] woods_probe_grid2：容器注入合计 命中 1/1 个容器，注入 1 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_grid2：容器覆盖率 1/1 属于注入类别（100.0%）
+  [EventRotator][容器注入] 生成钩子已到达：map=woods_probe_grid2，本局静态容器 1 个 ⇒ 注入计划 1 类，chance=1
+  [EventRotator][容器注入] woods_probe_grid2：本局容器 1 个，含注入物件的容器 0 个，改 parentId 0 件；补齐补注入 0 件 ⇒ 本局注入合计 0 件（白名单命中 1 个，无空位跳过 1）
+  [EventRotator][容器注入] 格子分配：本局没有可放置的注入件；跳过 1 个无空位
+  ✅ ② 满格：注入件被**放弃**（2x2 夹克只剩容器根 + 4 件原有 1x1 = 5 件）  [Items=5（原有 5 件 + 注入件应被摘掉）]
+  [EventRotator][容器注入] woods_probe_grid3：已挂上 LazyLoad.AddTransformer（StaticContainerDetails 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][容器注入] woods_probe_grid3 probe_woods_probe_grid3：命中 1/1 个容器，注入 1 件
+  [EventRotator][容器注入] woods_probe_grid3：容器注入合计 命中 1/1 个容器，注入 1 件；chance=1，每容器最多 1 件（以下为**首局**统计；之后每局重新独立掷骰，不再刷屏）
+  [EventRotator][容器注入] woods_probe_grid3：容器覆盖率 1/1 属于注入类别（100.0%）
+  [EventRotator][容器注入] 生成钩子已到达：map=woods_probe_grid3，本局静态容器 1 个 ⇒ 注入计划 1 类，chance=1
+  [EventRotator][容器注入] woods_probe_grid3：本局容器 1 个，含注入物件的容器 1 个，改 parentId 1 件；补齐补注入 0 件 ⇒ 本局注入合计 1 件（白名单命中 1 个，grid=main×1）
+  [EventRotator][容器注入] 格子分配：夹克 2x2 → 注入件(Salewa 1x2) 放 (0,0)；跳过 0 个无空位
+  [EventRotator][容器注入] woods_probe_grid3：注入明细 Salewa×1（共 1 件）
+  [EventRotator][容器注入] woods_probe_grid3：样例 夹克(578f8778…) → Salewa
+  ✅ ③ 1x2 放进只剩 2x1 的位置 ⇒ 旋转 r=1（Vertical）放 (0,0)  [r=1 @ (0,0)]
+  ✅ ④ 日志逐字格式「格子分配：<容器> 4x3 → 注入件(<物品> 1x2) 放 (2,1)」  [[EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (0,0)；跳过 0 个无空位]
+  ✅ ④ 同一行带「；跳过 N 个无空位」（满格被放弃的数量）  [[EventRotator][容器注入] 格子分配：木制板条箱 5x2 → 注入件(内存 1x1) 放 (0,0)；跳过 0 个无空位]
+
+[断言 ⑤] 还原（transformer 转直通）后重新读 .Value，与注入前逐字节相同
+  [EventRotator][容器注入] ✔ woods_probe_grid3 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_grid2 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_grid1 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_size 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_c0 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_c100 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods_probe_gridname 已还原：transformer 转为直通（该活动期间共注入过 2 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  [EventRotator][容器注入] ✔ woods 已还原：transformer 转为直通（该活动期间共注入过 4 局；staticContainers.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  ✅ 还原后 .Value 序列化 == 注入前（逐字节）  [len 462452 vs 462452]
+  ✅ 容器数量回到原值  [429 vs 429]
+  ✅ 还原后确实是新反序列化的对象（证明没有改动被缓存）
+  ✅ 落盘文件字节级相等  [462452 bytes]
+
+[断言] 实机文件全程只读（SHA-256 前后一致）
+  ✅ staticContainers.json 未被写盘  [1ef4fd71d1287a2d…]
+
+========================================================================================================
+结果：73 项通过 / 0 项失败

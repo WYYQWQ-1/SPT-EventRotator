@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>SPT-EventRotator.Client</AssemblyName>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>CS0108;CS0114;CS0169;CS0649;CS0162;CS0414;CS8618;CS8632;CS0168</NoWarn>
+  </PropertyGroup>
+  <!-- ★★★ bossScourge：Patcher/ 是**独立**的 BepInEx preloader patcher 工程
+       （输出 SPT-EventRotator.Patcher.dll → BepInEx\patchers\）。它引用 Mono.Cecil，
+       不能混进本插件工程（默认 glob 会把它编译进来 ⇒ 插件多出 Mono.Cecil 依赖）。 -->
+  <ItemGroup>
+    <Compile Remove="Patcher/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BepInEx"><HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\core\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\core\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.IMGUIModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath><Private>false</Private></Reference>
+    <!-- ★ v1.3.12 地图感染标记：读选图界面的地点标签（TMP_Text 优先，UI.Text 兜底），再在 IMGUI 上画 ☣ -->
+    <Reference Include="UnityEngine.UI"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.TextMeshPro"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.TextRenderingModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <!-- BigBrain: 移植自 Scourge 的小队战术层需要 CustomLayer/BrainManager；NavMesh 需要 UnityEngine.AIModule -->
+    <Reference Include="DrakiaXYZ-BigBrain"><HintPath>D:/PureEFTv4.1/EFTv4.1/BepInEx/plugins/DrakiaXYZ-BigBrain.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.AIModule"><HintPath>D:/PureEFTv4.1/EFTv4.1/EscapeFromTarkov_Data/Managed/UnityEngine.AIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>D:/PureEFTv4.1/EFTv4.1/EscapeFromTarkov_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Comfort"><HintPath>D:\PureEFTv4.1\EFTv4.1\EscapeFromTarkov_Data\Managed\Comfort.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SPT.Reflection"><HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\plugins\spt\spt-reflection.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="spt-common"><HintPath>D:\PureEFTv4.1\EFTv4.1\BepInEx\plugins\spt\spt-common.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

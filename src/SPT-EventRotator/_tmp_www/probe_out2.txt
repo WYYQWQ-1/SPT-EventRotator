@@ -1,0 +1,117 @@
+====================================================================================================
+looseLootInject 离线探针（真身代码 + 实机数据副本）
+  mod 目录   : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator
+  实机数据   : D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\locations\woods\looseLoot.json
+  临时副本   : C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_tmp_www\probetmp\looseloot_probe_20100ee7\looseLoot.json  (35,371,738 bytes)
+  实机文件只读：探针全程不碰 D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPT_Data\database\locations\woods\looseLoot.json（副本退出即删）
+
+[0] items.json 载入：4673 个 tpl
+[0] 首次读 .Value（反序列化）：1321 ms，spawnpoints=1689、forced=31
+[0] events.json → 'wild_wild_woods'，onlyOnMap='woods'，densityMultiplier=1.6、valuable.chance=0.05、decor.chance=0.15、regions=13
+[0] 基线序列化：1385 ms，139395849 chars
+  ✅ 基线序列化成功
+  [EventRotator][地面战利品注入] woods：已挂上官方 LazyLoad.AddTransformer（LooseLoot 无 [CacheLazyLoad] ⇒ cacheValue=false，直接改 .Value 会被下一次读取丢弃）
+  [EventRotator][地面战利品注入] ★ woods：点位 1689 → 2702（densityMultiplier=1.6，克隆 +1013，SpawnpointCount.Mean 162.902 → 260.643）；物品替换 valuable 123 / decor 305（另有 regions 确定性替换 239）；valuable 基础概率 0.05、decor 0.15（regions 生效 13 个包围盒）
+  [EventRotator][地面战利品注入] ★ woods：region「Batya 营地」命中 66 个，实际替换 25 个（上限 25）
+  [EventRotator][地面战利品注入] ★ woods：region「三联房」命中 28 个，实际替换 10 个（上限 10）
+  [EventRotator][地面战利品注入] ★ woods：region「紫卡房」命中 16 个，实际替换 8 个（上限 8）
+  [EventRotator][地面战利品注入] ★ woods：region「配件小屋」命中 25 个，实际替换 20 个（上限 20）
+  [EventRotator][地面战利品注入] ★ woods：region「医疗救护车」命中 20 个，实际替换 10 个（上限 10）
+  [EventRotator][地面战利品注入] ★ woods：region「USEC营地A」命中 69 个，实际替换 20 个（上限 20）
+  [EventRotator][地面战利品注入] ★ woods：region「USEC营地B」命中 104 个，实际替换 20 个（上限 20）
+  [EventRotator][地面战利品注入] ★ woods：region「旧伐木场A」命中 18 个，实际替换 18 个（上限 18）
+  [EventRotator][地面战利品注入] ★ woods：region「旧伐木场B」命中 44 个，实际替换 20 个（上限 20）
+  [EventRotator][地面战利品注入] ★ woods：region「新村」命中 5 个，实际替换 5 个（上限 25）
+  [EventRotator][地面战利品注入] ★ woods：region「SCAV小屋」命中 75 个，实际替换 18 个（上限 18）
+  [EventRotator][地面战利品注入] ★ woods：region「伐木场大区」命中 104 个，实际替换 35 个（上限 35）
+  [EventRotator][地面战利品注入] ★ woods：region「新区」命中 420 个，实际替换 30 个（上限 30）
+  [EventRotator][地面战利品注入] ★ woods：regions 合计确定性替换 239 个（占点位 1689 的 14.2%）
+  [EventRotator][地面战利品注入] ★ woods：替换分布 5d1b33a686f7742523398398×91、62a08f4c4f842e1bd12d9d62×50、60b0f7057897d47c5b04ab94×39、655c663a6689c676ce57af85×38、5c1d0efb86f7744baf2e7b7b×36、5780cf7f2459777de4559322×33、655c67782a1356436041c9c5×33、5d80c62a86f7744036212b3f×31、63a3a93f8a56922e82001f5d×30、655c652d60d0ac437100fed7×30、5d80c60f86f77440373c4ece×29、5c1d0c5f86f7744bb2683cf0×28、62987dfc402c7f69bf010923×26、5c1e495a86f7743109743dfb×26、5d1b376e86f774252519444e×25、655c673673a43e23e857aebd×24、5c1d0f4986f7744bb01837fa×23、5ede7a8229445733cb4c18e2×20、5c1d0dc586f7744baf2e7b79×20、64ccc25f95763a1ae376e447×18、5c1d0d6d86f7744bb2683e1f×17
+
+[1] Apply 完成：2312 ms（含自证读取一次 .Value），登记还原闭包 1 个
+[1] 读 .Value（注入后）：1916 ms，spawnpoints=2702
+
+[断言 ①] 点位数按倍数增加
+  ✅ 点位数 1689 → 2702（期望 2702）  [×1.6]
+  ✅ SpawnpointCount.Mean 同步缩放 162.9022 → 260.6435  [否则局内抽取数量不变（IL 证：num=round(mult×Normal(Mean,Std))）]
+
+[断言 ②] 新增点位 _id / Root / Template.Id 全唯一
+  ✅ 确实新增了点位  [+1013]
+  ✅ 克隆点 Template.Id 彼此不重复（1013 个）
+  ✅ 克隆点 Template.Id 与原点位不撞  [原点位自带重复 Id 15 组（本体数据如此，不是本次引入的）]
+  ✅ 全部 Items._id 全表唯一  [共 230280 个]
+  ✅ 全部 Template.Root 唯一  [共 2702 个]
+  ✅ 每个点位都有某个 Item._id == Template.Root（Root 不悬空）
+
+[断言 ⑥] LocationId 全唯一（SPT GenerateDynamicLoot 末尾 group by LocationId）
+  ✅ LocationId 全唯一  [共 2702 个]
+
+[断言 ③] 新增点位坐标只做 x/z 偏移、模长 ∈[0.4,1.2]m、y 不变
+  ✅ 所有克隆点都能按 Id 前缀配回源点、且 y 与源点逐位相同  [配对失败 0]
+  ✅ 所有克隆点与源点的水平距离 ∈ [0.4, 1.2] m  [越界 0；实测 0.401~1.199 m]
+
+[断言 ④] 所有 _tpl 都能在 items.json 解析
+  ✅ 全部 _tpl 可解析（distinct 2235 个）  [含注入的 moonshine/彩卡/符号钥匙/水/玩偶]
+
+[断言 ⑦] ItemDistribution 的 composedKey 都能在 Items 里找到（否则局内抽空）
+  ✅ 全部点位 Items ↔ ItemDistribution 对齐  [不一致 0 个]
+      单物品刷点 835 个 / 多物品刷点 1867 个（注入把命中的点多物品收敛成单物品，见维度注释 IL 铁证 ③）
+
+[断言 ⑨] transformer 每局在新鲜对象上跑 ⇒ 连续两次 .Value 结果一致（不累积）
+  ✅ 第二次读 .Value 仍是同样点位数（没有 2 倍/4 倍累积）  [2702 点；唯一 Id 2687 = 原点位唯一 1674 + 克隆 1013]
+
+[实测数字] 替换分布（森林）
+      5d1b33a686f7742523398398  (w=3)  0 → 91   Δ+91
+      62a08f4c4f842e1bd12d9d62  (w=1)  0 → 50   Δ+50
+      60b0f7057897d47c5b04ab94  (w=1)  0 → 39   Δ+39
+      655c663a6689c676ce57af85  (w=1)  0 → 38   Δ+38
+      5c1d0efb86f7744baf2e7b7b  (w=1)  0 → 36   Δ+36
+      655c67782a1356436041c9c5  (w=1)  0 → 33   Δ+33
+      5780cf7f2459777de4559322  (w=1)  0 → 33   Δ+33
+      5d80c62a86f7744036212b3f  (w=1)  0 → 31   Δ+31
+      63a3a93f8a56922e82001f5d  (w=1)  0 → 30   Δ+30
+      655c652d60d0ac437100fed7  (w=1)  0 → 30   Δ+30
+      5d80c60f86f77440373c4ece  (w=1)  0 → 29   Δ+29
+      5c1e495a86f7743109743dfb  (w=1)  5 → 28   Δ+23
+      5c1d0c5f86f7744bb2683cf0  (w=1)  0 → 28   Δ+28
+      62987dfc402c7f69bf010923  (w=1)  0 → 26   Δ+26
+      5d1b376e86f774252519444e  (w=1)  0 → 25   Δ+25
+      655c673673a43e23e857aebd  (w=1)  0 → 24   Δ+24
+      5c1d0f4986f7744bb01837fa  (w=1)  0 → 23   Δ+23
+      5ede7a8229445733cb4c18e2  (w=1)  0 → 20   Δ+20
+      5c1d0dc586f7744baf2e7b79  (w=1)  0 → 20   Δ+20
+      64ccc25f95763a1ae376e447  (w=1)  0 → 18   Δ+18
+      5c1d0d6d86f7744bb2683e1f  (w=1)  0 → 17   Δ+17
+  ✅ 注入池点位：5 → 669（净 +664）  [维度自报替换 428 处；探针独立计 668（差额来自「未替换的克隆点本身恰好是池点位」）]
+      ★ 估算局内实际落地的注入替换物 ≈ 990 抽取点 × 24.72% ≈ 245 件/局（location.json woods looseLootMultiplier=1.9 × 本活动 2.0 = 3.8）
+
+[断言 ⑤] 还原（transformer 转直通）后重新读 .Value，与注入前逐字节相同
+  [EventRotator][地面战利品注入] ✔ woods 已还原：transformer 转为直通（该活动期间共按注入规则生成过 3 次；looseLoot.json 全程只读、从未写盘 ⇒ 下一次读取即原始数据）
+  ✅ 还原后 .Value 的序列化结果 == 注入前（逐字节）  [len 139395849 vs 139395849]
+  ✅ 点位数量与 SpawnpointCount.Mean 都回到原值
+  ✅ 还原后确实是新反序列化的对象（证明没有改动被缓存）
+  ✅ 落盘文件字节级相等  [139395849 bytes]
+
+[断言 ⑧] regions 包围盒语义（盒内 valuableBoost 把概率顶到 1.0）
+  ✅ 盒内 1 个点位全部被替换成目标 tpl（0.5×2.0=1.0 ⇒ 100%）
+  ✅ 盒外只按 0.5 概率替换（总替换 776 个，非全量 1689）
+  ✅ regions 单测同样可完整还原（逐字节）
+
+[断言 ⑩] maxPoints：区内按「距圆心近→远」最多替换 N 个，超出上限退回全局概率
+  ✅ 盒内可替换点位 19 个（> cap 3，截断才有意义）
+  ✅ valuable.chance=0 下**只有** maxPoints=3 个点被替换（实际 3）
+  ✅ 被替换的正是**距圆心最近的 3 个**（中心最肥）  [最近 3 个距离 0.88/0.88/1.01 m]
+  ✅ 日志逐字格式：命中 N 个，实际替换 M 个（上限 X）  [[EventRotator][地面战利品注入] ★ woods_probe_cap：region「cap-box」命中 19 个，实际替换 3 个（上限 3）]
+  ✅ 区内超出上限的点位维持全局 valuable.chance=0.5（替换 719 个 > 上限 3）
+  ✅ 确定性替换的 3 个点不受全局掷骰影响（仍被替换）
+
+[断言 ⑪] 重叠区优先级：maxPoints 小者先生效（声明顺序无关），点位不重复替换
+  ✅ 内盒（maxPoints=3）的 3 个点被替换 —— **声明顺序在后也优先**（cap 小者先）
+  ✅ 外盒（maxPoints=12）替换了它自己那 12 个非内盒点
+  ✅ 同一位置只替换一次：总替换 15 = 内盒 3 + 外盒 12
+  ✅ 内盒超限的 16 个点位没有被外盒二次替换（一个点只归一个区）
+      [日志] [EventRotator][地面战利品注入] ★ woods_probe_overlap：region「inner-small」命中 19 个，实际替换 3 个（上限 3）
+      [日志] [EventRotator][地面战利品注入] ★ woods_probe_overlap：region「outer-big」命中 42 个，实际替换 12 个（上限 12）
+
+====================================================================================================
+结果：33 项通过 / 0 项失败

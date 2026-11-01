@@ -1,0 +1,310 @@
+[
+  {
+    "id": "f13bf981563cf9294e8ffb90",
+    "name": "f13bf981563cf9294e8ffb90 name",
+    "description": "f13bf981563cf9294e8ffb90 description",
+    "imageUrl": "/files/achievement/ER_TerraGroupTrail_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "7c4b68f556477b8bb3d40ff5",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "17b8a7ebfa74fbfd77b9bb19",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "8fe2b4359b1d2abfcc33a10d",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "b683635a92b95d849278eaef",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "54288e8e4405df2f841fc076",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "1f7bc625268d6384a1e774f9",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "25b6ecdb5198e46a15f60624",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "e8945fafff32dd0550389a71",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "4fbbc4b56702bbf4df3c840f",
+          "index": 4,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "20be7908e5f280da6830eec7",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "407e8d2c365d1c118cbcfd67",
+          "index": 5,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "edd960a0e2b30df4a1fd3b86",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "94eb6c6319e0c3d8cbb020ee",
+          "index": 6,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "3dba8853279aac4554d3d6d2",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "d2bd75c3306f8a7f4839b168",
+          "index": 7,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "c901af12aac9a3b691e0c24e",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "873849724148aee08adf21a7",
+          "index": 8,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "9e25093b7facd3c153960c36",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "8febcbd0338fa5e74091048e",
+          "index": 9,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "e32e3355b28d60e3ca5ad3cc",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "25d3136ff80a84b62ce37731",
+          "index": 10,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "05e715005ed7fe58aaddab12",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "48a022c731cad589e4485bc4",
+          "index": 11,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6f288a44682d8abf5d2eb64a",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "b8f3d27f179c2081dff4cc62",
+          "index": 12,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "a120eb8fa25bc90ad5610c0a",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "85d711985d7a48b58a7c2559",
+          "index": 13,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "765d65fbc8b3f385a64566c6",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "908de2323bc7a4d52ab73d19",
+          "index": 14,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "bffbceb98696f1dab193b156",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6dfb87d3fa11ec2997888fda",
+          "index": 15,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "7469eae6681ff90e7a4f5c78",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "faaf7ca70d28e98be73b99d6",
+          "index": 16,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "3e077b662bfa0e7716d933f9",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "1a3f3c53f97940c0e22144bf",
+          "index": 17,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "0c069cd07b1de7402d66a391",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "83b7e8e1100d49927a6b5d0a",
+          "index": 18,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "89843e7b3c683b5d33a82020",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Rare",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20006
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "6634cae870af846d2868dada",
+    "name": "6634cae870af846d2868dada name",
+    "description": "6634cae870af846d2868dada description",
+    "imageUrl": "/files/achievement/ER_TarkovMystery_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "06d548f6d5b86c333b9ee34f",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "66040e19ab236c96120c928a",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "0f02e5769c528907927ee2dd",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "660427dd7eb22f375205b656",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "365d32aec9e5f42bc455d0f6",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6604287a7eb22f375205b662",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "6b3608d8cb6b168f129663b7",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "66042e3b0e8e4148260fde68",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "f958bd7a30095c789d7d77dd",
+          "index": 4,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "6616a96a577801372605b602",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20003
+  }
+]

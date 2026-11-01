@@ -1,0 +1,19 @@
+════════ 探针 ①：补丁挂载/调用方法身份（prepatch 双载 → AccessTools 命中死副本）════════
+  死副本（Default ALC / 磁盘）：SPTarkov.Server.Core v4.1.6.0@C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_probe_hookidentity\bin\Release\net10.0\SPTarkov.Server.Core.dll
+  运行时副本（probe-live ALC / 流载入）：SPTarkov.Server.Core v4.1.6.0@
+  [PASS] 两份 SPTarkov.Server.Core 同名同版本但**不是同一个实例**  | live=SPTarkov.Server.Core, Version=4.1.6.0, Culture=neutral, PublicKeyToken=null disk=SPTarkov.Server.Core, Version=4.1.6.0, Culture=neutral, PublicKeyToken=null
+  RuntimeTypes.LiveCoreAssembly ← SPTarkov.Server.Core（probe-live ALC）
+  [PASS] 旧的 AccessTools.TypeByName 命中**死副本**（Default ALC / 磁盘）  | ALC=Default Location=C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_probe_hookidentity\bin\Release\net10.0\SPTarkov.Server.Core.dll
+  [PASS] 新的 RuntimeTypes.Find 命中**运行时副本**（probe-live ALC / 流载入）  | ALC=probe-live Location=''
+  [PASS] 两者是不同的 Type 实例（= 实机「挂上了却永不触发」的机制）
+  [PASS] 在运行时副本上挂的 postfix **真的被调用**（返回=True 且停靠计数=1）  | ret=True postfixFired=1
+  [PASS] PatchProbe.IsLive：运行时副本=True / 死副本=False  | live=True disk=False
+  ── PatchProbe 日志逐字 ──
+  [EventRotator][钩子自证] probe.MongoId.IsValidMongoId｜挂载：Boolean SPTarkov.Server.Core.Models.Common.MongoId.IsValidMongoId(String stringToCheck)｜目标 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d｜已进 Harmony 补丁表=True｜与运行时同一份=True
+  [EventRotator][钩子自证] 进程内 SPTarkov.Server.Core 副本 2 份：#1 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=Default｜Location=C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_probe_hookidentity\bin\Release\net10.0\SPTarkov.Server.Core.dll｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d ←死副本 ｜ #2 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d ←运行时
+  [EventRotator][钩子自证] probe.MongoId.IsValidMongoId｜调用：Boolean SPTarkov.Server.Core.Models.Common.MongoId.IsValidMongoId(String stringToCheck)｜实参程序集 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d｜与运行时同一份=True ⇒ 挂载/调用同一份 ✔
+  [PASS] 挂载日志：含方法签名 + ALC/Location/MVID + 已进补丁表=True + 与运行时同一份=True  | [EventRotator][钩子自证] probe.MongoId.IsValidMongoId｜挂载：Boolean SPTarkov.Server.Core.Models.Common.MongoId.IsValidMongoId(String stringToCheck)｜目标 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d｜已进 Harmony 补丁表=True｜与运行时同一份=True
+  [PASS] 调用日志：含方法签名 + 与运行时同一份=True + 挂载/调用同一份 ✔  | [EventRotator][钩子自证] probe.MongoId.IsValidMongoId｜调用：Boolean SPTarkov.Server.Core.Models.Common.MongoId.IsValidMongoId(String stringToCheck)｜实参程序集 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d｜与运行时同一份=True ⇒ 挂载/调用同一份 ✔
+  [PASS] 副本清单：打印 2 份 Core（一份死副本 + 一份运行时）  | [EventRotator][钩子自证] 进程内 SPTarkov.Server.Core 副本 2 份：#1 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=Default｜Location=C:\Users\32674\OneDrive\Documents\deepseek-harness\default-workspace\fix\SPT-EventRotator\_probe_hookidentity\bin\Release\net10.0\SPTarkov.Server.Core.dll｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d ←死副本 ｜ #2 assembly=SPTarkov.Server.Core v4.1.6.0｜ALC=probe-live｜Location=(内存/流载入)｜MVID=94603c02-ae83-4a1b-8915-f5cd1598fe7d ←运行时
+
+结果：9 PASS / 0 FAIL

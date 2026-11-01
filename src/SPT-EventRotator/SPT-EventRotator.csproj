@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>SPT-EventRotator</AssemblyName>
+    <RootNamespace>EventRotator</RootNamespace>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>CS0108;CS0114;CS0169;CS0649;CS0162;CS0414;CS8618;CS8632;CS0168</NoWarn>
+  </PropertyGroup>
+  <!-- ★ 发布件卫生：Release 不写调试目录 ⇒ DLL 里不会残留构建机的
+       `C:\Users\<用户名>\...\obj\Release\...\*.pdb` 路径（自检 ⑤ 的 PDB 路径泄漏检查）。 -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <!-- ★ v1.3.8【网页面板】SPT 4.1 自带 Blazor 管道：Razor 工程 + ASP.NET Core 框架引用。 -->
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <!-- ★ 排除探针/临时工程目录（它们各自有 obj/ ⇒ 会被默认通配扫进来 ⇒ CS0579 程序集属性重复） -->
+  <ItemGroup>
+    <Compile Remove="_d2_verify/**/*.cs" />
+    <Compile Remove="_probe*/**/*.cs" />
+    <Compile Remove="probe*/**/*.cs" />
+    <Content Remove="_probe*/**" />
+    <Content Remove="probe*/**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SPTarkov.Server.Core"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SPTarkov.Server.Web"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Server.Web.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="MudBlazor"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\MudBlazor.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SPTarkov.DI"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.DI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SPTarkov.Common"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SPTarkov.Reflection"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Reflection.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SemanticVersioning"><HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SemanticVersioning.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

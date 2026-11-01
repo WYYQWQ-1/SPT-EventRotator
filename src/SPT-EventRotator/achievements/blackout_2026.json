@@ -1,0 +1,100 @@
+[
+  {
+    "id": "2d69a80dd65d7b6f900e74fe",
+    "name": "2d69a80dd65d7b6f900e74fe name",
+    "description": "2d69a80dd65d7b6f900e74fe description",
+    "imageUrl": "/files/achievement/ER_Blackout2026_v8.png",
+    "assetPath": "",
+    "rewards": [],
+    "conditions": {
+      "availableForFinish": [
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "9bafb9817d3ab9b023086bba",
+          "index": 0,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "27eac80111920a83cfc99bc5",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "3411b87a5bd47340aa2ba346",
+          "index": 1,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "3af67df450db86a20f89811c",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "07182be6dc1171d9dd5a189d",
+          "index": 2,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "2b4871cf2e346bf43d83c5c4",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "a2d677885464e5a4a6fdc56f",
+          "index": 3,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "1145cbbc960f5de957cf0427",
+          "visibilityConditions": []
+        },
+        {
+          "availableAfter": 0,
+          "conditionType": "Quest",
+          "dispersion": 0,
+          "dynamicLocale": false,
+          "globalQuestCounterId": "",
+          "id": "e70b0c5676bf700f02ca5196",
+          "index": 4,
+          "parentId": "",
+          "status": [
+            4
+          ],
+          "target": "349fc1f8ad64d22bc5ed6847",
+          "visibilityConditions": []
+        }
+      ],
+      "fail": []
+    },
+    "instantComplete": false,
+    "showNotificationsInGame": true,
+    "showProgress": false,
+    "prefab": "",
+    "rarity": "Legendary",
+    "hidden": false,
+    "showConditions": false,
+    "progressBarEnabled": false,
+    "side": "Pmc",
+    "index": 20007
+  }
+]

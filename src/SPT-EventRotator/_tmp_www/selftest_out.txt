@@ -1,0 +1,374 @@
+staging: /tmp/www_selftest_stage/SPT-EventRotator
+════════════════════════════════════════════════════════════════════════════════════════
+① events.json 载入：90 个活动（反序列化无异常）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 活动数 = 90  实际 90
+  ✔ 无 untar_recon
+  ✔ 无 enabled 死字段
+  ✔ 无 traderDiscount 死字段
+
+════════════════════════════════════════════════════════════════════════════════════════
+② 五分类完整性（v0.1.5 新增 event_ai：首领/邪教/劫掠者类）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 分类 seasonal 有活动  9 个
+  ✔ 分类 event_task 有活动  17 个
+  ✔ 分类 event_ai 有活动  23 个
+  ✔ 分类 event_small 有活动  16 个
+  ✔ 分类 reward 有活动  25 个
+  ✔ 分类总和 = 90  event_ai=23,reward=25,event_small=16,event_task=17,seasonal=9
+  ✔ event_ai 分类的每条都真的声明了 AI/刷怪字段  不达标 0 条 []
+
+════════════════════════════════════════════════════════════════════════════════════════
+③ 季节变体（同季节内切换）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ Halloween 变体（3）  halloween → halloween_2023 → halloween_2022
+  ✔   Halloween 变体按轮次切换  halloween,halloween_2023,halloween_2022,halloween,halloween_2023
+  ✔ Christmas 变体（4）  christmas → khorovod_2024 → santa_2022 → christmas_january
+  ✔   Christmas 变体按轮次切换  christmas,khorovod_2024,santa_2022,christmas_january,christmas,khorovod_2024
+  ✔ NewYears 变体（1）  newyear
+  ✔ AprilFools 变体（1）  april_fools
+
+════════════════════════════════════════════════════════════════════════════════════════
+④ 季节活动阶段 ↔ 最低锁定（按当前季节活动）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 万圣节 13 天  13
+  ✔ 圣诞 19 天  19
+  ✔ 新年 2 天  2
+  ✔ 愚人节 1 天  1
+  ✔ AUTUMN → HALLOWEEN
+  ✔ WINTER → CHRISTMAS
+  ✔ SPRING → APRILFOOLS
+  ✔ SUMMER → 无
+  ✔ middle + 30 天季节 + 万圣节 → 第 18 天开（偏移 17）  实际偏移 17
+  ✔ start → 偏移 0
+  ✔ start + 圣诞 → 偏移 0
+  ✔ middle + 30 + 圣诞(19) → 偏移 11  11
+  ✔ end + 30 + 万圣节(13) → 偏移 17
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑤ 轮换组合规则（16 个档位）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 无一档同时开 >1 个带任务活动  违规 0
+  ✔ 全部符合组合规则  大活动方案 0 档 / 小活动方案 0 档 / AI方案 16 档
+  ✔ AI 方案可达（无季节时 = AI活动 + 奖励活动）  AI方案 16 档
+  ✔ 档位之间无冲突  冲突 0
+  ✔ 365 档硬规则 ⑤：绝不出现「AI 活动 + 带任务活动」  违规 0
+  ✔ 365 档硬规则 ⑥：带任务的活动 ≤ 1 个  违规 0
+  ✔ 365 档硬规则 ④：活动 1~2 个 / 奖励 1~2 个  活动违规 0 / 奖励违规 0
+     形状分布：AI+奖励2 365 档
+     [诊断] sznModeF=ok · SeasonRotation.Mode 实值='rotate' · IsRotating=True
+  ✔ ★ rotate 下「带任务档」可达（用户规格 ② 的验收：event_task 进池且真会被挑中）  带任务档 183 / AI 档 182 / 小活动档 0
+  ✔ 一年 365 档：0 档违规（同一档不会有两个任务活动）  违规 0
+  ✔ 一年 365 档：0 档冲突  冲突 0
+  ✔ 一年 365 档：0 档空档  空档 0
+     组合分布：任务档 0 / 小活动档 0 / AI 档 365 / 仅奖励档 0
+  ✔ 已开季节活动 → 只叠加奖励活动  经验加成（奖励）（奖励池·mod 自定）+商人解锁+折扣
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑥ 自动配对 / 自动首领概率 / 自动爆率（读实机 config）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ autoPairs 不含任何季节活动（一年是一年的，禁止跨年份串联）  违规 []
+  ✔ autoBossChance 条数不再硬编码（可为 0）  实际 0
+  ✔ autoLootBoost 有内容（条数不再硬编码）  实际 24
+  ✔ 地图补位已关闭（不把机制拉平）  实际 0 张图
+  ✔ 冲突判定对称且不抛异常  不对称 0 / 异常 0
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑦ 季节变体「随机不重复」+ 用尽重置
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 变体记账文件可写（路径解析 + 写盘）  write=ok exists=True size=15
+  ✔ Halloween 连开 3 次全部不同（不重复）  halloween,halloween_2022,halloween_2023
+  ✔   Halloween 用尽后能重置并继续  halloween
+  ✔   NewYears（1 个变体）确定性返回 newyear  newyear
+  ✔ Christmas 连开 4 次全部不同（不重复）  santa_2022,khorovod_2024,christmas,christmas_january
+  ✔   Christmas 用尽后能重置并继续  santa_2022
+  ✔   NewYears（1 个变体）确定性返回 newyear  newyear
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑧ events.json 描述质量（F12 展示的就是它）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 每个活动都有 desc
+  ✔ desc 里没有内部 ID / 文件名泄漏
+  ✔ desc 长度都 ≤ 200 字
+  ✔ desc『开放 N 个活动任务』与实际 enableQuests 条数一致
+  ✔ 技术说明已挪到 devNote（F12 不显示它）  devNote=90 note=0
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑨ 任务可完成性数据（questRequires）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ EventDef 有 QuestRequires 字段
+  ✔ 有活动填了 questRequires  实际 7 个
+  ✔ bloodhounds 声明了 arenaFighterEvent
+  ✔ questRequires 的键都是该活动真的会开的任务  不匹配 0 处
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑩ v0.1.5 新功能：原生僵尸 / 实验室锤哥护栏 / 任务绑定 / 无夜战地图
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ EventDef 有 NativeZombies 字段（v0.1.5 新增）
+  ✔ EventDef 有 NativeChristmas 字段（v0.1.5 圣诞复刻）
+  ✔ 4 个圣诞活动都声明了 nativeChristmas  声明 4/4
+  ✔ 4 个圣诞活动都改为官方 gifterSettings 驱动（GifterOfficial=true）  合格 4/4
+  ✔ ★ 已无任何活动声明 nativeZombies（用户要求：僵尸活动及其关联任务全部移除）  实际 []（移除内容：halloween_infected 整条、dark_times 整条、halloween 的 nativeZombies/infectionRamp 与僵尸击杀任务 Global Threat）
+  ✔ 服务端 DLL 含 PrepareHalloweenNative（原生僵尸开关）
+  ✔ 服务端 DLL 含 MaybePrepareHalloween（强推季节前预处理）
+  ✔ 服务端 DLL 含 WantNativeZombies 静态开关
+  ✔ 服务端 DLL 含 ForceSeasonalOnce（防季节重复强推累积）
+  ✔ 服务端 DLL 含 IsSeasonalActive（官方已激活时不再重复整段注入）
+  ✔ 服务端 DLL 含 EnsureZombies（直调官方 ConfigureZombies 兜底）
+  ✔ 服务端 DLL 含 LogInfectionState（感染率自证日志）
+  ✔ 服务端 DLL 含 AssertNeverOpenQuests（永远隐藏清单断言）
+  ✔ 服务端 DLL 含 FixZeroInfectionMaps（配置0=不感染的图归零）
+  ✔ BossWavePatch 含 ApplyZombieHostility（复刻被 BPS 掐掉的官方僵尸敌对性）
+  ✔ BossWavePatch 含 RestoreZombieHostility（可还原）
+  ✔ BossWavePatch 含 NightlessMaps（实验室/迷宫不刷『仅夜晚』活动）
+  ✔   NightlessMaps 含 laboratory + labyrinth  [laboratory,labyrinth]
+  ✔ ApplyQuests 不再有 nOpened（旧版季节时间戳分支已删）
+  ✔ ApplyQuests 不再用 long now（时间戳死代码已删）
+  ✔ 官方 halloweensummon.laboratory 确实是 bossTagilla（护栏针对真坑）
+  ✔ 官方 halloweenzombies.laboratory 是 infected 条目  29 条
+  ✔ 官方 events[] 里有 halloween
+  ✔ 官方 zombieSettings.enabled 默认 false（必须由 mod 打开）
+  ✔ 官方 disableBosses 含 laboratory（= 清空实验室首领表）
+  ✔ 官方 mapInfectionAmount.laboratory = 100
+  ✔ 官方 enableSummoning = true（锤哥注入的触发条件）
+  ✔ 所有 forceSeasonalBossKey 在官方表里都存在
+  ✔ eventQuests 表条目数 = 25  实际 25
+  ✔ events.json 的 enableQuests 没有『任务库里不存在』的死 id  共 58 个引用
+  ℹ enableQuests 里有 36 个『不在 eventQuests』的引用（本体无活动门控 ⇒ 写它无效）
+      · mortar_strike→66e01ad15a8890455a0d9eea
+      · mortar_strike→66e01ad6835f78499f049180
+      · targrad_tales→6894bc838bbdab4ab109929c
+      · targrad_tales→6863d9bcd3bfdcb2bc075956
+      · targrad_tales→6863e09a5f4d17fd3e01feee
+      · targrad_tales→686403eeb4aaef121c0f0f06
+      · targrad_tales→686404d348e7bb4146002cac
+      · targrad_tales→686530ba9ed06113720e2c37
+      · targrad_tales→6864fcef9809a149400dd2ee
+      · targrad_tales→689610e431dc963a7205a121
+      · targrad_tales→68973efb9e616ec3130d2c69
+      · targrad_tales→6897401030d0c0235c051b2c
+      · targrad_tales→68650d08a1f188f84d0f5993
+      · targrad_tales→686524fe9809a149400dd301
+      · targrad_tales→686531bc87eb213a8e078e99
+      · art_of_explosion→67f3ea581cd4c15d3d040305
+      · art_of_explosion→67f3ea78c54fde6cc2004855
+      · art_of_explosion→67f3ea873daf3aaf3e0e7ff5
+      · art_of_explosion→67f3eaa3a7799274d50a8b66
+      · art_of_explosion→67f3eacef649e7bceb0bb455
+      · art_of_explosion→67f3eab9a33cd296b20ee695
+      · art_of_explosion→67b45467814ab0ffa000c7e7
+      · scourge_incursion→6ac3bc49f3f4480654003d7a
+      · scourge_incursion→6ac3ca960cee4580a601b28c
+      · scourge_incursion→6ac3d88d14db1a2f3e0787bd
+      · scourge_incursion→6ac4c1d676842fabb501d5aa
+      · scourge_incursion→6ac4c42976842fabb501d5b8
+      · scourge_incursion→6ac4c726a3ea5ab42a074d3a
+      · wild_wild_woods→fa85fd0c2c31263bd2df82ca
+      · casus_belli→b5bb719b23a5e861cea8b702
+      · casus_belli→1349dec113c15500f6e7fa93
+      · casus_belli→2c9d5272b5674c718fadae75
+      · casus_belli→9882cf75c7d9bb5bdc9fa8c2
+      · casus_belli→2dd3d24a1a6223dd115e4a13
+      · casus_belli→ddf04260840c8b9752210ae1
+      · casus_belli→6c67498003d3306a913abb5d
+  ℹ eventQuests 里 3 条『无活动引用』（本体不显形，需人工指定归属活动）：
+      · 668bcccc167d507eb01a268b  Import Сontrol
+      · 67190f6c1b3f4964d90d71e9  Global Threat
+      · 674647f38466ebb03408b291  That’s a Great Plan, Walter  ← 任务库里已不存在（死条目）
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑪ 数据完整性：每个活动的地图键 / 首领名都必须真实存在（逐活动核）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 取到真实地图 id 与 bot 角色表  地图 19 / 角色 60
+  ✔ 所有活动的地图键都是真实地图 id
+  ✔ 所有活动的首领/角色名都是真实 bot 角色
+  ✔ items 维度的选择器都被 ItemsDimension 支持
+  ✔ items 维度的每个选择器都不是空配置
+  ✔ DLL 里 items 各选择器的落地字符串都在（防 continue 层级写错导致死代码）  全部命中
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑫ 新维度键名合法性（防「写错键名 = 静默无效」—— 这类 bug 已踩过 5 次）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ globals 的键都被 GlobalsDimension 支持
+  ✔ escortCount 的地图/boss 名都真实存在
+  ✔ airdropAppendLoot 的物品 tpl 都在 items.json 里
+  ✔ traderPriceMultiplierPerTrader 的商人都真实存在
+  ✔ airdropFrequencyMaps 都是真实地图 id
+  ✔ forceNightRaid 都在 0~1
+  ✔ playerScavEquipmentBoost 值域合理（-50~+100）
+  ✔ 日期窗合法（结束不为空；逆序仅允许跨年窗）
+  ✔ unlockTraders 只出现在官方 Unlocked Traders 场次
+  ✔ infectionRamp 参数合理
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑬ 文案与数据一致性（devNote 用反引号点名的字段，必须真的存在）
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ devNote 反引号点名的字段都真实配置了（不过度承诺）
+
+════════════════════════════════════════════════════════════════════════════════════════
+⑭ ⑨⑩ 两项机制的「本机数据证据」+ 部署一致性
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ ⑨ 酸绿信号弹的 FlareTypes = AIFollowEvent（友好/跟随语义的唯一来源）  635267f0… 命中 AIFollowEvent
+  ✔ ⑨ bots/core.json → START_ACTIVE_FOLLOW_PLAYER_EVENT = true
+  ✔ ⑨ SCAV 角色默认吃信号弹（未被标 false）  SCAV 3/3
+  ✔ ⑨ PMC 角色显式标 false（不吃信号弹，与官方一致）  PMC 4/4
+  ✔ ⑩ inraid.json → raidMenuSettings.taggedAndCursed 存在（⑩ 的服务端落点）
+  ✔ ⑩ bots/types/cursedassault.json 存在（换成疯狂 SCAV 的目标敌种）
+  ✘ 部署的 DLL 与工作区 Release 构建一致  工作区 699904 B / 实机 695296 B
+  ✘ 部署的 events.json 与工作区一致  两者内容不同（可能未同步）
+  ✔ 配置里的活动 id 都指向现存活动（无残留）
+
+════════════════════════════════════════════════════════════════════════════════════════
+  ✔ 组合式：每个季节活动都标注了所属族 family
+  ✔ 组合式：每个族成员都标了 familyYear 或 familyGeneric
+  ✔ 组合式：至少存在 2 个 (族,年份) 组合  实际 5
+  ✔ 组合式：每个组合都有成员（无空组）
+  ✔ 组合式：同一活动不会出现在两个组合里
+  ✔ 组合式：引擎暴露 ExpandFamilyCombos（组合展开）
+  ✔ 组合式：引擎暴露 ExpandFamilyCombosCore（纯函数核心，可显式驱动）
+  ✔ 组合式：选中 halloween(2024) ⇒ 整组带出 night_of_the_cult(2024)  展开=halloween,night_of_the_cult
+  ✔ 组合式：选中 khorovod_2024 ⇒ 带出同年 cultist_pilgrimage(2024)  展开=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式：并带出该族通用成员（christmas/newyear/christmas_january）  展开=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合展开过滤：10/16（窗口外）⇒ 只留种子，不带出 christmas/newyear/christmas_january  展开=khorovod_2024
+  ✔ 组合展开过滤：12/27（窗口内）⇒ 仍带出 christmas + cultist_pilgrimage；newyear(仅1/1) 仍被跳过  展开=khorovod_2024,christmas,cultist_pilgrimage
+  ✔ 组合展开过滤：bySeasonChoice=true（按实际选择）⇒ 不过滤，newyear 也带出  展开=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式：引擎暴露 ExpandFamilyCombosForced（手动强制路径）
+  ✔ ★ 手动强制路径**不做日期窗过滤** ⇒ 仍带出 christmas/newyear/christmas_january（回归保护 R2）  展开=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式：展开不会漏掉种子本身  展开=halloween,night_of_the_cult
+  ✔ 组合式：引擎暴露 SelectActive（真实选择路径）
+  ✔ 组合式：可读写 ForcedId / All / Actives（自检可驱动真实路径）
+  ✔ 组合式（真实路径）：**只强制 1 个** halloween ⇒ 整组展开（共 2 个）  实际=halloween,night_of_the_cult
+  ✔ 组合式（真实路径）：强制 halloween ⇒ 带出 night_of_the_cult  实际=halloween,night_of_the_cult
+  ✔ 组合式（真实路径）：强制 halloween 时种子本身仍在  实际=halloween,night_of_the_cult
+  ✔ 组合式（真实路径）：**只强制 1 个** night_of_the_cult ⇒ 整组展开（共 2 个）  实际=night_of_the_cult,halloween
+  ✔ 组合式（真实路径）：强制 night_of_the_cult ⇒ 带出 halloween  实际=night_of_the_cult,halloween
+  ✔ 组合式（真实路径）：强制 night_of_the_cult 时种子本身仍在  实际=night_of_the_cult,halloween
+  ✔ 组合式（真实路径）：**只强制 1 个** khorovod_2024 ⇒ 整组展开（共 5 个）  实际=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式（真实路径）：强制 khorovod_2024 ⇒ 带出 cultist_pilgrimage  实际=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式（真实路径）：强制 khorovod_2024 ⇒ 带出 christmas  实际=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式（真实路径）：强制 khorovod_2024 ⇒ 带出 christmas_january  实际=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式（真实路径）：强制 khorovod_2024 时种子本身仍在  实际=khorovod_2024,christmas,newyear,cultist_pilgrimage,christmas_january
+  ✔ 组合式（真实路径）：**只强制 1 个** santa_2022 ⇒ 整组展开（共 4 个）  实际=santa_2022,christmas,newyear,christmas_january
+  ✔ 组合式（真实路径）：强制 santa_2022 ⇒ 带出 christmas  实际=santa_2022,christmas,newyear,christmas_january
+  ✔ 组合式（真实路径）：强制 santa_2022 时种子本身仍在  实际=santa_2022,christmas,newyear,christmas_january
+  ✔ 组合式（真实路径）：单成员强制的展开结果与多成员路径一致  实际=halloween,night_of_the_cult
+  ✔ 随机不重复：引擎暴露 PickSeasonalVariantFor / MarkVariantUsed / SeasonalVariantsOf
+  ✔ 随机不重复：halloween 连抽 N 次覆盖 >= 2 个不同变体（无重复）  抽到=halloween,halloween_2022,halloween_2023
+  ✔ 随机不重复：christmas 连抽 N 次覆盖 >= 2 个不同变体（无重复）  抽到=santa_2022,khorovod_2024,christmas,christmas_january
+  ✔ 时刻表：引擎暴露 TimetableDimension
+  ✔ 时刻表：暴露 CurrentHour / CurrentMap
+  ✔ 时刻表：CurrentHour 忽略大小写（msk / MSK 同值）  msk=0 MSK=0
+  ✔ 时刻表：未知时区回退 MSK（+3）  期望 UTC+3=0，实际=0
+  ✔ 时刻表：null 时区回退 MSK（+3）  期望 UTC+3=0，实际=0
+  ✔ 时刻表：MSK 当前小时 = UTC+3h（实际 0:00）  期望 0，实际 0（负偏移回归：绝不能为负）
+  ✔ 时刻表：MSK 小时落在 0-23  实际 0
+  ✔ 时刻表：UTC 当前小时 = UTC+0h（实际 21:00）  期望 21，实际 21（负偏移回归：绝不能为负）
+  ✔ 时刻表：UTC 小时落在 0-23  实际 21
+  ✔ 时刻表：EDT 当前小时 = UTC-4h（实际 17:00）  期望 17，实际 17（负偏移回归：绝不能为负）
+  ✔ 时刻表：EDT 小时落在 0-23  实际 17
+  ✔ 时刻表：CEST 当前小时 = UTC+2h（实际 23:00）  期望 23，实际 23（负偏移回归：绝不能为负）
+  ✔ 时刻表：CEST 小时落在 0-23  实际 23
+  ✔ 时刻表：KST 当前小时 = UTC+9h（实际 6:00）  期望 6，实际 6（负偏移回归：绝不能为负）
+  ✔ 时刻表：KST 小时落在 0-23  实际 6
+  ✔ 时刻表：BST 当前小时 = UTC+1h（实际 22:00）  期望 22，实际 22（负偏移回归：绝不能为负）
+  ✔ 时刻表：BST 小时落在 0-23  实际 22
+  ✔ 时刻表：有且仅有 'bosses_rogues_wander' 配了时刻表  实际=bosses_rogues_wander
+  ✔ 时刻表：bosses_rogues_wander 的 BossTimetable 反序列化成功
+  ✔ 时刻表：官方班表 = 8 行  实际 8
+  ✔ 时刻表：8 行与官方 MSK 班表逐行一致
+  ✔ 时刻表：首领组 = 6 位（Glukhar/Killa/Tagilla/Sanitar/Kojaniy/Bully）  实际 6：bossGluhar,bossKilla,bossTagilla,bossSanitar,bossKojaniy,bossBully
+  ✔ 时刻表：暴露 MapAt（纯函数，自检需可控小时）
+  ✔ 时刻表：MSK 00:00 ⇒ interchange  期望 interchange，实际 interchange
+  ✔ 时刻表：MSK 01:00 ⇒ interchange  期望 interchange，实际 interchange
+  ✔ 时刻表：MSK 02:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 03:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 04:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 05:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 06:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 07:00 ⇒ woods  期望 woods，实际 woods
+  ✔ 时刻表：MSK 08:00 ⇒ rezervbase  期望 rezervbase，实际 rezervbase
+  ✔ 时刻表：MSK 09:00 ⇒ rezervbase  期望 rezervbase，实际 rezervbase
+  ✔ 时刻表：MSK 10:00 ⇒ rezervbase  期望 rezervbase，实际 rezervbase
+  ✔ 时刻表：MSK 11:00 ⇒ rezervbase  期望 rezervbase，实际 rezervbase
+  ✔ 时刻表：MSK 12:00 ⇒ 无首领图  期望 null，实际 null
+  ✔ 时刻表：MSK 13:00 ⇒ bigmap  期望 bigmap，实际 bigmap
+  ✔ 时刻表：MSK 14:00 ⇒ bigmap  期望 bigmap，实际 bigmap
+  ✔ 时刻表：MSK 15:00 ⇒ bigmap  期望 bigmap，实际 bigmap
+  ✔ 时刻表：MSK 16:00 ⇒ bigmap  期望 bigmap，实际 bigmap
+  ✔ 时刻表：MSK 17:00 ⇒ shoreline  期望 shoreline，实际 shoreline
+  ✔ 时刻表：MSK 18:00 ⇒ shoreline  期望 shoreline，实际 shoreline
+  ✔ 时刻表：MSK 19:00 ⇒ shoreline  期望 shoreline，实际 shoreline
+  ✔ 时刻表：MSK 20:00 ⇒ shoreline  期望 shoreline，实际 shoreline
+  ✔ 时刻表：MSK 21:00 ⇒ 无首领图  期望 null，实际 null
+  ✔ 时刻表：MSK 22:00 ⇒ interchange  期望 interchange，实际 interchange
+  ✔ 时刻表：MSK 23:00 ⇒ interchange  期望 interchange，实际 interchange
+  ✔ 时刻表：官方两个「无」时段确实返回 null（12-13 / 21-22）  12:00 官方=无, 实际=null 21:00 官方=无, 实际=null
+  ✔ 时刻表：边界 12:00 是「无」而不是 Reserve（To 排他）
+  ✔ 时刻表：边界 22:00 是 Interchange 而不是 Shoreline（To 排他）
+  ✔ 时刻表：边界 8:00 已进 Reserve（From 含）
+  ✔ 时刻表：CurrentMap 的 out hour == 独立算出的 MSK 小时  独立算得 0，实际 out 0
+  ✔ 时刻表：CurrentMap 返回值 == 班表在 MSK 独立小时上的官方值  CurrentMap=interchange / 班表@0:00=interchange
+  ✔ 时刻表：跨零点行 22→2 命中 {0,1,22,23}  实际 {0,1,22,23}
+  ✔ 时刻表：rows 为空 ⇒ 返回 null（不得误报有首领）
+  ✔ 时刻表：map 为 null 的行被跳过 ⇒ 返回 null
+  ✔ 时刻表：Rows 为 null ⇒ 返回 null 且不抛异常  实际=null
+  ✔ 时刻表：BossTimetable=null 不抛异常且返回 null  实际=null
+  ✔ 时刻表：多行重叠时取首个匹配行（顺序语义稳定）  实际 bigmap
+  ✔ 装备注入：引擎暴露 ExtraDimensions
+  ✔ 装备注入：暴露 ApplyBotEquipment
+  ✔ 装备注入：可注入 BotTableRef / AddRestore
+  ✔ 装备注入：能拿到 BotType / EquipmentSlots（mock 前置）  BotType=ok EquipmentSlots=ok
+  ✔ 装备注入：已存在的 0 权重必须被**覆盖**成官方权重 25  实际 25（若为 0，说明又退回了 `if (Contains) continue;`）
+  ✔ 装备注入：按属性名 Prop 查枚举键字典必然查不到（复现原 bug）  若这里非 null，说明 Equipment 不再是枚举键字典，本用例前提变了，需重写
+  ✔ 装备注入：概率抬到 Math.Max(现值,75) = 75（官方语义）  实际 75（原值 70，官方会抬到 75）
+  ✔ 装备注入：还原后可回到原值（权重 0）  实际 0
+  ✔ 装备注入：还原后可回到原值（概率 70）  实际 70
+  ✔ config 有 seasonAutoPick
+  ✔ config 有 families 族表
+  ✔ 客户端 F12 cfg 里没有陈旧活动条目
+  ✔ 季节族活动自带 forceWeatherSeason（开活动即切季）
+  ✔ 轮换不变量：数据里同时存在季节活动与带任务活动（前置条件）  seasonal=9, task=17
+  ✔ 轮换不变量：已有季节活动在跑时，填充轮换只叠奖励（不叠任务/小活动/季节）  越界= 全部=
+  ✔ 轮换不变量：已有带任务活动在跑时，填充轮换只叠奖励（不叠任务/小活动/季节）  越界= 全部=
+  ✔ 轮换不变量：Rotation 里有「已有带任务的活动 → 只叠加奖励」判定
+  ✔ 万圣节模式：暴露 ApplyEventWeather
+  ✔ 万圣节模式：ApplyEventWeather 签名 (bool, string)
+  ✔ 万圣节模式：EventDef 有 EventActive（bool?）  类型=System.Nullable`1[System.Boolean]
+  ✔ 万圣节模式：暴露 ApplyEventSettings（主流程调用）
+  ✔ 万圣节模式：活动 halloween 带 eventActive=true
+  ✔ 万圣节模式：活动 halloween_2022 带 eventActive=true
+  ✔ 万圣节模式：邪教徒活动 night_of_the_cult 不带 eventActive（入夜归邪教徒、雷雨归万圣节）
+  ✔ 万圣节模式：邪教徒活动 cultist_hunting 不带 eventActive（入夜归邪教徒、雷雨归万圣节）
+  ✔ 万圣节模式：邪教徒活动 cultist_pilgrimage 不带 eventActive（入夜归邪教徒、雷雨归万圣节）
+  ✔ 万圣节模式：globals.config.EventSettings 存在（落点正确）
+  ✔ 万圣节模式：EventSettings.EventActive 存在
+  ✔ 万圣节模式：EventSettings.EventWeather 存在
+  ✔ 万圣节模式：EventSettings.WeatherChangeTime 存在
+  ✔ 万圣节模式：EventSettings.EventTime 存在
+  ✔ 万圣节模式：EventWeather.Cloudness 存在（全阴 = 雷雨来源）
+  ✔ 万圣节模式：EventWeather.Rain 存在（下雨 = 雷雨来源）
+  ✔ 万圣节模式：EventWeather.Wind 存在（大风 = 雷雨来源）
+  ✔ 万圣节模式：EventWeather.Hour = 21（入夜目标时刻）  实际=21
+  ✔ 万圣节模式：基线 globals 的 EventActive=false（证明该模式此前从未生效，靠 mod 运行期打开）
+  ✔ A10 防线：night_of_the_cult 已无 bossChance（devNote 自述已删）
+  ✔ A10 新防线：night_of_the_cult 有 ×1.25 爆率 + lootMaps 白名单 + desc 标注「近似」
+  ✔ A10 防线：night_of_the_cult 的 bossSpawns 已无 "*" 通配（曾污染 factory4_day/interchange/laboratory/labyrinth）
+  ✔ A10 防线：night_of_the_cult 的官方字段仍在（forceSeasonalBossKey/forceHostility/nightOnly/enableQuests）
+  ✔ A10 防线：全库无 "*" 通配（曾 3 次污染全部地图）
+  ✔ A6 防线：ram_shortage.desc 的 ×N 与实际字段一致（×1.5，非旧的 ×1.35）
+  ✔ C2 防线：EventDef 已无死字段 InstantHideout（服务端 0 读取，真落点是 hideoutBuildSeconds）
+  ✔ C1 防线：客户端 BuildDesc() 真的读了 TaskMissing/TaskNote（影响 34 个活动的提示）
+  ✔ C3 防线：ApplyBotTypeLimits 的早退守卫不再静默跳过 scavRaidMapDisable
+  ✔ P0 防线：scavRaidMapDisable 走 LocationBase.DisabledForScav（客户端真读的字段）、且不再删 ScavRaidTimeSettings.Maps 的键（那会抛 KeyNotFoundException）
+  ✔ P0 防线：Restore() 逆序回放 _restoreActions（顺序回放会导致同字段被两活动改后回不到原值）
+  ✔ 簇2 防线：BossWavePatch 按局**无条件**清空 _seenRaid（否则追加类首领只在进程内第一局出现）
+  ✔ R1 防线：escortCount 后置块无条件可达（hasWant 与它之间没有 return）
+  ✔ R2 防线：_seenRaid 只在对象引用变化时清空（条数回落启发式会在 SCAV 局同局重入）
+  ✔ 撤离点防线：保留片段走「精确优先」（否则 E1 会连 Exit_E10_coop 一起留下 ⇒ 每图 >1 个撤离点）
+  ✔ 外观覆盖防线：halloween_2023 把复仇小鹿覆盖成小鹿外观（body/feet/head 三个 id）
+  ✔ 外观覆盖防线：ExtraDimensions 有 ApplyBotAppearanceOverride 实现
+  ✔ 天气季节防线：1 个官方 forceSeason 活动与我们的 forceWeatherSeason 一致
+  ✔ 簇6 防线：AirdropDimension 不再用拼错的属性名 MinPlayersCountToSpawnAirdrop（恒 null ⇒ 静默 no-op）
+  ✔ 簇5 防线：art_of_explosion.desc 如实说明「任务可见性已随活动开/关」（反向门控已落地）
+结论：✔ 268 通过   ✘ 2 失败
+════════════════════════════════════════════════════════════════════════════════════════

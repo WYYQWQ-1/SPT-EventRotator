@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>probe_equipreplace</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- 只读引用实机 SPT DLL（复制一份到探针 bin 供离线加载；不修改实机） -->
+    <Reference Include="SPTarkov.Server.Core">
+      <HintPath>D:\PureEFTv4.1\EFTv4.1\SPT_Runtime\SPTarkov.Server.Core.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

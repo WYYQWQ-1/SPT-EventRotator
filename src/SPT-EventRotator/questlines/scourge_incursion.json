@@ -1,0 +1,2134 @@
+{
+  "eventId": "scourge_incursion",
+  "quests": {
+    "6ac3bc49f3f4480654003d7a": {
+      "QuestName": "Hidden Route",
+      "_id": "6ac3bc49f3f4480654003d7a",
+      "acceptPlayerMessage": "6ac3bc49f3f4480654003d7a acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac3bc49f3f4480654003d7a changeQuestMessageText",
+      "completePlayerMessage": "6ac3bc49f3f4480654003d7a completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "ccabd8f7f2f2e02938daabe5",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "ExitStatus",
+                  "dynamicLocale": false,
+                  "id": "6da6bd18a6e65132ff70d82b",
+                  "status": [
+                    "Transit"
+                  ]
+                },
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "a489537d9f8e8c4b056e8870",
+                  "target": [
+                    "factory4_day"
+                  ]
+                }
+              ],
+              "id": "0ee9e83740a2462c25e37fae"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "fab39e7b71dd3c9fb82894ca",
+            "index": 0,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Completion",
+            "value": 1,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac3bc49f3f4480654003d7a declinePlayerMessage",
+      "description": "6ac3bc49f3f4480654003d7a description",
+      "failMessageText": "6ac3bc49f3f4480654003d7a failMessageText",
+      "image": "/files/quest/icon/6ac62f4a306c957a9c086ceb.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "55f2d3fd4bdc2d5f408b4567",
+      "name": "6ac3bc49f3f4480654003d7a name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 15000,
+            "id": "951d461b1917ea6b3646c145",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "43f372df4cb90bec4dd59964",
+            "index": 1,
+            "items": [
+              {
+                "_id": "2c2e225a70af52378e3721cb",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 280000
+                }
+              }
+            ],
+            "target": "2c2e225a70af52378e3721cb",
+            "type": "Item",
+            "value": 280000
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "d84779eb2223dc248c8d88b9",
+            "isHidden": false,
+            "target": "Surgery",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "53ce61cac7bced067ef40a99",
+            "index": 3,
+            "items": [
+              {
+                "_id": "b8fb6983fdec0e5a57394c35",
+                "_tpl": "5af0548586f7743a532b7e99",
+                "upd": {
+                  "StackObjectsCount": 2
+                }
+              }
+            ],
+            "target": "b8fb6983fdec0e5a57394c35",
+            "type": "Item",
+            "value": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "5065432501dcc8371dc11a56",
+            "index": 4,
+            "items": [
+              {
+                "_id": "c96a410358082ca572fa3691",
+                "_tpl": "590c657e86f77412b013051d",
+                "upd": {
+                  "StackObjectsCount": 2
+                }
+              }
+            ],
+            "target": "c96a410358082ca572fa3691",
+            "type": "Item",
+            "value": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "4238811d690df681183926cf",
+            "index": 5,
+            "items": [
+              {
+                "_id": "4ec5eef951d666d84bb3e137",
+                "_tpl": "5d02778e86f774203e7dedbe",
+                "upd": {
+                  "StackObjectsCount": 2
+                }
+              }
+            ],
+            "target": "4ec5eef951d666d84bb3e137",
+            "type": "Item",
+            "value": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "9ef62461d793b35160893cef",
+            "index": 6,
+            "items": [
+              {
+                "_id": "fc9c5916c5110037b6b4f2a7",
+                "_tpl": "5d02797c86f774203f38e30a",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "fc9c5916c5110037b6b4f2a7",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac3bc49f3f4480654003d7a startedMessageText",
+      "successMessageText": "6ac3bc49f3f4480654003d7a successMessageText",
+      "traderId": "54cb57776803fa99248b456e",
+      "type": "Exploration"
+    },
+    "6ac3ca960cee4580a601b28c": {
+      "QuestName": "A Simple Task in a Difficult Place",
+      "_id": "6ac3ca960cee4580a601b28c",
+      "acceptPlayerMessage": "6ac3ca960cee4580a601b28c acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac3ca960cee4580a601b28c changeQuestMessageText",
+      "completePlayerMessage": "6ac3ca960cee4580a601b28c completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "c607d705c74cab9d70a45997",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "74db4700a72a5ef649030d4e",
+            "target": "6ac3bc49f3f4480654003d7a",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "b9e660fe01aaa69ede520420",
+                  "target": [
+                    "laboratory"
+                  ]
+                },
+                {
+                  "conditionType": "ExitStatus",
+                  "dynamicLocale": false,
+                  "id": "7ca130f68f40b25efa69d1d0",
+                  "status": [
+                    "Survived"
+                  ]
+                }
+              ],
+              "id": "97a8e2bb7f57fbd612210d20"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "05602f0f11036df36634056c",
+            "index": 0,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Exploration",
+            "value": 1,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac3ca960cee4580a601b28c declinePlayerMessage",
+      "description": "6ac3ca960cee4580a601b28c description",
+      "failMessageText": "6ac3ca960cee4580a601b28c failMessageText",
+      "image": "/files/quest/icon/6ac62f4a306c957a9c086ceb.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5b0fc42d86f7744a585f9105",
+      "name": "6ac3ca960cee4580a601b28c name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 18000,
+            "id": "9db8262efe27b878df205f08",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "2c4867c0f808d6961d67b694",
+            "index": 1,
+            "items": [
+              {
+                "_id": "68a543af71b6cff6908374f3",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 410000
+                }
+              }
+            ],
+            "target": "68a543af71b6cff6908374f3",
+            "type": "Item",
+            "value": 410000
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "2618fb26c4931cd291ce1ba3",
+            "isHidden": false,
+            "target": "Health",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "7730a682d09e28fa9c4624a7",
+            "index": 3,
+            "items": [
+              {
+                "_id": "5c9540cccc1869828c463924",
+                "_tpl": "5751a89d24597722aa0e8db0",
+                "upd": {
+                  "StackObjectsCount": 2
+                }
+              }
+            ],
+            "target": "5c9540cccc1869828c463924",
+            "type": "Item",
+            "value": 2
+          },
+          {
+            "findInRaid": false,
+            "id": "71affb21293e09d134d49516",
+            "index": 4,
+            "items": [
+              {
+                "_id": "ba0708544c723e1c1471329b",
+                "_tpl": "5c0e533786f7747fa23f4d47",
+                "upd": {
+                  "StackObjectsCount": 3
+                }
+              }
+            ],
+            "target": "ba0708544c723e1c1471329b",
+            "type": "Item",
+            "value": 3
+          },
+          {
+            "findInRaid": false,
+            "id": "d381eec3e4a8cd70e0447dd0",
+            "index": 5,
+            "items": [
+              {
+                "_id": "9130773e3b38cb1e47f88581",
+                "_tpl": "5c0e530286f7747fa1419862",
+                "upd": {
+                  "StackObjectsCount": 3
+                }
+              }
+            ],
+            "target": "9130773e3b38cb1e47f88581",
+            "type": "Item",
+            "value": 3
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac3ca960cee4580a601b28c startedMessageText",
+      "successMessageText": "6ac3ca960cee4580a601b28c successMessageText",
+      "traderId": "54cb57776803fa99248b456e",
+      "type": "Exploration"
+    },
+    "6ac3d88d14db1a2f3e0787bd": {
+      "QuestName": "Extending the Operation",
+      "_id": "6ac3d88d14db1a2f3e0787bd",
+      "acceptPlayerMessage": "6ac3d88d14db1a2f3e0787bd acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac3d88d14db1a2f3e0787bd changeQuestMessageText",
+      "completePlayerMessage": "6ac3d88d14db1a2f3e0787bd completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "9ecaf9b516e69403b8245cea",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "9d670d8a2e0f1294283be250",
+            "target": "6ac3ca960cee4580a601b28c",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Kills",
+                  "dynamicLocale": false,
+                  "id": "82071bf970506204790511da",
+                  "target": "Any",
+                  "value": 1,
+                  "savageRole": []
+                },
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "eab872448e18d0d760081527",
+                  "target": [
+                    "laboratory"
+                  ]
+                }
+              ],
+              "id": "b7c0989e14aee2b63677bde5"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "0f5911638a18a283a522a0e0",
+            "index": 0,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 6,
+            "visibilityConditions": []
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac3d88d14db1a2f3e0787bd declinePlayerMessage",
+      "description": "6ac3d88d14db1a2f3e0787bd description",
+      "failMessageText": "6ac3d88d14db1a2f3e0787bd failMessageText",
+      "image": "/files/quest/icon/6ac62f4a306c957a9c086ceb.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5b0fc42d86f7744a585f9105",
+      "name": "6ac3d88d14db1a2f3e0787bd name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 28000,
+            "id": "5d67fa88238c092c80fea7f3",
+            "index": 0
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "b9d2c7e719ce0a4858740b34",
+            "isHidden": false,
+            "target": "Surgery",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "4b4c55fb4853676364adb6de",
+            "index": 2,
+            "items": [
+              {
+                "_id": "3418e75f0766349bfaa56d0c",
+                "_tpl": "5c1d0d6d86f7744bb2683e1f",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "3418e75f0766349bfaa56d0c",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "db1c4ffaa95fc10fa4665e07",
+            "index": 3,
+            "items": [
+              {
+                "_id": "19397eb0d7b29805e9c7136c",
+                "_tpl": "5c1e495a86f7743109743dfb",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "19397eb0d7b29805e9c7136c",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "7a1d987bc68cc34138482e46",
+            "index": 4,
+            "items": [
+              {
+                "_id": "10de9c9a8dd5542b02fa6f72",
+                "_tpl": "5c1d0c5f86f7744bb2683cf0",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "10de9c9a8dd5542b02fa6f72",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac3d88d14db1a2f3e0787bd startedMessageText",
+      "successMessageText": "6ac3d88d14db1a2f3e0787bd successMessageText",
+      "traderId": "54cb57776803fa99248b456e",
+      "type": "Elimination"
+    },
+    "6ac4c1d676842fabb501d5aa": {
+      "QuestName": "Information Trail",
+      "_id": "6ac4c1d676842fabb501d5aa",
+      "acceptPlayerMessage": "6ac4c1d676842fabb501d5aa acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac4c1d676842fabb501d5aa changeQuestMessageText",
+      "completePlayerMessage": "6ac4c1d676842fabb501d5aa completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "1618cd730398346001566fab",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "8fc691b7ae503922af8cc926",
+            "target": "6ac3d88d14db1a2f3e0787bd",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "FindItem",
+            "dynamicLocale": false,
+            "id": "630137bb0942b8baecac9bdb",
+            "target": [
+              "6a1f00020000000000000001"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": true,
+            "countInRaid": false,
+            "dogtagLevel": 0,
+            "minDurability": 0,
+            "maxDurability": 100,
+            "isEncoded": false
+          },
+          {
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "8bdab60eb65875674e719089",
+                  "target": [
+                    "laboratory"
+                  ]
+                },
+                {
+                  "conditionType": "ExitStatus",
+                  "dynamicLocale": false,
+                  "id": "fc9371aaf133d3607107a0f3",
+                  "status": [
+                    "Survived"
+                  ]
+                }
+              ],
+              "id": "25e7cbfa757d7098914dd10b"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "5a94ed70e21982c4c34e83de",
+            "index": 0,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Exploration",
+            "value": 1,
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "HandoverItem",
+            "dynamicLocale": false,
+            "id": "708e00bb669612077a678531",
+            "target": [
+              "6a1f00020000000000000001"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": true,
+            "visibilityConditions": [
+              {
+                "conditionType": "CompleteCondition",
+                "id": "4ecf4c2eb0541311923559a6",
+                "target": "630137bb0942b8baecac9bdb"
+              }
+            ]
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac4c1d676842fabb501d5aa declinePlayerMessage",
+      "description": "6ac4c1d676842fabb501d5aa description",
+      "failMessageText": "6ac4c1d676842fabb501d5aa failMessageText",
+      "image": "/files/quest/icon/6ac630977352012a3f0b6dee.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5b0fc42d86f7744a585f9105",
+      "name": "6ac4c1d676842fabb501d5aa name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 28000,
+            "id": "54ce8b4bd93216df0a99456f",
+            "index": 0
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "a5edceddcc571c286e03c596",
+            "isHidden": false,
+            "target": "Health",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "e292713e623c6adc9341aef0",
+            "index": 2,
+            "items": [
+              {
+                "_id": "ff6d7b55d51fb4bce140c7a1",
+                "_tpl": "5c1d0dc586f7744baf2e7b79",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "ff6d7b55d51fb4bce140c7a1",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "78a40e65cd805b92977bae1f",
+            "index": 3,
+            "items": [
+              {
+                "_id": "b1ad4d5c42ce42426542536b",
+                "_tpl": "5c1d0f4986f7744bb01837fa",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "b1ad4d5c42ce42426542536b",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac4c1d676842fabb501d5aa startedMessageText",
+      "successMessageText": "6ac4c1d676842fabb501d5aa successMessageText",
+      "traderId": "54cb57776803fa99248b456e",
+      "type": "Exploration"
+    },
+    "6ac4c42976842fabb501d5b8": {
+      "QuestName": "Side Hustle",
+      "_id": "6ac4c42976842fabb501d5b8",
+      "acceptPlayerMessage": "6ac4c42976842fabb501d5b8 acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac4c42976842fabb501d5b8 changeQuestMessageText",
+      "completePlayerMessage": "6ac4c42976842fabb501d5b8 completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "ade68ce8b8f4ae69e188c361",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "34d54de144ce2bfec6470509",
+            "target": "6ac4c1d676842fabb501d5aa",
+            "status": [
+              4
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "CounterCreator",
+            "counter": {
+              "conditions": [
+                {
+                  "conditionType": "Kills",
+                  "dynamicLocale": false,
+                  "id": "a19da11c47529c3111ac3fd7",
+                  "target": "Savage",
+                  "value": 1,
+                  "savageRole": [
+                    "followerScourge",
+                    "bossScourge"
+                  ]
+                },
+                {
+                  "conditionType": "Location",
+                  "dynamicLocale": false,
+                  "id": "1d7f86bb61cf7975d75c3823",
+                  "target": [
+                    "laboratory"
+                  ]
+                }
+              ],
+              "id": "b72e48e390d5a8ac4337daba"
+            },
+            "doNotResetIfCounterCompleted": false,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "id": "89cb79a8b272d1e00e469455",
+            "index": 0,
+            "oneSessionOnly": false,
+            "parentId": "",
+            "type": "Elimination",
+            "value": 3,
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "FindItem",
+            "dynamicLocale": false,
+            "id": "18b8dbf99a414de9f74a3206",
+            "target": [
+              "6a1f00030000000000000001"
+            ],
+            "value": 3,
+            "onlyFoundInRaid": false,
+            "countInRaid": false,
+            "dogtagLevel": 0,
+            "minDurability": 0,
+            "maxDurability": 100,
+            "isEncoded": false
+          },
+          {
+            "conditionType": "HandoverItem",
+            "dynamicLocale": false,
+            "id": "7e343c5a222612849191ee19",
+            "target": [
+              "6a1f00030000000000000001"
+            ],
+            "value": 3,
+            "onlyFoundInRaid": false,
+            "visibilityConditions": [
+              {
+                "conditionType": "CompleteCondition",
+                "id": "4e216f9b2dd901cb0d838bc1",
+                "target": "18b8dbf99a414de9f74a3206"
+              }
+            ]
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac4c42976842fabb501d5b8 declinePlayerMessage",
+      "description": "6ac4c42976842fabb501d5b8 description",
+      "failMessageText": "6ac4c42976842fabb501d5b8 failMessageText",
+      "image": "/files/quest/icon/6ac630977352012a3f0b6dee.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "5b0fc42d86f7744a585f9105",
+      "name": "6ac4c42976842fabb501d5b8 name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 65000,
+            "id": "fa992c171de8ff34aa2f8823",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "f021775f8240802999875862",
+            "index": 1,
+            "items": [
+              {
+                "_id": "6155ed63752e172eda1192b7",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 580000
+                }
+              }
+            ],
+            "target": "6155ed63752e172eda1192b7",
+            "type": "Item",
+            "value": 580000
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "ed720a560d3d2c7c3873e993",
+            "isHidden": false,
+            "target": "Health",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 2
+          },
+          {
+            "availableInGameEditions": [],
+            "gameMode": [
+              "regular",
+              "pve"
+            ],
+            "id": "fd6cacb9c7af86049c6683c3",
+            "isHidden": false,
+            "target": "Surgery",
+            "type": "Skill",
+            "unknown": false,
+            "value": 100,
+            "index": 3
+          },
+          {
+            "findInRaid": false,
+            "id": "ba4e994011dffbfbdd7ef28c",
+            "index": 4,
+            "items": [
+              {
+                "_id": "8531402033fa135fb73bb798",
+                "_tpl": "5aafbcd986f7745e590fff23",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "8531402033fa135fb73bb798",
+            "type": "Item",
+            "value": 1
+          },
+          {
+            "findInRaid": false,
+            "id": "f720dbfd533dbd9b4fc48b72",
+            "index": 5,
+            "items": [
+              {
+                "_id": "e9c48e0fe9cacf1dd11db6e2",
+                "_tpl": "59fb042886f7746c5005a7b2",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "e9c48e0fe9cacf1dd11db6e2",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac4c42976842fabb501d5b8 startedMessageText",
+      "successMessageText": "6ac4c42976842fabb501d5b8 successMessageText",
+      "traderId": "54cb57776803fa99248b456e",
+      "type": "Elimination"
+    },
+    "6ac4c726a3ea5ab42a074d3a": {
+      "QuestName": "Doxed",
+      "_id": "6ac4c726a3ea5ab42a074d3a",
+      "acceptPlayerMessage": "6ac4c726a3ea5ab42a074d3a acceptPlayerMessage",
+      "canShowNotificationsInGame": true,
+      "changeQuestMessageText": "6ac4c726a3ea5ab42a074d3a changeQuestMessageText",
+      "completePlayerMessage": "6ac4c726a3ea5ab42a074d3a completePlayerMessage",
+      "conditions": {
+        "AvailableForStart": [
+          {
+            "conditionType": "Level",
+            "dynamicLocale": false,
+            "id": "cc8d203e08eb7075b942e3ba",
+            "compareMethod": ">=",
+            "value": 1,
+            "globalQuestCounterId": "",
+            "index": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          },
+          {
+            "conditionType": "Quest",
+            "dynamicLocale": false,
+            "id": "aaa80b8bf9876c99fc6a5dd8",
+            "target": "6ac4c42976842fabb501d5b8",
+            "status": [
+              2
+            ],
+            "availableAfter": 0,
+            "dispersion": 0,
+            "parentId": "",
+            "visibilityConditions": []
+          }
+        ],
+        "AvailableForFinish": [
+          {
+            "conditionType": "FindItem",
+            "dynamicLocale": false,
+            "id": "1b4e35a5537e348a90bab834",
+            "target": [
+              "590c392f86f77444754deb29"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": true,
+            "countInRaid": false,
+            "dogtagLevel": 0,
+            "minDurability": 0,
+            "maxDurability": 100,
+            "isEncoded": false
+          },
+          {
+            "conditionType": "HandoverItem",
+            "dynamicLocale": false,
+            "id": "246151dd093d1711874ddf93",
+            "target": [
+              "590c392f86f77444754deb29"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": true,
+            "visibilityConditions": [
+              {
+                "conditionType": "CompleteCondition",
+                "id": "5d1fb6aa621ba35069dc7d70",
+                "target": "1b4e35a5537e348a90bab834"
+              }
+            ]
+          }
+        ],
+        "Fail": []
+      },
+      "declinePlayerMessage": "6ac4c726a3ea5ab42a074d3a declinePlayerMessage",
+      "description": "6ac4c726a3ea5ab42a074d3a description",
+      "failMessageText": "6ac4c726a3ea5ab42a074d3a failMessageText",
+      "image": "/files/quest/icon/6ac630977352012a3f0b6dee.jpg",
+      "instantComplete": false,
+      "isKey": false,
+      "location": "653e6760052c01c1c805532f",
+      "name": "6ac4c726a3ea5ab42a074d3a name",
+      "note": "",
+      "restartable": false,
+      "rewards": {
+        "Started": [],
+        "Success": [
+          {
+            "type": "Experience",
+            "value": 28000,
+            "id": "eea312b2d9fcaaad77f1f370",
+            "index": 0
+          },
+          {
+            "findInRaid": false,
+            "id": "47d45bb59908f6af25202a62",
+            "index": 1,
+            "items": [
+              {
+                "_id": "f03af5efac607be719c25a73",
+                "_tpl": "5449016a4bdc2d6f028b456f",
+                "upd": {
+                  "StackObjectsCount": 300000
+                }
+              }
+            ],
+            "target": "f03af5efac607be719c25a73",
+            "type": "Item",
+            "value": 300000
+          },
+          {
+            "findInRaid": false,
+            "id": "a019cd35dc6c44346d50a6bb",
+            "index": 2,
+            "items": [
+              {
+                "_id": "231a326fea86cb1bda2e08a4",
+                "_tpl": "6570254fcfc010a0f5006a22",
+                "upd": {
+                  "StackObjectsCount": 4
+                }
+              }
+            ],
+            "target": "231a326fea86cb1bda2e08a4",
+            "type": "Item",
+            "value": 4
+          },
+          {
+            "findInRaid": false,
+            "id": "e61460d89e00bbbc9b957108",
+            "index": 3,
+            "items": [
+              {
+                "_id": "0031808bce0897a2f1c036b0",
+                "_tpl": "618ba27d9008e4636a67f61d",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "target": "0031808bce0897a2f1c036b0",
+            "type": "Item",
+            "value": 1
+          }
+        ],
+        "Fail": []
+      },
+      "secretQuest": false,
+      "side": "Pmc",
+      "startedMessageText": "6ac4c726a3ea5ab42a074d3a startedMessageText",
+      "successMessageText": "6ac4c726a3ea5ab42a074d3a successMessageText",
+      "traderId": "5a7c2eca46aef81a7ca2145d",
+      "type": "Discover"
+    },
+    "6a91840a740be0cff50e0310": {
+      "_id": "6a91840a740be0cff50e0310",
+      "canShowNotificationsInGame": true,
+      "conditions": {
+        "AvailableForFinish": [
+          {
+            "id": "6a91bfe6964adc01452f2a42",
+            "index": 0,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "visibilityConditions": [],
+            "parentId": "",
+            "target": [
+              "6a919148d1f99fb50b0f3113"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": false,
+            "dogtagLevel": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "countInRaid": false,
+            "isEncoded": false,
+            "conditionType": "FindItem",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": ""
+            },
+            "includeEquipment": true
+          },
+          {
+            "id": "6a91c02d74fa5c3dba8025fe",
+            "index": 1,
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "visibilityConditions": [
+              {
+                "id": "6a91c146f755c6e03fba539e",
+                "target": "6a91bfe6964adc01452f2a42",
+                "conditionType": "CompleteCondition"
+              }
+            ],
+            "parentId": "",
+            "target": [
+              "6a919148d1f99fb50b0f3113"
+            ],
+            "value": 1,
+            "onlyFoundInRaid": false,
+            "dogtagLevel": 0,
+            "maxDurability": 100,
+            "minDurability": 0,
+            "isEncoded": false,
+            "conditionType": "HandoverItem",
+            "props": {
+              "index": 1,
+              "dynamicLocale": false,
+              "visibilityConditions": [
+                {
+                  "id": "6a91c146f755c6e03fba539e",
+                  "target": "6a91bfe6964adc01452f2a42",
+                  "conditionType": "CompleteCondition"
+                }
+              ],
+              "globalQuestCounterId": "",
+              "parentId": ""
+            },
+            "includeEquipment": true
+          }
+        ],
+        "AvailableForStart": [
+          {
+            "id": "6a9186c12f529fb5708e4706",
+            "index": 0,
+            "compareMethod": ">=",
+            "dynamicLocale": false,
+            "globalQuestCounterId": "",
+            "visibilityConditions": [],
+            "parentId": "",
+            "value": 5,
+            "conditionType": "Level",
+            "props": {
+              "index": 0,
+              "dynamicLocale": false,
+              "visibilityConditions": [],
+              "globalQuestCounterId": "",
+              "parentId": ""
+            }
+          }
+        ],
+        "Fail": []
+      },
+      "description": "6a91840a740be0cff50e0310 description",
+      "failMessageText": "6a91840a740be0cff50e0310 failMessageText",
+      "name": "6a91840a740be0cff50e0310 name",
+      "note": "6a91840a740be0cff50e0310 note",
+      "traderId": "6617beeaa9cfa777ca915b7c",
+      "location": "5b0fc42d86f7744a585f9105",
+      "image": "/files/quest/icon/6a9187950c7dff553904197f.jpg",
+      "type": "PickUp",
+      "isStoryQuest": false,
+      "isKey": false,
+      "restartable": false,
+      "instantComplete": false,
+      "secretQuest": false,
+      "startedMessageText": "6a91840a740be0cff50e0310 startedMessageText",
+      "successMessageText": "6a91840a740be0cff50e0310 successMessageText",
+      "acceptPlayerMessage": "6a91840a740be0cff50e0310 acceptPlayerMessage",
+      "acceptanceAndFinishingSource": "eft",
+      "declinePlayerMessage": "6a91840a740be0cff50e0310 declinePlayerMessage",
+      "completePlayerMessage": "6a91840a740be0cff50e0310 completePlayerMessage",
+      "rewards": {
+        "Started": [
+          {
+            "value": 1,
+            "id": "6a9188541fca7a4bd643a674",
+            "type": "Item",
+            "target": "3933f4cb7607447f79c2fbb1",
+            "items": [
+              {
+                "_id": "3933f4cb7607447f79c2fbb1",
+                "_tpl": "5c94bbff86f7747ee735c08f",
+                "upd": {
+                  "StackObjectsCount": 1
+                }
+              }
+            ],
+            "isEncoded": false,
+            "unknown": false,
+            "findInRaid": false,
+            "gameMode": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "availableInGameEditions": [],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "isDeliverByMail": true
+          }
+        ],
+        "Success": [
+          {
+            "value": 14500,
+            "id": "6a91840a740be0cff50e0318",
+            "type": "Experience",
+            "unknown": false,
+            "gameMode": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "availableInGameEditions": [],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false
+          },
+          {
+            "value": 185,
+            "id": "6a91840a740be0cff50e031a",
+            "type": "Item",
+            "target": "9cc423d15b00585d7fd8a8d4",
+            "items": [
+              {
+                "_id": "5d430614089de84cb66cc32c",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 100
+                }
+              },
+              {
+                "_id": "9cc423d15b00585d7fd8a8d4",
+                "_tpl": "5d235b4d86f7742e017bc88a",
+                "upd": {
+                  "StackObjectsCount": 85
+                }
+              }
+            ],
+            "isEncoded": false,
+            "unknown": false,
+            "findInRaid": false,
+            "gameMode": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "availableInGameEditions": [],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false,
+            "isDeliverByMail": true
+          },
+          {
+            "value": 100,
+            "id": "6a918760dd2806f77cf6235d",
+            "type": "Skill",
+            "target": "Search",
+            "unknown": false,
+            "gameMode": [
+              "regular",
+              "pve",
+              "pvp-season"
+            ],
+            "availableInGameEditions": [],
+            "illustrationConfig": {
+              "image": "",
+              "bigImage": "",
+              "isBigImage": false
+            },
+            "isHidden": false,
+            "isImportant": false
+          }
+        ],
+        "Fail": []
+      },
+      "status": 0,
+      "changeQuestMessageText": "6a91840a740be0cff50e0310 changeQuestMessageText",
+      "side": "Pmc",
+      "progressSource": "eft",
+      "rankingModes": [],
+      "gameModes": [],
+      "arenaLocations": [],
+      "icon": "",
+      "inBufferZoneOnly": false,
+      "notDisplayedQuest": false,
+      "notes": {
+        "Started": null,
+        "Success": null,
+        "Fail": null
+      },
+      "rewardsInfo": [],
+      "tierAccessory": 1
+    }
+  },
+  "items": {
+    "6a1f00020000000000000001": {
+      "_id": "6a1f00020000000000000001",
+      "_name": "scourge_smartphone",
+      "_parent": "57864a66245977548f04a81f",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "blue",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": true,
+        "ConflictingItems": [],
+        "Description": "GPhone 9s",
+        "DiscardLimit": 1,
+        "DiscardingBlock": false,
+        "DropSoundType": "None",
+        "ExamineExperience": 10,
+        "ExamineTime": 1,
+        "ExaminedByDefault": true,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 1,
+        "HideEntrails": false,
+        "InsuranceDisabled": false,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "generic",
+        "LeftHandItem": false,
+        "LootExperience": 30,
+        "MaxResource": 0,
+        "MergesWithChildren": false,
+        "Name": "Broken GPhone",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/barter/phone/item_phone.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RarityPvE": "Rare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "Resource": 0,
+        "ShortName": "GPhone",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 0.3,
+        "Width": 1
+      },
+      "_type": "Item"
+    },
+    "6a1f00030000000000000001": {
+      "_id": "6a1f00030000000000000001",
+      "_name": "precursor_container",
+      "_parent": "5795f317245977243854e041",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "blue",
+        "CanPutIntoDuringTheRaid": true,
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": true,
+        "CantRemoveFromSlotsDuringRaid": [],
+        "ConflictingItems": [],
+        "Description": "Docbag",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "DropSoundType": "None",
+        "ExamineExperience": 10,
+        "ExamineTime": 1,
+        "ExaminedByDefault": true,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "ForbidMissingVitalParts": false,
+        "ForbidNonEmptyContainers": false,
+        "Height": 1,
+        "HideEntrails": true,
+        "InsuranceDisabled": false,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "gear_generic",
+        "LeftHandItem": false,
+        "LootExperience": 30,
+        "MergesWithChildren": false,
+        "Name": "Docbag",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/mods/silencers/silencer_pb_tochmash_std_9x18pm.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RarityPvE": "Superrare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "Docbag",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "TagColor": 0,
+        "TagName": "",
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 0.82,
+        "Width": 2
+      },
+      "_proto": "577e1c9d2459773cd707c525",
+      "_type": "Item"
+    },
+    "6ac4cfbc99bdd7779608792f": {
+      "_id": "6ac4cfbc99bdd7779608792f",
+      "_name": "item_barter_electr_gphone_scourge",
+      "_parent": "57864a66245977548f04a81f",
+      "_type": "Item",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "violet",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": true,
+        "ConflictingItems": [],
+        "Description": "item_barter_electr_gphone_scourge",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "ExamineExperience": 10,
+        "ExamineTime": 1,
+        "ExaminedByDefault": false,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 1,
+        "HideEntrails": false,
+        "InsuranceDisabled": false,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsNotDeletableFromQuestStashAfterQuestComplete": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "generic",
+        "LeftHandItem": false,
+        "LootExperience": 30,
+        "MergesWithChildren": false,
+        "Name": "item_barter_electr_gphone_scourge",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/barter/phone/item_phone.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RagfairLevelToTrade": 0,
+        "RarityPvE": "Not_exist",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "item_barter_electr_gphone_scourge",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 0.3,
+        "Width": 1,
+        "MaxResource": 0,
+        "Resource": 0
+      }
+    },
+    "6ac4d528d8aa0d51df01995c": {
+      "_id": "6ac4d528d8aa0d51df01995c",
+      "_name": "item_barter_medical_precursor",
+      "_parent": "590c745b86f7743cc433c5f2",
+      "_type": "Item",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "violet",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": true,
+        "ConflictingItems": [],
+        "Description": "item_barter_medical_precursor",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "ExamineExperience": 100,
+        "ExamineTime": 1,
+        "ExaminedByDefault": false,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 1,
+        "HideEntrails": false,
+        "InsuranceDisabled": true,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsNotDeletableFromQuestStashAfterQuestComplete": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "generic",
+        "LeftHandItem": false,
+        "LootExperience": 100,
+        "MergesWithChildren": false,
+        "Name": "item_barter_medical_precursor",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/quest/item_quest_chemcontainer/item_quest_chemcontainer.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RagfairLevelToTrade": 0,
+        "RarityPvE": "Superrare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "item_barter_medical_precursor",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 0.1,
+        "Width": 1,
+        "MaxResource": 0,
+        "Resource": 0,
+        "DogTagQualities": false
+      },
+      "_proto": "59e3606886f77417674759a5"
+    },
+    "6ac4e0e576842fabb501d5d0": {
+      "_id": "6ac4e0e576842fabb501d5d0",
+      "_name": "item_container_event_scourge_suitcase",
+      "_parent": "62f109593b54472778797866",
+      "_type": "Item",
+      "_props": {
+        "Grids": [
+          {
+            "_name": "main",
+            "_id": "6ac4e0e576842fabb501d5d1",
+            "_parent": "6ac4e0e576842fabb501d5d0",
+            "_props": {
+              "filters": [
+                {
+                  "ExcludedFilter": [
+                    "54009119af1c881c07000029"
+                  ],
+                  "Filter": []
+                }
+              ],
+              "cellsH": 10,
+              "cellsV": 10,
+              "minCount": 1,
+              "maxCount": 99,
+              "maxWeight": 0,
+              "isSortingTable": true
+            },
+            "_proto": "55d329c24bdc2d892f8b4567"
+          }
+        ],
+        "Slots": [],
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "blue",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": false,
+        "ConflictingItems": [],
+        "Description": "item_container_event_scourge_suitcase",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "ExamineExperience": 100,
+        "ExamineTime": 1,
+        "ExaminedByDefault": false,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 4,
+        "HideEntrails": true,
+        "InsuranceDisabled": true,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsNotDeletableFromQuestStashAfterQuestComplete": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "container_case",
+        "LeftHandItem": false,
+        "LootExperience": 20,
+        "MergesWithChildren": false,
+        "Name": "item_container_event_scourge_suitcase",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/quest/item_quest_container_carbon_case/item_quest_container_carbon_case.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RagfairLevelToTrade": 0,
+        "RarityPvE": "Superrare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "item_container_event_scourge_suitcase",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 6,
+        "Width": 4,
+        "CanPutIntoDuringTheRaid": true,
+        "CantRemoveFromSlotsDuringRaid": [],
+        "ForbidMissingVitalParts": false,
+        "ForbidNonEmptyContainers": false,
+        "BlocksArmorVest": false,
+        "SearchSound": "drawer_metal_looting"
+      },
+      "_proto": "578f87a3245977356274f2cb"
+    },
+    "6ac4eccad8aa0d51df019974": {
+      "_id": "6ac4eccad8aa0d51df019974",
+      "_name": "item_container_event_scourge_box",
+      "_parent": "62f109593b54472778797866",
+      "_type": "Item",
+      "_props": {
+        "Grids": [
+          {
+            "_name": "main",
+            "_id": "6ac4eccad8aa0d51df019975",
+            "_parent": "6ac4eccad8aa0d51df019974",
+            "_props": {
+              "filters": [
+                {
+                  "ExcludedFilter": [
+                    "54009119af1c881c07000029"
+                  ],
+                  "Filter": []
+                }
+              ],
+              "cellsH": 10,
+              "cellsV": 10,
+              "minCount": 1,
+              "maxCount": 99,
+              "maxWeight": 0,
+              "isSortingTable": false
+            },
+            "_proto": "55d329c24bdc2d892f8b4567"
+          }
+        ],
+        "Slots": [],
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "blue",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": false,
+        "ConflictingItems": [],
+        "Description": "item_container_event_scourge_box",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "ExamineExperience": 100,
+        "ExamineTime": 1,
+        "ExaminedByDefault": false,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 1,
+        "HideEntrails": true,
+        "InsuranceDisabled": true,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsNotDeletableFromQuestStashAfterQuestComplete": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "container_plastic",
+        "LeftHandItem": false,
+        "LootExperience": 100,
+        "MergesWithChildren": false,
+        "Name": "item_container_event_scourge_box",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/quest/item_quest_parcel/item_quest_parcel.bundle",
+          "rcid": ""
+        },
+        "QuestItem": false,
+        "QuestStashMaxCount": 0,
+        "RagFairCommissionModifier": 1,
+        "RagfairLevelToTrade": 0,
+        "RarityPvE": "Superrare",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "item_container_event_scourge_box",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 6,
+        "Width": 2,
+        "CanPutIntoDuringTheRaid": true,
+        "CantRemoveFromSlotsDuringRaid": [],
+        "ForbidMissingVitalParts": false,
+        "ForbidNonEmptyContainers": false,
+        "BlocksArmorVest": false,
+        "SearchSound": "drawer_metal_looting"
+      },
+      "_proto": "578f87a3245977356274f2cb"
+    },
+    "6ac64a82d614fb7b2f0516a1": {
+      "_id": "6ac64a82d614fb7b2f0516a1",
+      "_name": "item_quest_hdd_ssd_scourge",
+      "_parent": "5448ecbe4bdc2d60728b4568",
+      "_type": "Item",
+      "_props": {
+        "AnimationVariantsNumber": 0,
+        "BackgroundColor": "yellow",
+        "CanRequireOnRagfair": false,
+        "CanSellOnRagfair": false,
+        "ConflictingItems": [],
+        "Description": "item_quest_hdd_ssd_scourge",
+        "DiscardLimit": 0,
+        "DiscardingBlock": false,
+        "ExamineExperience": 10,
+        "ExamineTime": 1,
+        "ExaminedByDefault": true,
+        "ExtraSizeDown": 0,
+        "ExtraSizeForceAdd": false,
+        "ExtraSizeLeft": 0,
+        "ExtraSizeRight": 0,
+        "ExtraSizeUp": 0,
+        "Height": 1,
+        "HideEntrails": false,
+        "InsuranceDisabled": true,
+        "IsAlwaysAvailableForInsurance": false,
+        "IsLockedafterEquip": false,
+        "IsNotDeletableFromQuestStashAfterQuestComplete": false,
+        "IsSecretExitRequirement": false,
+        "IsSpecialSlotOnly": false,
+        "IsUnbuyable": false,
+        "IsUndiscardable": false,
+        "IsUngivable": false,
+        "IsUnremovable": false,
+        "IsUnsaleable": false,
+        "ItemSound": "generic",
+        "LeftHandItem": false,
+        "LootExperience": 10,
+        "MergesWithChildren": false,
+        "Name": "item_quest_hdd_ssd_scourge",
+        "NotShownInSlot": false,
+        "Prefab": {
+          "path": "assets/content/items/barter/ssd/item_barter_electr_ssd.bundle",
+          "rcid": ""
+        },
+        "QuestItem": true,
+        "QuestStashMaxCount": 1,
+        "RagFairCommissionModifier": 1,
+        "RagfairLevelToTrade": 0,
+        "RarityPvE": "Not_exist",
+        "RepairCost": 0,
+        "RepairSpeed": 0,
+        "ShortName": "item_quest_hdd_ssd_scourge",
+        "StackMaxSize": 1,
+        "StackObjectsCount": 1,
+        "Unlootable": false,
+        "UnlootableFromSide": [],
+        "UnlootableFromSlot": "FirstPrimaryWeapon",
+        "UsePrefab": {
+          "path": "",
+          "rcid": ""
+        },
+        "Weight": 0.04,
+        "Width": 1
+      },
+      "_proto": "56742c324bdc2d150f8b456d"
+    }
+  },
+  "itemMeta": {
+    "6ac4cfbc99bdd7779608792f": {
+      "price": 160000,
+      "handbookParent": "5b47574386f77428ca22b2ef"
+    },
+    "6ac4d528d8aa0d51df01995c": {
+      "price": 300000,
+      "handbookParent": "5b47574386f77428ca22b2f3"
+    },
+    "6ac4e0e576842fabb501d5d0": {
+      "price": 100000,
+      "handbookParent": "5b5f6fa186f77409407a7eb7"
+    },
+    "6ac4eccad8aa0d51df019974": {
+      "price": 100000,
+      "handbookParent": "5b5f6fa186f77409407a7eb7"
+    },
+    "6ac64a82d614fb7b2f0516a1": {
+      "price": 1,
+      "handbookParent": "5b619f1a86f77450a702a6f3"
+    }
+  },
+  "locales": {
+    "en": {
+      "6ac3bc49f3f4480654003d7a name": "Hidden Route",
+      "6ac3bc49f3f4480654003d7a description": "Good afternoon, young man. It seems Ref is planning to conduct some sort of operation on someone else's turf and has sent his mercenaries to the chemical plant. My people tracked their group to the main production buildings, but then lost them.\n\nConsidering the connection between the developments at Polikhim and the secret laboratory downtown, there could very well be a logistical tunnel or something similar connecting the two facilities.\n\nI believe that's the route they were looking for. My people had to withdraw to avoid an encounter with Tagilla, so now I'm counting on your professionalism. Check the plant's underground utility tunnels and try to find a way to the laboratory.",
+      "6ac3bc49f3f4480654003d7a successMessageText": "Apparently, these mercenaries were following a pre-established plan and already had a map of the plant. But what do they want to find at that laboratory? That's something we still have to determine, and I'm counting on your help.",
+      "6ac3bc49f3f4480654003d7a failMessageText": "",
+      "fab39e7b71dd3c9fb82894ca": "Find and take the transit to The Lab on Factory",
+      "6ac3bc49f3f4480654003d7a acceptPlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a declinePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a completePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a changeQuestMessageText": "",
+      "6ac3bc49f3f4480654003d7a startedMessageText": "",
+      "6ac3ca960cee4580a601b28c name": "A Simple Task in a Difficult Place",
+      "6ac3ca960cee4580a601b28c description": "We now know for certain that Ref's people went toward the laboratory. It's quite possible that Ref is hoping to steal stimulants unavailable on the market for his gladiators, or perhaps to sell them to spectators in the stands...\n\nWe mustn't waste any time. You know how dangerous this facility is, so I can't send anyone but you. Scout the area and report back to me. Most importantly, don't put this off, and be extremely careful.",
+      "6ac3ca960cee4580a601b28c successMessageText": "I'm glad you went there and made it back alive. If Ref's people are still at the facility, they're either looking for something specific among TerraGroup's developments or simply trying to take as many valuable materials as they can for resale. We may still be able to take advantage of this situation.",
+      "6ac3ca960cee4580a601b28c failMessageText": "",
+      "05602f0f11036df36634056c": "Extract from the Laboratory while surviving, 1 time",
+      "6ac3ca960cee4580a601b28c acceptPlayerMessage": "",
+      "6ac3ca960cee4580a601b28c declinePlayerMessage": "",
+      "6ac3ca960cee4580a601b28c completePlayerMessage": "",
+      "6ac3ca960cee4580a601b28c changeQuestMessageText": "",
+      "6ac3ca960cee4580a601b28c startedMessageText": "",
+      "6ac3d88d14db1a2f3e0787bd name": "Extending the Operation",
+      "6ac3d88d14db1a2f3e0787bd description": "While you were on the mission, I managed to find more information about the composition of Ref's team. He sent Arena veterans on this operation, led by a gladiator with the nickname Scourge. Other than the fact that this soldier ended up in Tarkov as part of USEC, nothing is known about him.\n\nA direct confrontation could scare them off, and then we won't be able to access the materials Ref needs.\n\nSo for now, all you need to do is disrupt their coordination and keep them occupied at the facility for a little longer as they try to regain control of the perimeter. While you're working at the laboratory, I'll try to find more information about the objectives of these mercenaries.",
+      "6ac3d88d14db1a2f3e0787bd successMessageText": "Excellent work, young man. I hope you didn't attack too openly and achieved the effect we needed. There's still a lot of work ahead.",
+      "6ac3d88d14db1a2f3e0787bd failMessageText": "",
+      "0f5911638a18a283a522a0e0": "Kill any 6 targets in the Laboratory",
+      "6ac3d88d14db1a2f3e0787bd acceptPlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd declinePlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd completePlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd changeQuestMessageText": "",
+      "6ac3d88d14db1a2f3e0787bd startedMessageText": "",
+      "6ac4c1d676842fabb501d5aa name": "Information Trail",
+      "6ac4c1d676842fabb501d5aa description": "The informant has finally made contact. However, he wasn't able to find any information about the specific developments, only about one of TerraGroup's employees. This person worked in administration, but had access to the underground facility and visited the laboratory from time to time.\n\nMy specialist confirmed that Ref was interested in this employee, his routes, access, and responsibilities. But we still don't understand exactly what we're looking for. So we'll have to act more aggressively.\n\nI want to know more about the orders Ref gave his mercenaries. Most likely, their commander, Scourge, has this information. I hope it's clear what I need you to do.",
+      "6ac4c1d676842fabb501d5aa successMessageText": "I won't ask how you took this smartphone from its owner. We'll check the records and the latest network activity.",
+      "6ac4c1d676842fabb501d5aa failMessageText": "",
+      "630137bb0942b8baecac9bdb": "Obtain intel from Scourge",
+      "5a94ed70e21982c4c34e83de": "Extract from the Laboratory while surviving",
+      "708e00bb669612077a678531": "Hand over the found item",
+      "6ac4c1d676842fabb501d5aa acceptPlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa declinePlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa completePlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa changeQuestMessageText": "",
+      "6ac4c1d676842fabb501d5aa startedMessageText": "",
+      "6ac4c42976842fabb501d5b8 name": "Side Hustle",
+      "6ac4c42976842fabb501d5b8 description": "We checked the smartphone and confirmed that Scourge definitely used some other device for communication, or the squad was operating under radio silence.\n\nHowever, an archive containing several photographs had been loaded onto the smartphone beforehand. They show various chemical containers, cargo packed in boxes, someone's case, as well as a couple of photographs of the green recreation areas located inside the laboratory.\n\nIt seems that this archive is somehow connected to that TerraGroup employee, or perhaps it was copied in its entirety from this specialist's personal device. Otherwise, where would those pictures of trees have come from...\n\nIn any case, we now understand what the mercenaries are looking for. We need to get those containers before Ref does. And just in case, look for that case or the boxes. The containers we need could be inside. And check the landscaped areas, too. Maybe they weren't included in the archive for no reason.",
+      "6ac4c42976842fabb501d5b8 successMessageText": "Excellent, thank you! To be honest, these look like ordinary precursors. Materials like these are used to develop or produce various drugs, including the injectors you use.\n\nIt appears the owner of the case was secretly working with someone outside TerraGroup and selling these materials without his superiors' knowledge.",
+      "6ac4c42976842fabb501d5b8 failMessageText": "",
+      "89cb79a8b272d1e00e469455": "Kill 3 of Scourge's bodyguards in the Laboratory",
+      "18b8dbf99a414de9f74a3206": "Find the special substance",
+      "7e343c5a222612849191ee19": "Hand over the found item",
+      "6ac4c42976842fabb501d5b8 acceptPlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 declinePlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 completePlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 changeQuestMessageText": "",
+      "6ac4c42976842fabb501d5b8 startedMessageText": "",
+      "6ac4c726a3ea5ab42a074d3a name": "Doxed",
+      "6ac4c726a3ea5ab42a074d3a description": "Hey. As I understand it, you and Therapist want to intercept the remaining shipments in the city that a TerraGroup employee was selling on the side. The question is, how exactly was he delivering his goods to his customers?\n\nThis guy had a workstation at the TerraGroup headquarters. There could be records there that we're still missing: addresses of precursor drop-off points and other information used by the sender.\n\nGiven the risks he was taking, there could've been quite a few addresses and fake identities. Something like that definitely wouldn't be stored on a work PC, but on a separate storage device somewhere nearby. So look around carefully. You should search the open-plan office with the kitchen on the second floor.",
+      "6ac4c726a3ea5ab42a074d3a successMessageText": "Great, I think this is it. Just give me a minute to check... How were they even letting these shipments through?\n\nGet this: our \"dealer\" was sending precursors through regular mail! He disguised the chemical containers among other fragile and awkward cargo, and apparently never got caught. He traveled all over the city, sending packages under different names and from different parts of Tarkov. The good news is that he used the downtown Rus Post office quite frequently. So you still have a chance of finding the precursor boxes you need there.",
+      "6ac4c726a3ea5ab42a074d3a failMessageText": "",
+      "1b4e35a5537e348a90bab834": "Find the SSD with the delivery routes in Ground Zero",
+      "246151dd093d1711874ddf93": "Hand over the found item",
+      "6ac4c726a3ea5ab42a074d3a acceptPlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a declinePlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a completePlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a changeQuestMessageText": "",
+      "6ac4c726a3ea5ab42a074d3a startedMessageText": "",
+      "6a1f00020000000000000001 Name": "Scourge's smartphone",
+      "6a1f00020000000000000001 ShortName": "Scourge phone",
+      "6a1f00020000000000000001 Description": "A battered smartphone recovered from the Scourge squad.",
+      "6a1f00030000000000000001 Name": "Precursor container",
+      "6a1f00030000000000000001 ShortName": "Precursor",
+      "6a1f00030000000000000001 Description": "A sealed cylindrical container holding unstable precursors.",
+      "6a91840a740be0cff50e0310 name": "Preliminary Survey",
+      "6a91840a740be0cff50e0310 description": "You're familiar with the Lab, right? Me too... My guys just don't have much luck there. But that's a whole other story!\n\nThere's a testing area in that lab, you know, the one with all the different fencing and that dome they put together. I need a blueprint of that area. Obviously, they didn't keep something like that on paper, so you'll have to look for a flash drive. \n\nThink you can get it? I've got something I want to pull off, but I can't tell you much just yet. Just get it done, and we'll work out the price, champion.\n",
+      "6a91840a740be0cff50e0310 failMessageText": "",
+      "6a91840a740be0cff50e0310 successMessageText": "Got it done? Excellent! And I still can't tell you anything. You'll see for yourself soon enough!\n",
+      "6a91840a740be0cff50e0310 whileAvailableMessageText": "",
+      "6a91bfe6964adc01452f2a42": "Locate the testing area blueprint flash drive in The Lab",
+      "6a91c02d74fa5c3dba8025fe": "Obtain the testing area blueprint flash drive in The Lab",
+      "6a91840a740be0cff50e0310 acceptPlayerMessage": "",
+      "6a91840a740be0cff50e0310 declinePlayerMessage": "",
+      "6a91840a740be0cff50e0310 completePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a whileAvailableMessageText": "",
+      "6ac3c80ec2b055f6f516042d": "Locate the transit to The Lab on Factory",
+      "6ac607a4bdeac028c51fb8f0": "Mark the transit with an MS2000 Marker",
+      "6ac3ca960cee4580a601b28c whileAvailableMessageText": "",
+      "6ac3ca960cee4580a601b28e": "Survive and extract from The Lab",
+      "6ac3d88d14db1a2f3e0787bd whileAvailableMessageText": "",
+      "6ac3d88d14db1a2f3e0787c0": "Eliminate any target in The Lab",
+      "6ac4c1d676842fabb501d5aa whileAvailableMessageText": "",
+      "6ac4c1d676842fabb501d5ad": "Survive and extract from The Lab",
+      "6ac63c9fb9b4679451922566": "Hand over the found item",
+      "6ac63cef1c65b334b31c4e1a": "Obtain the intel from Scourge",
+      "6ac4c42976842fabb501d5b8 whileAvailableMessageText": "",
+      "6ac4c42976842fabb501d5bb": "Eliminate Ref's gladiators in The Lab",
+      "6ac645aa6ee6bb486cbe1ff5": "Locate and obtain the precursors",
+      "6ac645c31514d7bd08155f0d": "Hand over the found item",
+      "6ad0de8ce84534ff56242ea3": "Find a case or a box containing precursors",
+      "6ac4c726a3ea5ab42a074d3a whileAvailableMessageText": "",
+      "6ac660ee5cc636567e43916c": "Hand over the found intel",
+      "6ac660ff5139cd94df07174e": "Locate the SSD with delivery routes on Ground Zero",
+      "6ac4cfbc99bdd7779608792f Name": "Scourge's smartphone",
+      "6ac4cfbc99bdd7779608792f ShortName": "Scourge",
+      "6ac4cfbc99bdd7779608792f Description": "The smartphone of an Arena champion named Scourge. It may contain traces of messages, calls, or notes related to Ref's orders.",
+      "6ac4d528d8aa0d51df01995c Name": "Precursor container",
+      "6ac4d528d8aa0d51df01995c ShortName": "Precursor",
+      "6ac4d528d8aa0d51df01995c Description": "The container holds a precursor from a TerraGroup laboratory that one of the employees was planning to sell on the black market.",
+      "6ac4e0e576842fabb501d5d0 Name": "TerraGroup employee's suitcase",
+      "6ac4e0e576842fabb501d5d0 ShortName": "TG case",
+      "6ac4e0e576842fabb501d5d0 Description": "The owner hid this case in a cache right on the laboratory premises. He probably wanted to keep its contents hidden even from his fellow TerraGroup employees.",
+      "6ac4eccad8aa0d51df019974 Name": "TerraGroup employee's package",
+      "6ac4eccad8aa0d51df019974 ShortName": "Box",
+      "6ac4eccad8aa0d51df019974 Description": "The contents are packed so they make no noise or shift around while being transported. But a sharp turn of the box makes it clear that it's packed to the brim with various food products, canned goods, and jars. It's as if someone wanted to conceal the fact that they were transporting an illegal shipment.",
+      "6ac64a82d614fb7b2f0516a1 Name": "SSD with shipment data",
+      "6ac64a82d614fb7b2f0516a1 ShortName": "SSD",
+      "6ac64a82d614fb7b2f0516a1 Description": "This drive supposedly contains records kept by a TerraGroup employee detailing which post offices processed orders sent to outside parties and the personal information used to ship each package."
+    },
+    "ch": {
+      "6ac3bc49f3f4480654003d7a name": "隐秘路线",
+      "6ac3bc49f3f4480654003d7a description": "下午好，年轻人。Ref 似乎打算在别人的地盘上搞点动作，把他的雇佣兵派去了化工厂。我的人一路跟到主生产楼，然后就跟丢了。\n\n波利希姆那边的动静和市中心的秘密实验室之间有联系，那这两处设施之间很可能有一条后勤隧道之类的东西。\n\n我相信他们要找的就是这条路线。我的人为了避开塔吉拉只能先撤，现在就看你的本事了。去查查厂区地下的管廊，试着找到通往实验室的路。",
+      "6ac3bc49f3f4480654003d7a successMessageText": "看来这帮雇佣兵是照着早就定好的计划行动的，手里还有厂区的地图。可他们到底想在实验室里找什么？这还得查清楚，我指望你帮忙。",
+      "6ac3bc49f3f4480654003d7a failMessageText": "",
+      "fab39e7b71dd3c9fb82894ca": "在工厂找到并走通通往实验室的转移通道",
+      "6ac3bc49f3f4480654003d7a acceptPlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a declinePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a completePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a changeQuestMessageText": "",
+      "6ac3bc49f3f4480654003d7a startedMessageText": "",
+      "6ac3ca960cee4580a601b28c name": "险地里的简单活",
+      "6ac3ca960cee4580a601b28c description": "现在已经可以确定，Ref 的人往实验室那边去了。Ref 很可能是想给他的角斗士偷一批市面上弄不到的兴奋剂，也可能是想转手卖给看台上的观众……\n\n不能再拖了。那地方有多危险你也清楚，除了你，我派不出别人。去侦察一下那片区域，然后回来向我汇报。最重要的是别耽搁，千万小心。",
+      "6ac3ca960cee4580a601b28c successMessageText": "很高兴你去了一趟还能活着回来。如果 Ref 的人还在设施里，那他们要么是在找 TerraGroup 的某项特定成果，要么就是能搬多少值钱材料就搬多少，好拿去倒卖。这个局面，我们也许还能利用一下。",
+      "6ac3ca960cee4580a601b28c failMessageText": "",
+      "05602f0f11036df36634056c": "以幸存状态撤离实验室 1 次",
+      "6ac3ca960cee4580a601b28c acceptPlayerMessage": "",
+      "6ac3ca960cee4580a601b28c declinePlayerMessage": "",
+      "6ac3ca960cee4580a601b28c completePlayerMessage": "",
+      "6ac3ca960cee4580a601b28c changeQuestMessageText": "",
+      "6ac3ca960cee4580a601b28c startedMessageText": "",
+      "6ac3d88d14db1a2f3e0787bd name": "延长行动",
+      "6ac3d88d14db1a2f3e0787bd description": "你出任务的时候，我摸到了更多关于 Ref 队伍编制的消息。他这次派来的都是竞技场的老手，带队的是个外号叫「天灾」的角斗士。已知的只有一点：这家伙是跟着 USEC 进的塔科夫，别的什么都不清楚。\n\n直接硬碰硬会把他们吓跑，那我们就拿不到 Ref 想要的那些材料了。\n\n所以现在你要做的，就是打乱他们的协同，让他们在设施里多耗一会儿，逼他们重新去抢外围控制权。你在实验室忙的时候，我会去查这些雇佣兵到底想干什么。",
+      "6ac3d88d14db1a2f3e0787bd successMessageText": "干得漂亮，年轻人。希望你出手没有太张扬，也打出了我们要的效果。后面还有不少活要干。",
+      "6ac3d88d14db1a2f3e0787bd failMessageText": "",
+      "0f5911638a18a283a522a0e0": "在实验室击杀任意目标 6 名",
+      "6ac3d88d14db1a2f3e0787bd acceptPlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd declinePlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd completePlayerMessage": "",
+      "6ac3d88d14db1a2f3e0787bd changeQuestMessageText": "",
+      "6ac3d88d14db1a2f3e0787bd startedMessageText": "",
+      "6ac4c1d676842fabb501d5aa name": "情报线索",
+      "6ac4c1d676842fabb501d5aa description": "线人终于联系上了。不过他没打听到具体的研究项目，只查到了 TerraGroup 的一名员工。这人在行政部门做事，却能进出地下设施，时不时还会去实验室。\n\n我的专家确认，Ref 对这名员工很感兴趣——他的行踪、权限、职责都在打听范围内。但我们还是没搞清楚到底要找什么，那就只能下手更狠一点。\n\n我要知道 Ref 给这些雇佣兵下了什么命令。这些信息多半在他们指挥官「天灾」手里。我要你做什么，应该很清楚了吧。",
+      "6ac4c1d676842fabb501d5aa successMessageText": "这部手机你是怎么从主人手里弄来的，我就不问了。我们会查里面的记录和最近的网络活动。",
+      "6ac4c1d676842fabb501d5aa failMessageText": "",
+      "630137bb0942b8baecac9bdb": "从天灾处获得情报",
+      "5a94ed70e21982c4c34e83de": "以幸存状态撤离实验室",
+      "708e00bb669612077a678531": "上交找到的物品",
+      "6ac4c1d676842fabb501d5aa acceptPlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa declinePlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa completePlayerMessage": "",
+      "6ac4c1d676842fabb501d5aa changeQuestMessageText": "",
+      "6ac4c1d676842fabb501d5aa startedMessageText": "",
+      "6ac4c42976842fabb501d5b8 name": "私活",
+      "6ac4c42976842fabb501d5b8 description": "我们查过这部手机，确认「天灾」确实另用了一台设备联络，要么就是整支小队在无线电静默下行动。\n\n不过手机里事先存进了一份档案，里面有好几张照片：各种化学容器、装箱的货物、某人的手提箱，还有几张实验室内部绿化区的照片。\n\n这份档案看起来和那名 TerraGroup 员工有点关系，也可能是从这名专家的个人设备上整个拷过来的。不然那些树的照片是从哪来的……\n\n总之，现在我们知道这些雇佣兵在找什么了。得赶在 Ref 之前把那批容器拿到手。保险起见，那个手提箱和箱子也一并找找，我们要的容器可能就在里面。还有那些绿化区，也去看看。档案里不会平白无故放那些照片。",
+      "6ac4c42976842fabb501d5b8 successMessageText": "太好了，谢谢你！说实话，这些东西看起来就是普通的前体。这类材料一般用来研发或生产各种药物，包括你用的那些注射剂。\n\n看来那个手提箱的主人一直在偷偷和 TerraGroup 外面的人合作，瞒着上级把这些材料卖掉。",
+      "6ac4c42976842fabb501d5b8 failMessageText": "",
+      "89cb79a8b272d1e00e469455": "在实验室杀死天灾的保镖 3 名",
+      "18b8dbf99a414de9f74a3206": "找到特殊物质",
+      "7e343c5a222612849191ee19": "上交找到的物品",
+      "6ac4c42976842fabb501d5b8 acceptPlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 declinePlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 completePlayerMessage": "",
+      "6ac4c42976842fabb501d5b8 changeQuestMessageText": "",
+      "6ac4c42976842fabb501d5b8 startedMessageText": "",
+      "6ac4c726a3ea5ab42a074d3a name": "被开盒",
+      "6ac4c726a3ea5ab42a074d3a description": "嘿。按我的理解，你和医生想拦下那名 TerraGroup 员工私下卖到城里的剩余货。问题是，他到底是怎么把货送到买家手里的？\n\n这家伙在 TerraGroup 总部有个工位。那里可能还留着我们缺的记录：前体交接点的地址，还有寄件人用过的其它信息。\n\n他冒那么大风险，地址和假身份恐怕不少。这种东西肯定不会存在办公电脑里，而是放在附近某台单独的存储设备上。所以仔细搜一搜。二楼那个带厨房的开放式办公区，你去查查。",
+      "6ac4c726a3ea5ab42a074d3a successMessageText": "很好，应该就是这个。给我一分钟核对一下……这些东西到底是怎么寄出去的？\n\n你听听：我们这位“卖家”居然是走普通邮政寄前体的！他把化学容器混在其它易碎、不好搬的货里，看样子一次都没被抓过。他跑遍全城，用不同的名字、从塔科夫的不同地方寄包裹。好消息是，他经常去市中心那家 Rus 邮政。你要找的前体箱子，说不定还在那儿。",
+      "6ac4c726a3ea5ab42a074d3a failMessageText": "",
+      "1b4e35a5537e348a90bab834": "在中心区找到带有配送路线的SSD",
+      "246151dd093d1711874ddf93": "上交找到的物品",
+      "6ac4c726a3ea5ab42a074d3a acceptPlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a declinePlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a completePlayerMessage": "",
+      "6ac4c726a3ea5ab42a074d3a changeQuestMessageText": "",
+      "6ac4c726a3ea5ab42a074d3a startedMessageText": "",
+      "6a1f00020000000000000001 Name": "Scourge 的智能手机",
+      "6a1f00020000000000000001 ShortName": "Scourge 手机",
+      "6a1f00020000000000000001 Description": "从灾祸小队身上缴获的旧手机，屏幕碎了但数据芯片完好。",
+      "6a1f00030000000000000001 Name": "前体物质容器",
+      "6a1f00030000000000000001 ShortName": "前体物质",
+      "6a1f00030000000000000001 Description": "密封圆筒容器，装着灾祸小队奉命来取的那种不稳定前体物质。",
+      "6a91840a740be0cff50e0310 name": "初步勘察",
+      "6a91840a740be0cff50e0310 description": "你对实验室那块地方很熟吧？我也是……但我的人每次下去打探门路都没落得好下场，不过这个我们之后再说！\n\n实验室里有一块测试区域，就是那个用栅栏板子和穹顶之类的东西围起来的地儿，我需要搞到那的蓝图。显然集团那帮子人是不会保留纸质材料的，所以你大概得在他们的电脑上找一块 U 盘什么的。\n\n你能办到吗？我有些事情必须得搞定，但具体情况现在还不能透露太多。先把事办妥，加码我们自然会撮合出来。好好干，冠军！\n",
+      "6a91840a740be0cff50e0310 failMessageText": "",
+      "6a91840a740be0cff50e0310 successMessageText": "搞定了？太好了！我现在还是没法透露任何情况，不过你很快就能眼见为实了！\n",
+      "6a91840a740be0cff50e0310 whileAvailableMessageText": "",
+      "6a91bfe6964adc01452f2a42": "在实验室找到测试区域蓝图 U 盘",
+      "6a91c02d74fa5c3dba8025fe": "在实验室获取测试区域蓝图 U 盘",
+      "6a91840a740be0cff50e0310 acceptPlayerMessage": "",
+      "6a91840a740be0cff50e0310 declinePlayerMessage": "",
+      "6a91840a740be0cff50e0310 completePlayerMessage": "",
+      "6ac3bc49f3f4480654003d7a whileAvailableMessageText": "",
+      "6ac3c80ec2b055f6f516042d": "Locate the transit to The Lab on Factory",
+      "6ac607a4bdeac028c51fb8f0": "Mark the transit with an MS2000 Marker",
+      "6ac3ca960cee4580a601b28c whileAvailableMessageText": "",
+      "6ac3ca960cee4580a601b28e": "Survive and extract from The Lab",
+      "6ac3d88d14db1a2f3e0787bd whileAvailableMessageText": "",
+      "6ac3d88d14db1a2f3e0787c0": "Eliminate any target in The Lab",
+      "6ac4c1d676842fabb501d5aa whileAvailableMessageText": "",
+      "6ac4c1d676842fabb501d5ad": "Survive and extract from The Lab",
+      "6ac63c9fb9b4679451922566": "Hand over the found item",
+      "6ac63cef1c65b334b31c4e1a": "Obtain the intel from Scourge",
+      "6ac4c42976842fabb501d5b8 whileAvailableMessageText": "",
+      "6ac4c42976842fabb501d5bb": "Eliminate Ref's gladiators in The Lab",
+      "6ac645aa6ee6bb486cbe1ff5": "Locate and obtain the precursors",
+      "6ac645c31514d7bd08155f0d": "Hand over the found item",
+      "6ad0de8ce84534ff56242ea3": "找到一个装有前体物质的箱子或盒子。",
+      "6ac4c726a3ea5ab42a074d3a whileAvailableMessageText": "",
+      "6ac660ee5cc636567e43916c": "Hand over the found intel",
+      "6ac660ff5139cd94df07174e": "Locate the SSD with delivery routes on Ground Zero",
+      "6ac4cfbc99bdd7779608792f Name": "天灾的智能手机",
+      "6ac4cfbc99bdd7779608792f ShortName": "天灾手机",
+      "6ac4cfbc99bdd7779608792f Description": "这是一部属于竞技场冠军「天灾」的智能手机。里面可能还留着与「裁判」命令相关的消息、通话记录或备忘。",
+      "6ac4d528d8aa0d51df01995c Name": "前体容器",
+      "6ac4d528d8aa0d51df01995c ShortName": "前体",
+      "6ac4d528d8aa0d51df01995c Description": "容器里装着 TerraGroup 实验室的前体物质——有个员工本来打算把它卖到黑市上。",
+      "6ac4e0e576842fabb501d5d0 Name": "TerraGroup 员工手提箱",
+      "6ac4e0e576842fabb501d5d0 ShortName": "TG 手提箱",
+      "6ac4e0e576842fabb501d5d0 Description": "主人把这个箱子藏在了实验室区内的一个储物点里。看样子他连自己人都不想让他们知道里面装了什么。",
+      "6ac4eccad8aa0d51df019974 Name": "TerraGroup 员工包裹",
+      "6ac4eccad8aa0d51df019974 ShortName": "箱子",
+      "6ac4eccad8aa0d51df019974 Description": "里面的东西塞得很实，搬运时不会响也不会晃。可箱子一转角就露了馅——里头塞满了各种食品、罐头和玻璃罐。像是有人刻意要掩盖自己在运送一批违禁货物。",
+      "6ac64a82d614fb7b2f0516a1 Name": "装有货运数据的 SSD",
+      "6ac64a82d614fb7b2f0516a1 ShortName": "SSD",
+      "6ac64a82d614fb7b2f0516a1 Description": "这块硬盘里据说存着一名 TerraGroup 员工的记录：哪些邮局处理过寄往外部的订单，以及每一件包裹用的收件人信息。"
+    }
+  }
+}
